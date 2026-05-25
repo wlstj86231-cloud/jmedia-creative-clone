@@ -37,12 +37,14 @@
 
 ## P4. 배포 준비
 
-- [ ] 새 GitHub 리포지토리 생성
-- [ ] 첫 커밋 및 push
-- [ ] Cloudflare Pages 신규 프로젝트 생성
+- [x] 새 GitHub 리포지토리 생성
+- [x] 첫 커밋 및 push
+- [x] Cloudflare Pages 신규 프로젝트 생성
 - [ ] GitHub 리포지토리 연동
-- [ ] 프로덕션 URL 접속 확인
-- [ ] 데스크톱/모바일 실서비스 QA
+- [x] 프로덕션 URL 접속 확인
+- [x] 데스크톱/모바일 실서비스 QA
+- [x] Cloudflare 직접 배포 완료
+- [ ] Cloudflare Pages Git Provider 연결 확인
 
 ## 원칙
 
