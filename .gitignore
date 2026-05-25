@@ -1,0 +1,4 @@
+qa-*.png
+.wrangler/
+.DS_Store
+Thumbs.db

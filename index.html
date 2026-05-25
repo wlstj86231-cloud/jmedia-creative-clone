@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>J MEDIA | Structure First Digital Studio</title>
+  <meta name="description" content="J MEDIA는 정보 구조, 운영 흐름, 전환 설계를 바탕으로 오래 운영할 수 있는 웹사이트를 만듭니다.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="progress" data-progress></div>
+  <div class="cursor" data-cursor aria-hidden="true">VIEW</div>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="J MEDIA 홈">
+      <img src="assets/brand-logo.jpg" alt="" aria-hidden="true">
+      <span>J MEDIA</span>
+    </a>
+
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="about.html">About</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#world">World</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a class="header-contact" href="contact.html">Contact</a>
+
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" data-mobile-nav aria-label="모바일 메뉴">
+    <a href="about.html">About</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#world">World</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title" data-hero>
+      <div class="hero-media" aria-hidden="true">
+        <div class="hero-frame frame-a" data-depth="-18">
+          <img src="assets/portfolio/05_policyfundpedia.png" alt="">
+        </div>
+        <div class="hero-frame frame-b" data-depth="14">
+          <img src="assets/portfolio/10_reportools.png" alt="">
+        </div>
+        <div class="hero-frame frame-c" data-depth="-10">
+          <img src="assets/portfolio/08_tripmarking.png" alt="">
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          운영 가능한 구조로,
+          <br>웹사이트의 기준을 다시 잡습니다.
+        </h1>
+        <p>
+          J MEDIA는 보기 좋은 화면보다 먼저 정보 구조, 사용자 흐름, 배포 이후의 운영성을 설계합니다.
+          작게 시작해도 오래 굴러가는 웹사이트를 목표로 만듭니다.
+        </p>
+      </div>
+
+      <div class="hero-proof" aria-label="J MEDIA 운영 기준">
+        <span>Started 2023.09</span>
+        <span>Content Architecture</span>
+        <span>Utility Flow</span>
+      </div>
+
+      <a class="scroll-cue" href="#about" aria-label="다음 섹션으로 이동">
+        <span>SCROLL</span>
+        <i></i>
+      </a>
+    </section>
+
+    <section class="intro section" id="about">
+      <div class="section-index">01 · ABOUT</div>
+      <div class="intro-grid">
+        <h2 data-reveal>
+          J MEDIA는 사이트를
+          <br>하나의 운영 시스템으로 봅니다.
+        </h2>
+        <div class="intro-copy" data-reveal>
+          <p>
+            랜딩페이지, 정보형 허브, 도구형 서비스, 참여형 페이지는 같은 방식으로 만들 수 없습니다.
+            사용자가 들어오는 이유와 다음 행동이 다르기 때문입니다.
+          </p>
+          <p>
+            그래서 첫 단계에서 메뉴, 문서 구조, CTA, 콘텐츠 확장 방식, 배포 흐름을 함께 정리합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="intro-visual" data-reveal>
+        <div class="visual-card main">
+          <span>STRUCTURE</span>
+          <strong>Information Architecture</strong>
+          <p>검색 의도, 카테고리, 상세 문서, 내부 링크를 한 흐름으로 연결합니다.</p>
+        </div>
+        <div class="visual-card">
+          <span>OPERATION</span>
+          <strong>Build to Run</strong>
+          <p>배포 이후에도 수정과 확장이 가능한 기준을 남깁니다.</p>
+        </div>
+        <div class="visual-card">
+          <span>FLOW</span>
+          <strong>User Movement</strong>
+          <p>읽고, 비교하고, 문의하는 행동을 자연스럽게 이어줍니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="method section" aria-labelledby="method-title">
+      <div class="method-copy">
+        <div class="section-index">02 · METHOD</div>
+        <h2 id="method-title">타입이 달라지면 설계도 달라져야 합니다.</h2>
+      </div>
+      <div class="method-rows">
+        <article data-reveal>
+          <span>01</span>
+          <strong>정보형</strong>
+          <p>검색 의도, 문서 구조, 내부 링크가 중심입니다.</p>
+        </article>
+        <article data-reveal>
+          <span>02</span>
+          <strong>도구형</strong>
+          <p>입력, 처리, 결과 화면의 속도가 중요합니다.</p>
+        </article>
+        <article data-reveal>
+          <span>03</span>
+          <strong>지도형</strong>
+          <p>위치 데이터와 모바일 탐색 경험이 핵심입니다.</p>
+        </article>
+        <article data-reveal>
+          <span>04</span>
+          <strong>참여형</strong>
+          <p>참여, 체류, CTA가 하나의 행동으로 이어져야 합니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="highlights section" id="highlights">
+      <div class="section-head">
+        <div>
+          <div class="section-index">03 · HIGHLIGHTS</div>
+          <h2>작업물은 유형별로 보여줍니다.</h2>
+        </div>
+        <div class="tabs" role="tablist" aria-label="하이라이트 유형">
+          <button class="active" type="button" data-filter="all">ALL</button>
+          <button type="button" data-filter="info">INFO</button>
+          <button type="button" data-filter="tool">TOOL</button>
+          <button type="button" data-filter="local">LOCAL</button>
+          <button type="button" data-filter="engage">ENGAGE</button>
+        </div>
+      </div>
+
+      <div class="highlight-grid">
+        <article class="work-card large" data-card data-type="info" data-cursor-label="INFO">
+          <a href="highlight-info.html">
+            <span class="work-number">01</span>
+            <img src="assets/portfolio/05_policyfundpedia.png" alt="정책자금백과 화면">
+            <div>
+              <p>Information Hub</p>
+              <h3>Policyfundpedia</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="tool" data-cursor-label="TOOL">
+          <a href="highlight-tool.html">
+            <span class="work-number">02</span>
+            <img src="assets/portfolio/10_reportools.png" alt="Reportools 화면">
+            <div>
+              <p>Utility Flow</p>
+              <h3>Reportools</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="local" data-cursor-label="MAP">
+          <a href="highlight-local.html">
+            <span class="work-number">03</span>
+            <img src="assets/portfolio/08_tripmarking.png" alt="Tripmarking 화면">
+            <div>
+              <p>Location UX</p>
+              <h3>Tripmarking</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="tool" data-cursor-label="TOOL">
+          <a href="highlight-tool.html">
+            <span class="work-number">04</span>
+            <img src="assets/portfolio/09_goatool.png" alt="Goatool 화면">
+            <div>
+              <p>Tool Service</p>
+              <h3>Goatool</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="info" data-cursor-label="INFO">
+          <a href="highlight-info.html" aria-label="Ahachive 포트폴리오">
+            <span class="work-number">05</span>
+            <img src="assets/portfolio/01_ahachive.png" alt="Ahachive 화면">
+            <div>
+              <p>Content Archive</p>
+              <h3>Ahachive</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="engage" data-cursor-label="LOOP">
+          <a href="highlight-engagement.html" aria-label="Occult Worldcup 포트폴리오">
+            <span class="work-number">06</span>
+            <img src="assets/portfolio/03_occultworldcup.png" alt="Occult Worldcup 화면">
+            <div>
+              <p>Participation Loop</p>
+              <h3>Occult Worldcup</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="local" data-cursor-label="LOCAL">
+          <a href="highlight-local.html" aria-label="Sumimap 포트폴리오">
+            <span class="work-number">07</span>
+            <img src="assets/portfolio/06_sumimap.png" alt="Sumimap 화면">
+            <div>
+              <p>Local Data</p>
+              <h3>Sumimap</h3>
+            </div>
+          </a>
+        </article>
+
+        <article class="work-card" data-card data-type="info" data-cursor-label="INFO">
+          <a href="highlight-info.html" aria-label="Scamreader 포트폴리오">
+            <span class="work-number">08</span>
+            <img src="assets/portfolio/07_scamreader.png" alt="Scamreader 화면">
+            <div>
+              <p>Information Guide</p>
+              <h3>Scamreader</h3>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="world section" id="world">
+      <div class="world-copy">
+        <div class="section-index">04 · J MEDIA WORLD</div>
+        <h2>사이트마다 설계의 중심이 달라집니다.</h2>
+        <p>
+          정보형은 문서 구조, 도구형은 입력과 결과, 지도형은 모바일 탐색,
+          참여형은 행동 흐름을 중심에 놓고 설계합니다.
+        </p>
+      </div>
+
+      <div class="world-stage" data-world-stage aria-label="J MEDIA 설계 유형">
+        <button class="world-item item-info" type="button">
+          <span>Information</span>
+          <strong>검색 의도와 문서 구조</strong>
+        </button>
+        <button class="world-item item-tool" type="button">
+          <span>Utility</span>
+          <strong>입력과 결과 흐름</strong>
+        </button>
+        <button class="world-item item-local" type="button">
+          <span>Local</span>
+          <strong>위치 기반 탐색</strong>
+        </button>
+        <button class="world-item item-convert" type="button">
+          <span>Conversion</span>
+          <strong>상담과 전환 연결</strong>
+        </button>
+      </div>
+    </section>
+
+    <section class="partners section">
+      <div class="section-index">05 · OPERATED SITES</div>
+      <h2>실제 운영 경험 위에 포트폴리오를 쌓습니다.</h2>
+      <div class="marquee" aria-label="운영 사이트 목록">
+        <div class="marquee-track">
+          <span>Ahachive</span>
+          <span>Megapureunasset</span>
+          <span>Policyfundpedia</span>
+          <span>Sumimap</span>
+          <span>Scamreader</span>
+          <span>Tripmarking</span>
+          <span>Goatool</span>
+          <span>Reportools</span>
+          <span>Ahachive</span>
+          <span>Megapureunasset</span>
+          <span>Policyfundpedia</span>
+          <span>Sumimap</span>
+          <span>Scamreader</span>
+          <span>Tripmarking</span>
+          <span>Goatool</span>
+          <span>Reportools</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div>
+        <div class="section-index">06 · CONTACT</div>
+        <h2>먼저 구조부터 상담합니다.</h2>
+        <p>
+          제작할 사이트의 목적, 참고 링크, 필요한 기능, 운영 방식을 알려주시면
+          어떤 구조로 시작해야 하는지 먼저 정리합니다.
+        </p>
+      </div>
+      <a class="contact-button" href="contact.html">
+        상담 폼 작성하기
+        <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
