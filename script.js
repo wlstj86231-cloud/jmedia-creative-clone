@@ -4,12 +4,17 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const cursor = document.querySelector("[data-cursor]");
 const hero = document.querySelector("[data-hero]");
+const mobileStickyCta = document.querySelector(".mobile-sticky-cta");
 
 function updateChrome() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = scrollable > 0 ? window.scrollY / scrollable : 0;
   if (progress) progress.style.width = `${Math.min(ratio * 100, 100)}%`;
   if (header) header.classList.toggle("is-compact", window.scrollY > 24);
+  if (mobileStickyCta) {
+    const shouldShow = window.matchMedia("(max-width: 980px)").matches && window.scrollY > window.innerHeight * 0.55;
+    mobileStickyCta.classList.toggle("is-visible", shouldShow);
+  }
 }
 
 window.addEventListener("scroll", updateChrome, { passive: true });

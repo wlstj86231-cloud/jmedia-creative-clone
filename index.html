@@ -3,8 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>J MEDIA | Structure First Digital Studio</title>
-  <meta name="description" content="J MEDIA는 정보 구조, 운영 흐름, 전환 설계를 바탕으로 오래 운영할 수 있는 웹사이트를 만듭니다.">
+  <title>J MEDIA | Creative Structure Web Studio</title>
+  <meta name="description" content="J MEDIA는 강한 첫인상, 포트폴리오 쇼케이스, 문의 흐름까지 함께 설계하는 브랜딩형 웹사이트 제작 스튜디오입니다.">
+  <meta property="og:title" content="J MEDIA | Creative Structure Web Studio">
+  <meta property="og:description" content="구조는 단단하게, 첫인상은 강렬하게. J MEDIA의 브랜딩형 웹사이트 포트폴리오입니다.">
+  <meta property="og:image" content="assets/portfolio/05_policyfundpedia.png">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#dfff18">
+  <link rel="canonical" href="https://jmedia-creative-clone.pages.dev/">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -19,8 +26,9 @@
     </a>
 
     <nav class="nav" aria-label="주요 메뉴">
-      <a href="about.html">About</a>
+      <a href="#about">About</a>
       <a href="#highlights">Highlights</a>
+      <a href="#method">ATL / BTL</a>
       <a href="#world">World</a>
       <a href="contact.html">Contact</a>
     </nav>
@@ -34,8 +42,9 @@
   </header>
 
   <nav class="mobile-nav" data-mobile-nav aria-label="모바일 메뉴">
-    <a href="about.html">About</a>
+    <a href="#about">About</a>
     <a href="#highlights">Highlights</a>
+    <a href="#method">ATL / BTL</a>
     <a href="#world">World</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -43,6 +52,10 @@
   <main id="top">
     <section class="hero" aria-labelledby="hero-title" data-hero>
       <div class="hero-media" aria-hidden="true">
+        <div class="hero-orbit orbit-a"></div>
+        <div class="hero-orbit orbit-b"></div>
+        <div class="hero-sticker sticker-a">CLICK!</div>
+        <div class="hero-sticker sticker-b">WEB THAT MOVES</div>
         <div class="hero-frame frame-a" data-depth="-18">
           <img src="assets/portfolio/05_policyfundpedia.png" alt="">
         </div>
@@ -55,20 +68,26 @@
       </div>
 
       <div class="hero-copy">
+        <p class="hero-kicker">WELCOME TO J MEDIA WORLD</p>
         <h1 id="hero-title">
-          운영 가능한 구조로,
-          <br>웹사이트의 기준을 다시 잡습니다.
+          구조는 단단하게,
+          <br>첫인상은 강렬하게.
         </h1>
         <p>
-          J MEDIA는 보기 좋은 화면보다 먼저 정보 구조, 사용자 흐름, 배포 이후의 운영성을 설계합니다.
-          작게 시작해도 오래 굴러가는 웹사이트를 목표로 만듭니다.
+          J MEDIA는 브랜드의 첫 장면, 포트폴리오 쇼케이스, 문의까지 이어지는 움직임을 설계합니다.
+          보기 좋은 화면과 오래 운영되는 구조를 한 번에 만듭니다.
         </p>
+        <div class="hero-actions" aria-label="주요 행동">
+          <a href="#highlights">Explore works</a>
+          <a href="contact.html">Start project</a>
+          <a href="about.html">Studio brief</a>
+        </div>
       </div>
 
       <div class="hero-proof" aria-label="J MEDIA 운영 기준">
-        <span>Started 2023.09</span>
-        <span>Content Architecture</span>
-        <span>Utility Flow</span>
+        <span>9 Owned Labs</span>
+        <span>Brand Website</span>
+        <span>Content / Tool / Map</span>
       </div>
 
       <a class="scroll-cue" href="#about" aria-label="다음 섹션으로 이동">
@@ -81,113 +100,117 @@
       <div class="section-index">01 · ABOUT</div>
       <div class="intro-grid">
         <h2 data-reveal>
-          J MEDIA는 사이트를
-          <br>하나의 운영 시스템으로 봅니다.
+          J MEDIA는 브랜드를
+          <br>클릭하고 싶은 장면으로 만듭니다.
         </h2>
         <div class="intro-copy" data-reveal>
           <p>
-            랜딩페이지, 정보형 허브, 도구형 서비스, 참여형 페이지는 같은 방식으로 만들 수 없습니다.
-            사용자가 들어오는 이유와 다음 행동이 다르기 때문입니다.
+            첫 화면은 기억되어야 하고, 포트폴리오는 증명해야 하며, 문의 버튼은 자연스럽게 눌려야 합니다.
+            J MEDIA는 이 세 가지를 같은 흐름 안에서 설계합니다.
           </p>
           <p>
-            그래서 첫 단계에서 메뉴, 문서 구조, CTA, 콘텐츠 확장 방식, 배포 흐름을 함께 정리합니다.
+            감각적인 레이아웃, 실제 운영 사이트 이미지, 카테고리별 쇼케이스, 배포 이후의 수정 흐름까지 함께 정리합니다.
           </p>
         </div>
+      </div>
+
+      <div class="metric-strip" aria-label="J MEDIA 주요 숫자" data-reveal>
+        <article>
+          <span>Started</span>
+          <strong>2023.09</strong>
+          <p>작은 웹 실험에서 시작해 운영형 사이트 포트폴리오로 확장했습니다.</p>
+        </article>
+        <article>
+          <span>Owned Labs</span>
+          <strong>09</strong>
+          <p>정보형, 도구형, 지도형, 참여형 사이트를 직접 만들고 운영합니다.</p>
+        </article>
+        <article>
+          <span>Build Range</span>
+          <strong>1-7D</strong>
+          <p>랜딩형은 빠르게, 브랜딩형은 이미지와 인터랙션까지 잡아 제작합니다.</p>
+        </article>
       </div>
 
       <div class="intro-visual" data-reveal>
         <div class="visual-card main">
-          <span>STRUCTURE</span>
-          <strong>Information Architecture</strong>
-          <p>검색 의도, 카테고리, 상세 문서, 내부 링크를 한 흐름으로 연결합니다.</p>
+          <span>CREATIVE STRUCTURE</span>
+          <strong>Design that proves the work</strong>
+          <p>큰 타이포, 겹치는 이미지, 명확한 CTA로 방문자가 작업물을 먼저 느끼게 합니다.</p>
         </div>
         <div class="visual-card">
-          <span>OPERATION</span>
-          <strong>Build to Run</strong>
-          <p>배포 이후에도 수정과 확장이 가능한 기준을 남깁니다.</p>
+          <span>BRAND SCENE</span>
+          <strong>Playful first view</strong>
+          <p>딱딱한 소개보다 브랜드의 분위기를 먼저 보여주는 장면을 만듭니다.</p>
         </div>
         <div class="visual-card">
-          <span>FLOW</span>
-          <strong>User Movement</strong>
-          <p>읽고, 비교하고, 문의하는 행동을 자연스럽게 이어줍니다.</p>
+          <span>TRUST FLOW</span>
+          <strong>Proof to contact</strong>
+          <p>운영 경험, 제작 방식, 공식 연락처를 한 흐름으로 이어줍니다.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="method section" aria-labelledby="method-title">
-      <div class="method-copy">
-        <div class="section-index">02 · METHOD</div>
-        <h2 id="method-title">타입이 달라지면 설계도 달라져야 합니다.</h2>
-      </div>
-      <div class="method-rows">
-        <article data-reveal>
-          <span>01</span>
-          <strong>정보형</strong>
-          <p>검색 의도, 문서 구조, 내부 링크가 중심입니다.</p>
-        </article>
-        <article data-reveal>
-          <span>02</span>
-          <strong>도구형</strong>
-          <p>입력, 처리, 결과 화면의 속도가 중요합니다.</p>
-        </article>
-        <article data-reveal>
-          <span>03</span>
-          <strong>지도형</strong>
-          <p>위치 데이터와 모바일 탐색 경험이 핵심입니다.</p>
-        </article>
-        <article data-reveal>
-          <span>04</span>
-          <strong>참여형</strong>
-          <p>참여, 체류, CTA가 하나의 행동으로 이어져야 합니다.</p>
-        </article>
       </div>
     </section>
 
     <section class="highlights section" id="highlights">
       <div class="section-head">
         <div>
-          <div class="section-index">03 · HIGHLIGHTS</div>
-          <h2>작업물은 유형별로 보여줍니다.</h2>
+          <div class="section-index">02 · HIGHLIGHTS</div>
+          <h2>Hover the works. Find the structure.</h2>
+          <p class="section-lead">대표 작업은 이미지, 역할, 제작 유형이 먼저 보이도록 다시 정리했습니다. Click! 하고 들어가면 유형별 상세 흐름을 볼 수 있습니다.</p>
         </div>
         <div class="tabs" role="tablist" aria-label="하이라이트 유형">
           <button class="active" type="button" data-filter="all">ALL</button>
+          <button type="button" data-filter="atl">ATL</button>
+          <button type="button" data-filter="btl">BTL</button>
           <button type="button" data-filter="info">INFO</button>
           <button type="button" data-filter="tool">TOOL</button>
-          <button type="button" data-filter="local">LOCAL</button>
-          <button type="button" data-filter="engage">ENGAGE</button>
         </div>
       </div>
 
+      <div class="featured-label" aria-label="대표 작업 구분">
+        <span>FEATURED WORK</span>
+        <p>먼저 보여줘야 할 대표작은 크게, 나머지 운영 실험은 More Works로 이어집니다.</p>
+      </div>
+
       <div class="highlight-grid">
-        <article class="work-card large" data-card data-type="info" data-cursor-label="INFO">
+        <article class="work-card large featured" data-card data-type="atl" data-cursor-label="FEATURED">
           <a href="highlight-info.html">
             <span class="work-number">01</span>
             <img src="assets/portfolio/05_policyfundpedia.png" alt="정책자금백과 화면">
             <div>
-              <p>Information Hub</p>
+              <p>Brand Information Hub · 5 days · Static SEO</p>
               <h3>Policyfundpedia</h3>
+              <em>공식 공고형 정보를 읽기 쉬운 탐색 구조로 재배치한 대표 정보형 프로젝트.</em>
+              <div class="work-tags"><span>Official-source UX</span><span>Detail URL</span><span>Mobile scan</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="tool" data-cursor-label="TOOL">
+        <article class="work-card" data-card data-type="atl" data-cursor-label="CASE">
           <a href="highlight-tool.html">
             <span class="work-number">02</span>
             <img src="assets/portfolio/10_reportools.png" alt="Reportools 화면">
             <div>
-              <p>Utility Flow</p>
+              <p>Utility Website · Upload Flow · QA</p>
               <h3>Reportools</h3>
+              <em>파일 제출 전 확인 흐름을 도구형 웹서비스로 설계한 작업.</em>
+              <div class="work-tags"><span>PDF tools</span><span>Result screen</span><span>Guide pages</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="local" data-cursor-label="MAP">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="MAP">
           <a href="highlight-local.html">
             <span class="work-number">03</span>
             <img src="assets/portfolio/08_tripmarking.png" alt="Tripmarking 화면">
             <div>
-              <p>Location UX</p>
+              <p>Map Experience · Mobile First · Safety</p>
               <h3>Tripmarking</h3>
+              <em>지도와 위험 정보를 모바일에서 바로 이해하게 만든 로컬 데이터 프로젝트.</em>
+              <div class="work-tags"><span>Map-first</span><span>Risk card</span><span>Travel UX</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
@@ -197,41 +220,53 @@
             <span class="work-number">04</span>
             <img src="assets/portfolio/09_goatool.png" alt="Goatool 화면">
             <div>
-              <p>Tool Service</p>
+              <p>Tool Service · One Click · Document</p>
               <h3>Goatool</h3>
+              <em>문서, 파일, 제출 전 점검을 빠르게 처리하는 실무형 도구 사이트.</em>
+              <div class="work-tags"><span>One-click</span><span>Viewer</span><span>Checklist</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="info" data-cursor-label="INFO">
+        <article class="work-card" data-card data-type="atl" data-cursor-label="ARCHIVE">
           <a href="highlight-info.html" aria-label="Ahachive 포트폴리오">
             <span class="work-number">05</span>
             <img src="assets/portfolio/01_ahachive.png" alt="Ahachive 화면">
             <div>
-              <p>Content Archive</p>
+              <p>Content Archive · Editorial · Curation</p>
               <h3>Ahachive</h3>
+              <em>콘텐츠 아카이브를 탐색 가능한 편집형 웹사이트로 구성한 작업.</em>
+              <div class="work-tags"><span>Archive</span><span>Editorial</span><span>Series</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="engage" data-cursor-label="LOOP">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="LOOP">
           <a href="highlight-engagement.html" aria-label="Occult Worldcup 포트폴리오">
             <span class="work-number">06</span>
             <img src="assets/portfolio/03_occultworldcup.png" alt="Occult Worldcup 화면">
             <div>
-              <p>Participation Loop</p>
+              <p>Participation Loop · Ranking · Replay</p>
               <h3>Occult Worldcup</h3>
+              <em>선택, 비교, 공유로 이어지는 참여형 페이지의 체류 흐름 실험.</em>
+              <div class="work-tags"><span>Game loop</span><span>Ranking</span><span>Replay</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="local" data-cursor-label="LOCAL">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="LOCAL">
           <a href="highlight-local.html" aria-label="Sumimap 포트폴리오">
             <span class="work-number">07</span>
             <img src="assets/portfolio/06_sumimap.png" alt="Sumimap 화면">
             <div>
-              <p>Local Data</p>
+              <p>Local Data · Report · Bottom Sheet</p>
               <h3>Sumimap</h3>
+              <em>일본 생활 정보를 지도, 제보, 모바일 바텀시트 중심으로 설계한 프로젝트.</em>
+              <div class="work-tags"><span>Bottom sheet</span><span>Reports</span><span>Local labels</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
@@ -241,47 +276,225 @@
             <span class="work-number">08</span>
             <img src="assets/portfolio/07_scamreader.png" alt="Scamreader 화면">
             <div>
-              <p>Information Guide</p>
+              <p>Information Guide · Scam Check · Reader</p>
               <h3>Scamreader</h3>
+              <em>불안한 링크와 메시지를 사용자가 스스로 점검하도록 돕는 안내형 도구.</em>
+              <div class="work-tags"><span>Reader flow</span><span>Safety copy</span><span>Mobile CTA</span></div>
+              <span class="work-cta">Open case study</span>
             </div>
           </a>
         </article>
       </div>
     </section>
 
+    <section class="study section" id="study">
+      <div class="section-index">03 · STYLE STUDY NOTE</div>
+      <div class="study-grid">
+        <div>
+          <h2>원본을 베끼지 않고, 감각의 구조를 재해석합니다.</h2>
+          <p>
+            이 페이지는 크리에이티브 에이전시형 사이트의 섹션 흐름, 큰 타이포그래피, 호버 중심 포트폴리오 감각을
+            J MEDIA 브랜드와 자체 프로젝트 이미지로 재구성한 스타일 스터디입니다.
+          </p>
+        </div>
+        <div class="study-cards" aria-label="스터디 원칙">
+          <article>
+            <span>01</span>
+            <strong>No copied assets</strong>
+            <p>원본 문구, 이미지, 로고, 고유 브랜드 자산을 직접 사용하지 않습니다.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>J MEDIA structure</strong>
+            <p>원본의 감성은 참고하되 포트폴리오, 문의, 운영 신뢰 흐름은 J MEDIA식으로 다시 설계합니다.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>Commercial proof</strong>
+            <p>고객에게는 “비슷하게 만들 수 있음”보다 “내 업종에 맞게 바꿀 수 있음”을 보여줍니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="entry section" id="entry">
+      <div class="section-index">04 · CHOOSE YOUR ENTRY</div>
+      <div class="entry-head">
+        <h2>고객이 자기 업종으로 바로 들어올 수 있어야 합니다.</h2>
+        <p>J MEDIA는 내부 개발 분류보다 고객이 이해하는 제작 상품명으로 먼저 안내합니다.</p>
+      </div>
+      <div class="entry-grid" aria-label="고객 유형별 진입">
+        <a href="contact.html">
+          <span>LOCAL BUSINESS</span>
+          <strong>소상공인 홈페이지</strong>
+          <p>가게, 학원, 미용실, 병원, 1인 사업자의 첫 화면과 문의 흐름.</p>
+        </a>
+        <a href="contact.html">
+          <span>BRAND</span>
+          <strong>브랜딩형 사이트</strong>
+          <p>큰 타이포, 이미지 쇼케이스, 포트폴리오 중심의 감각형 페이지.</p>
+        </a>
+        <a href="contact.html">
+          <span>LANDING</span>
+          <strong>랜딩 / 이벤트 페이지</strong>
+          <p>상품, 이벤트, 서비스 하나를 빠르게 설명하고 신청으로 연결.</p>
+        </a>
+        <a href="contact.html">
+          <span>CONTENT / TOOL</span>
+          <strong>정보형 · 도구형 웹</strong>
+          <p>문서, 검색, 입력, 결과 화면이 필요한 운영형 웹서비스.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="method section" id="method" aria-labelledby="method-title">
+      <div class="method-copy">
+        <div class="section-index">05 · ATL / BTL METHOD</div>
+        <h2 id="method-title">브랜드형과 기능형은 다른 방식으로 움직여야 합니다.</h2>
+        <p>Customer-facing categories first. Developer logic second.</p>
+      </div>
+      <div class="method-rows">
+        <article data-reveal>
+          <span>ATL</span>
+          <strong>Brand Website</strong>
+          <p>첫 화면, 큰 타이포, 이미지 갤러리, 포트폴리오 무드로 브랜드를 기억시킵니다.</p>
+        </article>
+        <article data-reveal>
+          <span>ATL</span>
+          <strong>Campaign Page</strong>
+          <p>제품, 이벤트, 서비스의 한 장면을 강한 CTA와 스크롤 연출로 연결합니다.</p>
+        </article>
+        <article data-reveal>
+          <span>BTL</span>
+          <strong>Utility Flow</strong>
+          <p>입력, 처리, 결과 화면을 빠르고 명확하게 설계해 재방문 이유를 만듭니다.</p>
+        </article>
+        <article data-reveal>
+          <span>BTL</span>
+          <strong>Local / Data UX</strong>
+          <p>지도, 목록, 제보, 상세 정보를 모바일에서 바로 움직일 수 있게 만듭니다.</p>
+        </article>
+      </div>
+      <div class="method-diagram" data-reveal aria-label="제작 전후 구조 예시">
+        <div>
+          <span>BEFORE</span>
+          <strong>예쁜 첫 화면 + 흩어진 설명</strong>
+          <p>방문자는 무엇을 봐야 할지, 어디서 문의해야 할지 늦게 이해합니다.</p>
+        </div>
+        <i aria-hidden="true"></i>
+        <div>
+          <span>AFTER</span>
+          <strong>첫인상 → 대표작 → 신뢰 → 문의</strong>
+          <p>감성 장면과 구매 판단 정보를 분리해 더 빠르게 설득합니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="packages section" id="packages">
+      <div class="section-index">06 · SERVICE PACKAGES</div>
+      <div class="packages-head">
+        <h2>문의 전, 대략의 범위와 기간을 먼저 보여줍니다.</h2>
+        <p>정확한 견적은 자료와 기능 범위 확인 후 안내합니다. 아래는 상담 전 감을 잡기 위한 제작 범위입니다.</p>
+      </div>
+      <div class="package-grid" aria-label="제작 패키지">
+        <article>
+          <span>START</span>
+          <strong>Landing Sprint</strong>
+          <p>1~3일</p>
+          <ul>
+            <li>원페이지 또는 짧은 소개 페이지</li>
+            <li>모바일 우선 CTA 구조</li>
+            <li>Cloudflare Pages 배포 안내</li>
+          </ul>
+          <a href="contact.html">랜딩 상담</a>
+        </article>
+        <article class="featured-package">
+          <span>BRAND</span>
+          <strong>Creative Website</strong>
+          <p>3~7일</p>
+          <ul>
+            <li>히어로, 포트폴리오, 신뢰 섹션</li>
+            <li>레퍼런스형 인터랙션 재해석</li>
+            <li>문의 폼과 공식 정보 정리</li>
+          </ul>
+          <a href="contact.html">브랜딩형 상담</a>
+        </article>
+        <article>
+          <span>OPERATE</span>
+          <strong>Content / Tool Site</strong>
+          <p>5일~</p>
+          <ul>
+            <li>카테고리, 상세 URL, 내부 링크</li>
+            <li>도구 입력/결과 화면</li>
+            <li>SEO 기본 파일과 운영 구조</li>
+          </ul>
+          <a href="contact.html">운영형 상담</a>
+        </article>
+      </div>
+    </section>
+
     <section class="world section" id="world">
       <div class="world-copy">
-        <div class="section-index">04 · J MEDIA WORLD</div>
-        <h2>사이트마다 설계의 중심이 달라집니다.</h2>
+        <div class="section-index">07 · J MEDIA WORLD</div>
+        <h2>Click the orbit. J MEDIA의 작업 세계를 탐색하세요.</h2>
         <p>
-          정보형은 문서 구조, 도구형은 입력과 결과, 지도형은 모바일 탐색,
-          참여형은 행동 흐름을 중심에 놓고 설계합니다.
+          정보형, 도구형, 지도형, 전환형 작업을 하나의 월드로 묶었습니다.
+          각 궤도는 다른 고객 문제와 다른 제작 방식을 가집니다.
         </p>
       </div>
 
       <div class="world-stage" data-world-stage aria-label="J MEDIA 설계 유형">
+        <div class="world-core" aria-hidden="true">
+          <span>J</span>
+          <strong>MEDIA<br>WORLD</strong>
+        </div>
         <button class="world-item item-info" type="button">
           <span>Information</span>
           <strong>검색 의도와 문서 구조</strong>
+          <small>Policyfundpedia · Scamreader</small>
         </button>
         <button class="world-item item-tool" type="button">
           <span>Utility</span>
           <strong>입력과 결과 흐름</strong>
+          <small>Reportools · Goatool</small>
         </button>
         <button class="world-item item-local" type="button">
           <span>Local</span>
           <strong>위치 기반 탐색</strong>
+          <small>Sumimap · Tripmarking</small>
         </button>
         <button class="world-item item-convert" type="button">
           <span>Conversion</span>
           <strong>상담과 전환 연결</strong>
+          <small>Landing · Contact · CTA</small>
         </button>
       </div>
     </section>
 
-    <section class="partners section">
-      <div class="section-index">05 · OPERATED SITES</div>
-      <h2>실제 운영 경험 위에 포트폴리오를 쌓습니다.</h2>
+    <section class="partners section" id="labs">
+      <div class="section-index">08 · OWNED PROJECTS</div>
+      <h2>Client logo 대신, 실제 운영한 내부 프로젝트로 증명합니다.</h2>
+      <p class="owned-lead">
+        아래 목록은 외부 고객사를 가장한 로고가 아니라 J MEDIA가 직접 만든 자체 운영 프로젝트입니다.
+        Sample Works / Internal Labs / Owned Products로 정직하게 구분합니다.
+      </p>
+      <div class="proof-grid" aria-label="J MEDIA 신뢰 지표">
+        <article>
+          <span>09</span>
+          <strong>Owned sites</strong>
+          <p>정보형, 도구형, 지도형, 참여형 프로젝트를 직접 운영하며 구조를 검증합니다.</p>
+        </article>
+        <article>
+          <span>01-07D</span>
+          <strong>Fast build range</strong>
+          <p>작은 랜딩부터 브랜딩형 포트폴리오까지 목적에 맞춰 빠르게 제작합니다.</p>
+        </article>
+        <article>
+          <span>SAFE</span>
+          <strong>No password handoff</strong>
+          <p>계정 비밀번호를 요구하지 않고 초대와 권한 방식으로 배포를 진행합니다.</p>
+        </article>
+      </div>
       <div class="marquee" aria-label="운영 사이트 목록">
         <div class="marquee-track">
           <span>Ahachive</span>
@@ -304,21 +517,71 @@
       </div>
     </section>
 
+    <section class="trust section" id="trust">
+      <div class="section-index">09 · TRUST & DELIVERY</div>
+      <div class="trust-layout">
+        <h2>고객이 문의 전에 확인해야 할 정보를 먼저 보여줍니다.</h2>
+        <div class="trust-list">
+          <article>
+            <span>CONTACT</span>
+            <strong>공식 연락처</strong>
+            <p>이메일: weblaunch.j@gmail.com · 문의 폼: contact.html</p>
+          </article>
+          <article>
+            <span>DELIVERY</span>
+            <strong>제공 범위</strong>
+            <p>반응형 페이지, 포트폴리오 섹션, 문의 흐름, Cloudflare Pages 배포 안내.</p>
+          </article>
+          <article>
+            <span>SECURITY</span>
+            <strong>계정 안전</strong>
+            <p>고객 계정 비밀번호를 요구하지 않고 초대, 권한, 공개 배포 흐름으로 진행합니다.</p>
+          </article>
+          <article>
+            <span>LEGAL</span>
+            <strong>레퍼런스 사용 원칙</strong>
+            <p>레퍼런스 사이트의 코드, 이미지, 문구를 복제하지 않고 구조와 인터랙션 감각만 재해석합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="contact section" id="contact">
       <div>
-        <div class="section-index">06 · CONTACT</div>
-        <h2>먼저 구조부터 상담합니다.</h2>
+        <div class="section-index">10 · CONTACT</div>
+        <h2>내 업종에 맞는 첫 화면과 문의 흐름을 같이 잡습니다.</h2>
         <p>
-          제작할 사이트의 목적, 참고 링크, 필요한 기능, 운영 방식을 알려주시면
-          어떤 구조로 시작해야 하는지 먼저 정리합니다.
+          참고 사이트, 업종, 필요한 기능을 알려주시면 브랜딩형, 랜딩형, 정보형, 도구형 중 어떤 구조로 시작할지 먼저 정리합니다.
+          1분 상담 폼으로 시작하고, 비밀번호 공유 없이 안전한 배포 방식을 안내합니다.
         </p>
+        <div class="contact-trust">
+          <span>1분 상담</span>
+          <span>견적 방향 안내</span>
+          <span>Cloudflare 배포 가능</span>
+        </div>
       </div>
       <a class="contact-button" href="contact.html">
-        상담 폼 작성하기
+        내 사이트 구조 상담받기
         <span aria-hidden="true">↗</span>
       </a>
     </section>
   </main>
+
+  <a class="mobile-sticky-cta" href="contact.html">1분 구조 상담</a>
+
+  <footer class="site-footer">
+    <div>
+      <strong>J MEDIA</strong>
+      <p>Creative Structure Web Studio</p>
+      <p class="footer-meta">운영 형태: 개인 웹 제작 스튜디오 · 문의: weblaunch.j@gmail.com</p>
+    </div>
+    <nav aria-label="푸터 링크">
+      <a href="#highlights">Works</a>
+      <a href="#method">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="mailto:weblaunch.j@gmail.com">weblaunch.j@gmail.com</a>
+    </nav>
+  </footer>
 
   <script src="script.js"></script>
 </body>
