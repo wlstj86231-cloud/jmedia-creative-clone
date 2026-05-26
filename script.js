@@ -220,18 +220,18 @@ function prepareContactPayload(form) {
   const pageUrl = window.location.href;
 
   const lines = [
-    `??: ${name}`,
-    `???: ${formData.get("phone") || ""}`,
-    `???: ${formData.get("reply_to") || ""}`,
-    `????: ${brand}`,
-    `????/?? ???: ${formData.get("reference_site") || ""}`,
-    `??? ??: ${formData.get("site_type") || ""}`,
-    `?? ??: ${formData.get("budget_range") || ""}`,
-    `?? ??: ${features.join(", ") || "???"}`,
-    `?? ??: ${formData.get("business_summary") || ""}`,
-    `????: ${formData.get("request_detail") || ""}`,
-    `?? ??: ${submittedAt}`,
-    `?? ???: ${pageUrl}`,
+    `이름: ${name}`,
+    `연락처: ${formData.get("phone") || ""}`,
+    `이메일: ${formData.get("reply_to") || ""}`,
+    `브랜드명: ${brand}`,
+    `벤치마크/참고 사이트: ${formData.get("reference_site") || ""}`,
+    `사이트 유형: ${formData.get("site_type") || ""}`,
+    `예산 범위: ${formData.get("budget_range") || ""}`,
+    `필요 기능: ${features.join(", ") || "미선택"}`,
+    `사업 내용: ${formData.get("business_summary") || ""}`,
+    `요청사항: ${formData.get("request_detail") || ""}`,
+    `접수 시간: ${submittedAt}`,
+    `접수 페이지: ${pageUrl}`,
   ];
 
   const subjectInput = form.querySelector("[data-subject]");
@@ -239,7 +239,7 @@ function prepareContactPayload(form) {
   const submittedAtInput = form.querySelector("[data-submitted-at]");
   const pageUrlInput = form.querySelector("[data-page-url]");
 
-  if (subjectInput) subjectInput.value = `[J Media ?? ??] ${brand || name || "?? ??"} / ${name || "?? ???"}`;
+  if (subjectInput) subjectInput.value = `[J Media 상담 요청] ${brand || name || "신규 문의"} / ${name || "이름 미입력"}`;
   if (messageInput) messageInput.value = lines.join("\n");
   if (submittedAtInput) submittedAtInput.value = submittedAt;
   if (pageUrlInput) pageUrlInput.value = pageUrl;

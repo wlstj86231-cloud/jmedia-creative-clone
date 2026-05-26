@@ -1,53 +1,64 @@
-# J MEDIA Creative Clone 구현 체크리스트
+# J MEDIA Creative Clone Implementation Checklist
 
-## P0. 신규 기준선
+## P0. Base Setup
 
-- [x] 기존 J MEDIA 코드와 분리된 새 프로젝트 폴더 생성
-- [x] J MEDIA 브랜드 로고와 포트폴리오 이미지를 새 프로젝트로 복사
-- [x] 홈 첫 화면, 소개, 하이라이트, 월드, 운영 사이트, 상담 진입 섹션 구성
-- [x] 데스크톱/모바일 이미지 깨짐 확인
-- [x] 데스크톱/모바일 가로 오버플로우 확인
+- [x] Create a separate J MEDIA project folder
+- [x] Copy J MEDIA brand logo and portfolio images into this project
+- [x] Build hero, intro, highlights, owned labs, and contact entry sections
+- [x] Check desktop and mobile image framing
+- [x] Check horizontal overflow on desktop and mobile
 
-## P1. 원본형 홈 인터랙션 강화
+## P1. Visual And Interaction Polish
 
-- [x] 히어로 진입 애니메이션을 더 정교하게 구성
-- [x] 스크롤 시 소개 섹션 문장과 카드가 순차적으로 등장하도록 보완
-- [x] 하이라이트 카드 hover 시 이미지 확대, 번호 이동, 커서 라벨 효과 추가
-- [x] J MEDIA WORLD 섹션의 카드 움직임을 더 자연스럽게 튜닝
-- [x] 모바일에서 인터랙션이 과하지 않도록 별도 모션 기준 적용
-- [x] 하이라이트 작업물을 8개까지 확장
+- [x] Strengthen hero entry animation and first impression
+- [x] Tune scroll reveal rhythm for intro cards and copy
+- [x] Add hover movement, image scale, card numbering, and cursor label effects for work cards
+- [x] Smooth J MEDIA WORLD card movement
+- [x] Add mobile-safe motion behavior
+- [x] Expand highlighted works to the current portfolio set
+- [x] Add desktop hover preview and mobile tap preview
 
-## P2. 하이라이트 상세 페이지
+## P2. Detail Pages
 
-- [x] 정보형 상세 페이지 제작
-- [x] 도구형 상세 페이지 제작
-- [x] 지도형 상세 페이지 제작
-- [x] 참여형 상세 페이지 제작
-- [x] 각 상세 페이지에 큰 비주얼, 카테고리 탭, 관련 작업물 영역 구성
-- [x] 홈 하이라이트 카드가 내부 상세 페이지로 연결되도록 수정
+- [x] Create information detail page
+- [x] Create tool detail page
+- [x] Create local/map detail page
+- [x] Create engagement detail page
+- [x] Add visual category and related work sections to detail pages
+- [x] Link highlight cards to the matching detail pages
 
-## P3. 회사 소개/접근 방식/문의
+## P3. Company, Approach, And Contact
 
-- [x] About 페이지 제작
-- [x] Approach 페이지 제작
-- [x] Contact 페이지 제작
-- [x] EmailJS 상담 폼 신규 연결
-- [x] 기존 policyfundpedia.com EmailJS 설정은 건드리지 않고 새 프로젝트 contact.html에만 J MEDIA 전용 설정 적용
-- [x] 실수신 라이브 전송 성공 응답 확인
+- [x] Create About page
+- [x] Create Approach page
+- [x] Create Contact page
+- [x] Connect EmailJS form structure for J MEDIA contact
+- [x] Keep existing external EmailJS settings untouched
+- [x] Normalize official email to `weblaunch.j@gmail.com`
+- [x] Clean contact form payload labels and status messages
 
-## P4. 배포 준비
+## P4. Deployment Prep
 
-- [x] 새 GitHub 리포지토리 생성
-- [x] 첫 커밋 및 push
-- [x] Cloudflare Pages 신규 프로젝트 생성
-- [ ] GitHub 리포지토리 연동
-- [x] 프로덕션 URL 접속 확인
-- [x] 데스크톱/모바일 실서비스 QA
-- [x] Cloudflare 직접 배포 완료
-- [ ] Cloudflare Pages Git Provider 연결 확인
+- [x] Create GitHub repository
+- [x] Push project to GitHub
+- [x] Add Cloudflare-ready static site files
+- [x] Confirm production URL works
+- [x] Run desktop and mobile QA
+- [x] Add robots, sitemap, manifest, canonical, and OG image
+- [ ] Confirm Cloudflare Pages Git Provider connection in the Cloudflare dashboard
+- [ ] Connect custom domain and replace `pages.dev` canonical/sitemap URLs
 
-## 원칙
+## P5. Optimization And Productization
 
-- 원본 사이트의 코드, 문구, 이미지, 고유 브랜드 자산은 복제하지 않는다.
-- 레이아웃 골격, 인터랙션 감각, 섹션 흐름만 J MEDIA 브랜드에 맞게 재해석한다.
-- 매 단계마다 브라우저 캡처로 실제 화면을 확인한다.
+- [x] Generate WebP variants for portfolio images
+- [x] Add Open Graph image
+- [x] Split project data into `project-data.js`
+- [x] Document image optimization, works routing, and service-page split decisions
+- [x] Add reusable customer industry template section
+- [ ] Run full Lighthouse mobile audit after deployment access is final
+
+## Principles
+
+- Do not copy source code, copy, images, or proprietary brand assets from the reference site.
+- Reinterpret only structure, interaction rhythm, and section flow for the J MEDIA brand.
+- Verify visible changes with browser screenshots before shipping.
