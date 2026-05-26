@@ -4200,3 +4200,121 @@ body.is-loaded .frame-c {
     font-size: 14px;
   }
 }
+
+/* Clone checklist pass: mobile should feel edited, visual, and less sales-heavy. */
+@media (max-width: 620px) {
+  .hero-action-work,
+  .hero-action-brief,
+  .hero-proof {
+    display: none !important;
+  }
+
+  .hero-action-contact {
+    background: var(--acid);
+    color: var(--ink);
+  }
+
+  .hero p {
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.58;
+  }
+
+  .mobile-nav {
+    place-content: start center;
+    padding-top: 126px;
+    font-size: clamp(38px, 13vw, 54px);
+  }
+
+  .work-card {
+    box-shadow: 5px 5px 0 rgba(12,13,12,0.12);
+  }
+
+  .work-card a {
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .work-card img,
+  .work-card.large img {
+    aspect-ratio: 16 / 11;
+    margin: 16px 0 18px;
+  }
+
+  .work-card em {
+    display: -webkit-box;
+    min-height: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .work-meta,
+  .work-tags {
+    display: none;
+  }
+
+  .industry-templates,
+  .method,
+  .fast-workflow,
+  .structure-flow,
+  .process {
+    display: none;
+  }
+
+  .package-grid article {
+    min-height: auto;
+  }
+
+  .package-grid li:nth-child(n+3) {
+    display: none;
+  }
+
+  .trust-list article:nth-child(n+4),
+  .faq-list article p {
+    display: none;
+  }
+
+  .world-stage {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 14px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .world-stage::-webkit-scrollbar {
+    display: none;
+  }
+
+  .world-core,
+  .world-item {
+    flex: 0 0 min(82vw, 310px);
+    scroll-snap-align: start;
+  }
+
+  .orbit-sites {
+    flex: 0 0 min(92vw, 350px);
+    align-content: start;
+    justify-content: flex-start;
+  }
+
+  .orbit-sites span {
+    border-color: rgba(12,13,12,0.16);
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 3px 3px 0 rgba(255,255,255,0.12);
+  }
+
+  .orbit-sites span:nth-child(3n + 1) {
+    background: var(--acid);
+  }
+
+  .orbit-sites span:nth-child(3n + 2) {
+    background: #8fd7ff;
+  }
+
+  .orbit-sites span:nth-child(3n) {
+    background: #ffb2d2;
+  }
+}
