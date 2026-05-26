@@ -3950,7 +3950,7 @@ body.is-loaded .frame-c {
   }
 
   .section {
-    padding-block: 56px;
+    padding-block: 46px;
   }
 
   .intro h2,
@@ -4214,10 +4214,43 @@ body.is-loaded .frame-c {
     color: var(--ink);
   }
 
+  .section {
+    padding-block: 46px;
+  }
+
+  .section-index {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+
+  .section-head {
+    margin-bottom: 24px;
+    gap: 18px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(32px, 9.2vw, 38px);
+    line-height: 1;
+  }
+
   .hero p {
     max-width: 320px;
     font-size: 15px;
     line-height: 1.58;
+  }
+
+  .section-head p,
+  .featured-label p,
+  .study p,
+  .entry-head p,
+  .packages-head p,
+  .flow-head p,
+  .world-copy p,
+  .owned-lead,
+  .contact p,
+  .package-grid p,
+  .trust-list article p {
+    display: none;
   }
 
   .mobile-nav {
@@ -4226,26 +4259,74 @@ body.is-loaded .frame-c {
     font-size: clamp(38px, 13vw, 54px);
   }
 
+  .tabs {
+    gap: 6px;
+  }
+
+  .tabs button {
+    min-width: 54px;
+    height: 34px;
+    border-radius: 12px;
+    font-size: 10px;
+  }
+
+  .featured-label {
+    display: none;
+    min-height: 0;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    border-radius: 20px;
+  }
+
+  .featured-label span {
+    font-size: 11px;
+  }
+
+  .highlight-grid {
+    gap: 12px;
+  }
+
   .work-card {
+    min-height: 0;
+    border-radius: 16px;
     box-shadow: 5px 5px 0 rgba(12,13,12,0.12);
   }
 
   .work-card a {
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto;
+    padding: 14px 16px 16px;
   }
 
   .work-card img,
   .work-card.large img {
-    aspect-ratio: 16 / 11;
-    margin: 16px 0 18px;
+    height: clamp(118px, 36vw, 148px);
+    aspect-ratio: auto;
+    margin: 10px 0 12px;
+    object-position: top center;
+  }
+
+  .work-card p {
+    max-width: 100%;
+    margin-bottom: 6px;
+    overflow: hidden;
+    color: #6b706c;
+    font-size: 11px;
+    line-height: 1.15;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .work-card h3 {
+    font-size: clamp(25px, 7.5vw, 32px);
+    line-height: 0.96;
   }
 
   .work-card em {
-    display: -webkit-box;
-    min-height: 0;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    display: none;
+  }
+
+  .work-cta {
+    display: none;
   }
 
   .work-meta,
@@ -4265,13 +4346,28 @@ body.is-loaded .frame-c {
     min-height: auto;
   }
 
-  .package-grid li:nth-child(n+3) {
+  .package-grid ul {
+    gap: 6px;
+  }
+
+  .package-grid li:nth-child(n+2) {
     display: none;
   }
 
   .trust-list article:nth-child(n+4),
   .faq-list article p {
     display: none;
+  }
+
+  .mobile-sticky-cta {
+    left: auto;
+    right: 16px;
+    bottom: 10px;
+    width: min(178px, calc(100vw - 40px));
+    min-height: 40px;
+    border-radius: 14px;
+    font-size: 13px;
+    box-shadow: 0 8px 18px rgba(12,13,12,0.16);
   }
 
   .world-stage {
