@@ -4234,11 +4234,12 @@ body.is-loaded .frame-c {
   }
 
   .hero p {
-    max-width: 320px;
-    font-size: 15px;
-    line-height: 1.58;
+    display: none;
   }
 
+  main section p:not(.work-card p),
+  main section em,
+  main section li,
   .section-head p,
   .featured-label p,
   .study p,
@@ -4294,30 +4295,32 @@ body.is-loaded .frame-c {
 
   .work-card a {
     grid-template-rows: auto auto;
-    padding: 14px 16px 16px;
+    padding: 12px 14px 14px;
   }
 
   .work-card img,
   .work-card.large img {
-    height: clamp(118px, 36vw, 148px);
+    height: clamp(104px, 31vw, 126px);
     aspect-ratio: auto;
-    margin: 10px 0 12px;
+    margin: 8px 0 10px;
     object-position: top center;
   }
 
   .work-card p {
     max-width: 100%;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     overflow: hidden;
     color: #6b706c;
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.15;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
   .work-card h3 {
-    font-size: clamp(25px, 7.5vw, 32px);
+    font-size: clamp(23px, 6.7vw, 29px);
     line-height: 0.96;
   }
 
@@ -4363,11 +4366,16 @@ body.is-loaded .frame-c {
     left: auto;
     right: 16px;
     bottom: 10px;
-    width: min(178px, calc(100vw - 40px));
-    min-height: 40px;
+    width: 84px;
+    min-height: 38px;
     border-radius: 14px;
-    font-size: 13px;
+    font-size: 0;
     box-shadow: 0 8px 18px rgba(12,13,12,0.16);
+  }
+
+  .mobile-sticky-cta::after {
+    content: "상담";
+    font-size: 13px;
   }
 
   .world-stage {
