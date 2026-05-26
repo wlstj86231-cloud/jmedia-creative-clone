@@ -3484,3 +3484,291 @@ body.is-loaded .frame-c {
     min-height: 52px;
   }
 }
+
+/* iPhone 13 mini and similarly narrow phones */
+@media (max-width: 390px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  main,
+  section,
+  article,
+  div,
+  p,
+  h1,
+  h2,
+  h3,
+  strong {
+    min-width: 0;
+  }
+
+  .site-header {
+    height: 66px;
+  }
+
+  .brand img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand span {
+    font-size: 16px;
+  }
+
+  .hero {
+    padding-top: 84px;
+    padding-bottom: 42px;
+    overflow: hidden;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 154px;
+    overflow: hidden;
+  }
+
+  .hero-kicker {
+    width: 100%;
+    min-height: 30px;
+    padding-inline: 10px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero h1 {
+    font-size: clamp(31px, 9.4vw, 36px);
+    line-height: 1.04;
+  }
+
+  .hero p,
+  .intro-copy p,
+  .section-lead,
+  .section-head p,
+  .entry-head p,
+  .packages-head p,
+  .flow-head p,
+  .world-copy p,
+  .owned-lead,
+  .contact p,
+  .plain-hero p,
+  .contact-hero p,
+  .detail-hero p,
+  .contact-hero aside p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.62;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .frame-a {
+    top: 116px;
+    width: 150px;
+  }
+
+  .frame-b {
+    top: 232px;
+    right: -72px;
+    width: 148px;
+  }
+
+  .hero-actions {
+    max-width: 100%;
+    gap: 9px;
+  }
+
+  .hero-actions a,
+  .contact-button,
+  .package-grid a,
+  .submit-button {
+    min-height: 48px;
+    font-size: 13px;
+  }
+
+  .section {
+    padding-block: 56px;
+  }
+
+  .intro h2,
+  .section-head h2,
+  .flagship h2,
+  .entry h2,
+  .packages h2,
+  .flow-head h2,
+  .world h2,
+  .partners h2,
+  .trust h2,
+  .faq h2,
+  .contact h2,
+  .plain-hero h1,
+  .contact-hero h1,
+  .detail-hero h1 {
+    font-size: clamp(28px, 8.6vw, 36px);
+    line-height: 1.08;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .work-card h3,
+  .entry-grid strong,
+  .package-grid strong,
+  .flow-grid strong,
+  .process-track strong,
+  .trust-list strong,
+  .faq-list strong,
+  .contact-safety strong,
+  .detail-points strong,
+  .flow-board strong,
+  .loop-grid strong {
+    font-size: 22px;
+    line-height: 1.12;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .metric-strip article,
+  .visual-card,
+  .work-card a,
+  .study-cards article,
+  .entry-grid a,
+  .package-grid article,
+  .flow-grid article,
+  .process-track article,
+  .proof-grid article,
+  .trust-list article,
+  .faq-list article,
+  .contact-safety article {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .metric-strip strong {
+    font-size: 42px;
+  }
+
+  .desktop-device {
+    padding: 10px;
+  }
+
+  .world-stage {
+    padding: 14px;
+  }
+
+  .world-core {
+    min-height: 112px;
+  }
+
+  .plain-hero,
+  .contact-hero {
+    padding-top: 58px;
+    overflow: hidden;
+  }
+
+  .contact-hero {
+    gap: 28px;
+  }
+
+  .contact-hero aside {
+    padding: 22px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .site-footer {
+    gap: 18px;
+    padding: 30px var(--gutter);
+  }
+
+  .mobile-sticky-cta {
+    left: 10px;
+    right: 10px;
+    min-height: 50px;
+  }
+}
+
+/* Final narrow-mobile comfort overrides */
+@media (max-width: 620px) {
+  .site-header,
+  main,
+  .site-footer {
+    width: 100%;
+    max-width: 375px;
+  }
+
+  .hero,
+  .plain-hero,
+  .contact-hero,
+  .detail-hero {
+    overflow: hidden;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-kicker {
+    width: 100%;
+    min-height: 30px;
+    padding-inline: 10px;
+    font-size: 8px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero h1 {
+    font-size: clamp(31px, 9vw, 36px);
+    line-height: 1.05;
+  }
+
+  .hero p,
+  .intro-copy p,
+  .section-lead,
+  .section-head p,
+  .entry-head p,
+  .packages-head p,
+  .flow-head p,
+  .world-copy p,
+  .owned-lead,
+  .contact p,
+  .plain-hero p,
+  .contact-hero p,
+  .detail-hero p,
+  .contact-hero aside p {
+    width: 100%;
+    max-width: 343px;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .plain-hero h1,
+  .contact-hero h1,
+  .detail-hero h1 {
+    font-size: clamp(32px, 9vw, 40px);
+    line-height: 1.06;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-safety strong {
+    font-size: 22px;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+}
