@@ -4,19 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | J MEDIA</title>
-  <meta name="description" content="J MEDIA 웹사이트 제작 상담 신청 페이지입니다.">
+  <meta name="description" content="J MEDIA 웹사이트 제작 상담 요청 페이지입니다.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="progress" data-progress></div>
   <header class="site-header" data-header>
-    <a class="brand" href="index.html" aria-label="J MEDIA 홈"><img src="assets/brand-logo.jpg" alt="" aria-hidden="true"><span>J MEDIA</span></a>
-    <nav class="nav" aria-label="주요 메뉴"><a href="about.html">About</a><a href="index.html#highlights">Highlights</a><a href="index.html#packages">Services</a><a href="contact.html" aria-current="page">Contact</a></nav>
+    <a class="brand" href="index.html" aria-label="J MEDIA 홈">
+      <img src="assets/brand-logo.jpg" alt="" aria-hidden="true">
+      <span>J MEDIA</span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="about.html">About</a>
+      <a href="index.html#highlights">Highlights</a>
+      <a href="index.html#packages">Services</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
     <a class="header-contact" href="contact.html">Contact</a>
-    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+    </button>
   </header>
-  <nav class="mobile-nav" data-mobile-nav aria-label="모바일 메뉴"><a href="about.html">About</a><a href="index.html#highlights">Highlights</a><a href="index.html#packages">Services</a><a href="contact.html">Contact</a></nav>
+
+  <nav class="mobile-nav" data-mobile-nav aria-label="모바일 메뉴">
+    <a href="about.html">About</a>
+    <a href="index.html#highlights">Highlights</a>
+    <a href="index.html#packages">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
   <main class="contact-page">
     <section class="contact-hero">
@@ -27,7 +44,7 @@
       </div>
       <aside>
         <strong>상담 수신 이메일</strong>
-        <span>consultingjinjeong@gmail.com</span>
+        <span>weblaunch.j@gmail.com</span>
         <p>공식 문의 안내: weblaunch.j@gmail.com · 제출된 내용은 상담 목적 외부로 공유하지 않습니다.</p>
       </aside>
     </section>
@@ -41,20 +58,20 @@
       <article>
         <span>SCOPE FIRST</span>
         <strong>견적보다 제작 범위를 먼저 정리합니다.</strong>
-        <p>페이지 수, 기능, 수정 횟수, 배포 방식이 정리되어야 일정이 흔들리지 않습니다.</p>
+        <p>페이지 수, 기능, 수정 횟수, 배포 방식을 먼저 정리해 일정이 흔들리지 않게 합니다.</p>
       </article>
       <article>
         <span>REFERENCE SAFE</span>
         <strong>레퍼런스는 복제가 아니라 재해석합니다.</strong>
-        <p>원본의 코드, 이미지, 문구를 베끼지 않고 구조와 인터랙션 감각만 참고합니다.</p>
+        <p>원본 코드, 이미지, 문구를 베끼지 않고 구조와 인터랙션 감각만 참고합니다.</p>
       </article>
     </section>
 
     <section class="contact-form-section">
       <form class="contact-form" data-contact-form>
-        <input type="hidden" name="to_email" value="consultingjinjeong@gmail.com">
+        <input type="hidden" name="to_email" value="weblaunch.j@gmail.com">
         <input type="hidden" name="site_name" value="J Media">
-        <input type="hidden" name="subject" data-subject value="[J Media 상담 신청] 신규 문의">
+        <input type="hidden" name="subject" data-subject value="[J Media 상담 요청] 신규 문의">
         <input type="hidden" name="message" data-message value="">
         <input type="hidden" name="submitted_at" data-submitted-at value="">
         <input type="hidden" name="page_url" data-page-url value="">
@@ -80,7 +97,7 @@
         </label>
 
         <label class="full">
-          <span>벤치마킹 또는 참고 사이트</span>
+          <span>벤치마크 또는 참고 사이트</span>
           <input name="reference_site" type="url" placeholder="https://example.com">
         </label>
 
@@ -90,7 +107,7 @@
             <option value="">선택해주세요</option>
             <option>정보형 콘텐츠 허브</option>
             <option>도구형 유틸리티</option>
-            <option>지도형 로컬 데이터</option>
+            <option>지역형 로컬 데이터</option>
             <option>참여형 전환 페이지</option>
             <option>기업/브랜드 소개</option>
             <option>아직 정하지 못함</option>
@@ -124,11 +141,11 @@
 
         <label class="agree full">
           <input name="privacy_agree" type="checkbox" required>
-          <span>[필수] 상담 신청을 위해 개인정보 수집 및 이용에 동의합니다. 수집된 정보는 상담 진행과 고객 관리 목적으로만 사용됩니다.</span>
+          <span>[필수] 상담 요청을 위해 개인정보 수집 및 이용에 동의합니다. 수집된 정보는 상담 진행과 고객 관리 목적으로만 사용합니다.</span>
         </label>
 
         <button class="submit-button full" type="submit">
-          상담 신청하기
+          상담 요청하기
           <span aria-hidden="true">↗</span>
         </button>
 
@@ -158,7 +175,7 @@
       publicKey: "XvEpYnrVRgnYgXPId",
       serviceId: "service_n9kkhv6",
       templateId: "template_0dr0pa9",
-      toEmail: "consultingjinjeong@gmail.com"
+      toEmail: "weblaunch.j@gmail.com"
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

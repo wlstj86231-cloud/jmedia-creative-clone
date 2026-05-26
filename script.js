@@ -45,6 +45,13 @@ mobileNav?.querySelectorAll("a").forEach((link) => {
   });
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !mobileNav?.classList.contains("open")) return;
+  mobileNav.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+});
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const target = document.querySelector(link.getAttribute("href"));
@@ -143,6 +150,54 @@ if (cursor && window.matchMedia("(pointer: fine)").matches) {
   });
 }
 
+const projectPreview = document.querySelector("[data-project-preview]");
+const projectPreviewImage = projectPreview?.querySelector("img");
+const projectPreviewLabel = projectPreview?.querySelector("span");
+const previewCards = document.querySelectorAll("[data-preview]");
+const coarsePointer = window.matchMedia("(pointer: coarse)");
+
+function hideProjectPreview() {
+  projectPreview?.classList.remove("is-visible");
+}
+
+function clearTapPreviews(exceptCard) {
+  previewCards.forEach((card) => {
+    if (card !== exceptCard) card.classList.remove("is-tap-preview");
+  });
+}
+
+if (projectPreview && projectPreviewImage && projectPreviewLabel) {
+  previewCards.forEach((card) => {
+    card.addEventListener("pointerenter", () => {
+      if (coarsePointer.matches) return;
+      projectPreviewImage.src = card.dataset.preview;
+      projectPreviewLabel.textContent = card.dataset.previewLabel || "Project preview";
+      projectPreview.classList.add("is-visible");
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      if (coarsePointer.matches) return;
+      projectPreview.style.left = `${event.clientX}px`;
+      projectPreview.style.top = `${event.clientY}px`;
+    });
+
+    card.addEventListener("pointerleave", hideProjectPreview);
+
+    card.addEventListener("click", (event) => {
+      if (!coarsePointer.matches || card.classList.contains("is-tap-preview")) return;
+      event.preventDefault();
+      clearTapPreviews(card);
+      card.classList.add("is-tap-preview");
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!coarsePointer.matches || target?.closest("[data-preview]")) return;
+    clearTapPreviews();
+  });
+}
+
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
 
@@ -165,18 +220,18 @@ function prepareContactPayload(form) {
   const pageUrl = window.location.href;
 
   const lines = [
-    `이름: ${name}`,
-    `연락처: ${formData.get("phone") || ""}`,
-    `이메일: ${formData.get("reply_to") || ""}`,
-    `브랜드명: ${brand}`,
-    `벤치마킹/참고 사이트: ${formData.get("reference_site") || ""}`,
-    `사이트 유형: ${formData.get("site_type") || ""}`,
-    `예산 범위: ${formData.get("budget_range") || ""}`,
-    `필요 기능: ${features.join(", ") || "미선택"}`,
-    `사업 내용: ${formData.get("business_summary") || ""}`,
-    `요청사항: ${formData.get("request_detail") || ""}`,
-    `접수 시간: ${submittedAt}`,
-    `접수 페이지: ${pageUrl}`,
+    `??: ${name}`,
+    `???: ${formData.get("phone") || ""}`,
+    `???: ${formData.get("reply_to") || ""}`,
+    `????: ${brand}`,
+    `????/?? ???: ${formData.get("reference_site") || ""}`,
+    `??? ??: ${formData.get("site_type") || ""}`,
+    `?? ??: ${formData.get("budget_range") || ""}`,
+    `?? ??: ${features.join(", ") || "???"}`,
+    `?? ??: ${formData.get("business_summary") || ""}`,
+    `????: ${formData.get("request_detail") || ""}`,
+    `?? ??: ${submittedAt}`,
+    `?? ???: ${pageUrl}`,
   ];
 
   const subjectInput = form.querySelector("[data-subject]");
@@ -184,7 +239,7 @@ function prepareContactPayload(form) {
   const submittedAtInput = form.querySelector("[data-submitted-at]");
   const pageUrlInput = form.querySelector("[data-page-url]");
 
-  if (subjectInput) subjectInput.value = `[J Media 상담 신청] ${brand || name || "신규 문의"} / ${name || "이름 미입력"}`;
+  if (subjectInput) subjectInput.value = `[J Media ?? ??] ${brand || name || "?? ??"} / ${name || "?? ???"}`;
   if (messageInput) messageInput.value = lines.join("\n");
   if (submittedAtInput) submittedAtInput.value = submittedAt;
   if (pageUrlInput) pageUrlInput.value = pageUrl;

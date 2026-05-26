@@ -7,8 +7,9 @@
   <meta name="description" content="J MEDIA는 강한 첫인상, 포트폴리오 쇼케이스, 문의 흐름까지 함께 설계하는 브랜딩형 웹사이트 제작 스튜디오입니다.">
   <meta property="og:title" content="J MEDIA | Creative Structure Web Studio">
   <meta property="og:description" content="구조는 단단하게, 첫인상은 강렬하게. J MEDIA의 브랜딩형 웹사이트 포트폴리오입니다.">
-  <meta property="og:image" content="assets/portfolio/05_policyfundpedia.png">
+  <meta property="og:image" content="assets/og-jmedia.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#dfff18">
   <link rel="canonical" href="https://jmedia-creative-clone.pages.dev/">
   <link rel="manifest" href="site.webmanifest">
@@ -18,6 +19,10 @@
 <body>
   <div class="progress" data-progress></div>
   <div class="cursor" data-cursor aria-hidden="true">VIEW</div>
+  <div class="project-preview" data-project-preview aria-hidden="true">
+    <img src="assets/portfolio/05_policyfundpedia.png" alt="">
+    <span>Preview</span>
+  </div>
 
   <header class="site-header" data-header>
     <a class="brand" href="#top" aria-label="J MEDIA 홈">
@@ -176,7 +181,7 @@
       </div>
 
       <div class="highlight-grid">
-        <article class="work-card large featured" data-card data-type="atl" data-cursor-label="FEATURED">
+        <article class="work-card large featured" data-card data-type="atl" data-cursor-label="FEATURED" data-preview="assets/portfolio/05_policyfundpedia.png" data-preview-label="Policyfundpedia preview">
           <a href="highlight-info.html">
             <span class="work-number">01</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/05_policyfundpedia.png" alt="정책자금백과 화면">
@@ -191,7 +196,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="atl" data-cursor-label="CASE">
+        <article class="work-card" data-card data-type="atl" data-cursor-label="CASE" data-preview="assets/portfolio/10_reportools.png" data-preview-label="Reportools preview">
           <a href="highlight-tool.html">
             <span class="work-number">02</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/10_reportools.png" alt="Reportools 화면">
@@ -206,7 +211,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="btl" data-cursor-label="MAP">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="MAP" data-preview="assets/portfolio/08_tripmarking.png" data-preview-label="Tripmarking preview">
           <a href="highlight-local.html">
             <span class="work-number">03</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/08_tripmarking.png" alt="Tripmarking 화면">
@@ -221,7 +226,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="tool" data-cursor-label="TOOL">
+        <article class="work-card" data-card data-type="tool" data-cursor-label="TOOL" data-preview="assets/portfolio/09_goatool.png" data-preview-label="Goatool preview">
           <a href="highlight-tool.html">
             <span class="work-number">04</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/09_goatool.png" alt="Goatool 화면">
@@ -241,7 +246,7 @@
           <strong>Internal Labs / Owned Products / Style Studies</strong>
         </div>
 
-        <article class="work-card" data-card data-type="atl" data-cursor-label="ARCHIVE">
+        <article class="work-card" data-card data-type="atl" data-cursor-label="ARCHIVE" data-preview="assets/portfolio/01_ahachive.png" data-preview-label="Ahachive preview">
           <a href="highlight-info.html" aria-label="Ahachive 포트폴리오">
             <span class="work-number">05</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/01_ahachive.png" alt="Ahachive 화면">
@@ -256,7 +261,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="btl" data-cursor-label="LOOP">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="LOOP" data-preview="assets/portfolio/03_occultworldcup.png" data-preview-label="Occult Worldcup preview">
           <a href="highlight-engagement.html" aria-label="Occult Worldcup 포트폴리오">
             <span class="work-number">06</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/03_occultworldcup.png" alt="Occult Worldcup 화면">
@@ -271,7 +276,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="btl" data-cursor-label="LOCAL">
+        <article class="work-card" data-card data-type="btl" data-cursor-label="LOCAL" data-preview="assets/portfolio/06_sumimap.png" data-preview-label="Sumimap preview">
           <a href="highlight-local.html" aria-label="Sumimap 포트폴리오">
             <span class="work-number">07</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/06_sumimap.png" alt="Sumimap 화면">
@@ -286,7 +291,7 @@
           </a>
         </article>
 
-        <article class="work-card" data-card data-type="info" data-cursor-label="INFO">
+        <article class="work-card" data-card data-type="info" data-cursor-label="INFO" data-preview="assets/portfolio/07_scamreader.png" data-preview-label="Scamreader preview">
           <a href="highlight-info.html" aria-label="Scamreader 포트폴리오">
             <span class="work-number">08</span>
             <img loading="lazy" decoding="async" src="assets/portfolio/07_scamreader.png" alt="Scamreader 화면">
@@ -389,6 +394,36 @@
           <strong>정보형 · 도구형 웹</strong>
           <p>문서, 검색, 입력, 결과 화면이 필요한 운영형 웹서비스.</p>
         </a>
+      </div>
+    </section>
+
+    <section class="industry-templates section" id="templates">
+      <div class="section-index">06 · INDUSTRY TEMPLATES</div>
+      <div class="template-head">
+        <h2>Start from the customer type, then tune the page structure.</h2>
+        <p>상담 전에 업종별 기본 골격을 먼저 잡아 두면 첫 화면, 증거, 문의 흐름을 더 빠르게 결정할 수 있습니다.</p>
+      </div>
+      <div class="template-grid" aria-label="업종별 제작 템플릿">
+        <article>
+          <span>LOCAL</span>
+          <strong>Neighborhood Service</strong>
+          <p>위치, 가격, 예약 버튼, 후기 영역을 먼저 배치하는 소상공인형 구조.</p>
+        </article>
+        <article>
+          <span>BRAND</span>
+          <strong>Visual Brand Site</strong>
+          <p>대표 이미지와 포트폴리오를 전면에 세우는 브랜드 소개형 구조.</p>
+        </article>
+        <article>
+          <span>LANDING</span>
+          <strong>Single Offer Page</strong>
+          <p>하나의 상품, 이벤트, 캠페인을 빠르게 이해시키는 전환형 구조.</p>
+        </article>
+        <article>
+          <span>TOOL</span>
+          <strong>Content / Utility Hub</strong>
+          <p>검색, 입력, 결과 화면이 필요한 정보형 서비스 구조.</p>
+        </article>
       </div>
     </section>
 
@@ -597,7 +632,7 @@
           <small>Landing · Contact · CTA</small>
         </button>
         <div class="orbit-sites" aria-label="J MEDIA 운영 사이트">
-          <span>Ahachive</span><span>Policyfundpedia</span><span>Sumimap</span><span>Scamreader</span><span>Reportools</span>
+          <span>Ahachive</span><span>Megapureunasset</span><span>Policyfundpedia</span><span>Sumimap</span><span>Scamreader</span><span>Tripmarking</span><span>Goatool</span><span>Reportools</span><span>J MEDIA</span>
         </div>
       </div>
     </section>
@@ -762,6 +797,7 @@
     </nav>
   </footer>
 
+  <script src="project-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
