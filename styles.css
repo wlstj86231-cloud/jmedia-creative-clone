@@ -2716,6 +2716,56 @@ body.is-loaded .frame-c {
   overflow-wrap: anywhere;
 }
 
+.contact-hero aside p {
+  margin: 18px 0 0;
+  color: #555b55;
+  font-weight: 750;
+  word-break: keep-all;
+}
+
+.contact-safety {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: clamp(52px, 7vw, 96px) var(--gutter);
+  background: var(--paper);
+}
+
+.contact-safety article {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(24px, 3vw, 38px);
+  border: 2px solid rgba(12,13,12,0.72);
+  border-radius: 24px;
+  background: #f5f5f1;
+  box-shadow: 8px 8px 0 rgba(12,13,12,0.1);
+}
+
+.contact-safety span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+}
+
+.contact-safety strong {
+  display: block;
+  margin-top: 18px;
+  font-size: clamp(24px, 2.5vw, 38px);
+  line-height: 1.08;
+  font-weight: 950;
+  word-break: keep-all;
+}
+
+.contact-safety p {
+  margin: 18px 0 0;
+  color: #555b55;
+  font-weight: 700;
+  word-break: keep-all;
+}
+
 .contact-form-section {
   padding: clamp(80px, 10vw, 150px) var(--gutter);
   background: #101315;
@@ -2870,6 +2920,7 @@ body.is-loaded .frame-c {
   .plain-grid,
   .plain-statement,
   .contact-hero,
+  .contact-safety,
   .contact-form {
     grid-template-columns: 1fr;
   }
@@ -2893,7 +2944,19 @@ body.is-loaded .frame-c {
 
   .plain-hero h1,
   .contact-hero h1 {
-    font-size: clamp(39px, 12vw, 60px);
+    font-size: clamp(32px, 9.2vw, 40px);
+    line-height: 1.03;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .plain-hero p,
+  .contact-hero p,
+  .contact-hero aside p {
+    max-width: calc(100vw - var(--gutter) * 2);
+    font-size: 16px;
+    word-break: normal;
+    overflow-wrap: anywhere;
   }
 
   .plain-dark h2,
@@ -2903,6 +2966,27 @@ body.is-loaded .frame-c {
 
   .contact-form-section {
     padding-inline: 14px;
+  }
+
+  .plain-grid article,
+  .contact-safety article {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .contact-safety strong {
+    font-size: 22px;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-safety p {
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer {
+    display: grid;
   }
 }
 
