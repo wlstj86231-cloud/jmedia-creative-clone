@@ -5520,3 +5520,207 @@ body.is-loaded .frame-c {
     line-height: 1.14;
   }
 }
+
+/* Services + landing hero polish pass */
+.services-page .compact-plain {
+  min-height: auto;
+  padding-top: clamp(112px, 12vw, 154px);
+  padding-bottom: clamp(48px, 6vw, 78px);
+}
+
+.services-page .compact-plain h1 {
+  max-width: 860px;
+  font-size: clamp(42px, 5.4vw, 76px);
+  line-height: 1.04;
+}
+
+.services-page .compact-plain p {
+  max-width: 620px;
+  margin-top: 20px;
+}
+
+.services-page .package-grid article {
+  min-height: 420px;
+}
+
+.services-page .package-grid .featured-package {
+  transform: none;
+}
+
+@media (max-width: 980px) {
+  .services-page .compact-plain {
+    padding-top: 88px;
+    padding-bottom: 38px;
+  }
+
+  .services-page .compact-plain h1 {
+    max-width: 720px;
+    font-size: clamp(36px, 6vw, 52px);
+  }
+
+  .services-page .section {
+    padding-block: 54px;
+  }
+
+  .services-page .entry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .services-page .entry-grid a {
+    min-height: 170px;
+  }
+
+  .services-page .package-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .services-page .package-grid article {
+    min-height: 330px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .services-page .package-grid strong {
+    font-size: clamp(22px, 3vw, 28px);
+  }
+
+  .services-page .package-grid p {
+    font-size: 18px;
+  }
+
+  .services-page .package-grid ul {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .services-page .package-grid li {
+    padding-top: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .services-page .process-track {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .services-page .process-track article {
+    min-height: 190px;
+    justify-content: flex-start;
+    padding: 26px 16px 18px;
+    border-right: 1px solid var(--line);
+    border-bottom: 0;
+  }
+
+  .services-page .process-track article:last-child {
+    border-right: 0;
+  }
+
+  .services-page .process-track strong {
+    font-size: clamp(20px, 2.8vw, 26px);
+  }
+
+  .services-page .process-track p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .home-page .hero {
+    min-height: calc(100svh - 70px);
+    padding-top: 82px;
+    padding-bottom: 48px;
+    align-items: start;
+  }
+
+  .home-page .hero-copy {
+    margin-top: clamp(310px, 43vh, 390px);
+    text-align: left;
+  }
+
+  .home-page .hero-frame {
+    display: block !important;
+    width: clamp(132px, 22vw, 196px);
+    aspect-ratio: 16 / 10;
+    opacity: 0.92;
+  }
+
+  .home-page .hero-frame img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .home-page .frame-a {
+    left: clamp(28px, 7vw, 64px);
+    top: clamp(116px, 17vh, 178px);
+  }
+
+  .home-page .frame-b {
+    right: clamp(24px, 5vw, 54px);
+    top: clamp(156px, 22vh, 238px);
+  }
+
+  .home-page .frame-c {
+    right: clamp(128px, 20vw, 220px);
+    top: clamp(276px, 35vh, 368px);
+  }
+}
+
+@media (max-width: 620px) {
+  .services-page .compact-plain {
+    padding-top: 72px;
+    padding-bottom: 34px;
+  }
+
+  .services-page .compact-plain h1 {
+    font-size: clamp(30px, 8.4vw, 36px);
+    line-height: 1.08;
+  }
+
+  .services-page .entry-grid,
+  .services-page .package-grid,
+  .services-page .process-track {
+    grid-template-columns: 1fr;
+  }
+
+  .services-page .entry-grid a,
+  .services-page .package-grid article {
+    min-height: auto;
+  }
+
+  .services-page .process-track article {
+    min-height: auto;
+    padding: 20px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home-page .hero {
+    min-height: calc(100svh - 70px);
+    padding-top: 70px;
+  }
+
+  .home-page .hero-copy {
+    margin-top: clamp(292px, 42vh, 360px);
+  }
+
+  .home-page .hero-frame {
+    width: clamp(108px, 32vw, 142px);
+  }
+
+  .home-page .frame-a {
+    left: 24px;
+    top: 122px;
+  }
+
+  .home-page .frame-b {
+    right: 18px;
+    top: 142px;
+  }
+
+  .home-page .frame-c {
+    right: auto;
+    left: 50%;
+    top: 246px;
+    transform: translateX(-50%) rotate(-3deg);
+  }
+}
