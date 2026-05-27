@@ -5503,3 +5503,20 @@ body.is-loaded .frame-c {
     font-size: 13px;
   }
 }
+
+@media (min-width: 981px) {
+  .process-track article {
+    padding: 116px clamp(22px, 2.2vw, 28px) clamp(22px, 2.2vw, 28px);
+  }
+}
+
+.contact-hero h1 {
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+@media (max-width: 620px) {
+  .contact-hero h1 {
+    line-height: 1.14;
+  }
+}
