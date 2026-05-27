@@ -5987,3 +5987,44 @@ body.is-loaded .frame-c {
     font-size: 21px;
   }
 }
+
+@media (min-width: 981px) {
+  .home-page .page-routes {
+    display: grid;
+    justify-items: center;
+  }
+
+  .home-page .page-routes h2 {
+    width: min(760px, 100%);
+  }
+
+  .home-page .route-grid {
+    width: min(760px, 100%);
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-inline: auto;
+  }
+
+  .home-page .route-grid .route-card {
+    min-height: 188px;
+    padding: 22px 26px;
+    border-radius: 22px;
+  }
+
+  .home-page .route-map {
+    left: 22px;
+    right: 22px;
+    top: 10px;
+    width: calc(100% - 44px);
+    height: 98px;
+  }
+
+  .home-page .route-grid .route-card strong {
+    margin-top: 10px;
+    font-size: 28px;
+  }
+
+  .home-page .route-grid .route-card p {
+    display: none;
+  }
+}
