@@ -198,6 +198,74 @@ if (projectPreview && projectPreviewImage && projectPreviewLabel) {
   });
 }
 
+const motionTrack = document.querySelector("[data-motion-track]");
+const motionProgress = document.querySelector("[data-motion-progress]");
+const motionPrev = document.querySelector("[data-motion-prev]");
+const motionNext = document.querySelector("[data-motion-next]");
+
+function updateMotionProgress() {
+  if (!motionTrack || !motionProgress) return;
+  const maxScroll = motionTrack.scrollWidth - motionTrack.clientWidth;
+  const ratio = maxScroll > 0 ? motionTrack.scrollLeft / maxScroll : 0;
+  const width = maxScroll > 0 ? 18 + ratio * 82 : 100;
+  motionProgress.style.width = `${Math.min(width, 100)}%`;
+}
+
+function scrollMotion(direction) {
+  if (!motionTrack) return;
+  const card = motionTrack.querySelector(".motion-card");
+  const step = card ? card.getBoundingClientRect().width + 24 : motionTrack.clientWidth * 0.8;
+  motionTrack.scrollBy({ left: step * direction, behavior: "smooth" });
+}
+
+if (motionTrack) {
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let didDrag = false;
+
+  motionTrack.addEventListener("scroll", updateMotionProgress, { passive: true });
+  window.addEventListener("resize", updateMotionProgress);
+  updateMotionProgress();
+
+  motionPrev?.addEventListener("click", () => scrollMotion(-1));
+  motionNext?.addEventListener("click", () => scrollMotion(1));
+
+  motionTrack.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    isDragging = true;
+    didDrag = false;
+    dragStartX = event.clientX;
+    dragStartScroll = motionTrack.scrollLeft;
+    motionTrack.classList.add("is-dragging");
+    motionTrack.setPointerCapture(event.pointerId);
+  });
+
+  motionTrack.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    const delta = event.clientX - dragStartX;
+    if (Math.abs(delta) > 6) didDrag = true;
+    motionTrack.scrollLeft = dragStartScroll - delta;
+  });
+
+  function endMotionDrag(event) {
+    if (!isDragging) return;
+    isDragging = false;
+    motionTrack.classList.remove("is-dragging");
+    if (motionTrack.hasPointerCapture(event.pointerId)) {
+      motionTrack.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  motionTrack.addEventListener("pointerup", endMotionDrag);
+  motionTrack.addEventListener("pointercancel", endMotionDrag);
+  motionTrack.addEventListener("click", (event) => {
+    if (!didDrag) return;
+    event.preventDefault();
+    didDrag = false;
+  });
+}
+
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
 
