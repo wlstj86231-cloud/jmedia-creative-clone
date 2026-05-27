@@ -5724,3 +5724,111 @@ body.is-loaded .frame-c {
     transform: translateX(-50%) rotate(-3deg);
   }
 }
+
+/* Tablet/mobile finishing pass: center the landing and compact portfolio cards. */
+@media (max-width: 980px) {
+  .home-page .hero {
+    min-height: auto;
+    padding-bottom: 58px;
+  }
+
+  .home-page .hero-media {
+    opacity: 0.88;
+  }
+
+  .home-page .hero-copy {
+    width: min(720px, 100%);
+    margin: clamp(252px, 33vh, 318px) auto 0;
+    text-align: center;
+  }
+
+  .home-page .hero h1,
+  .home-page .hero p {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .home-page .hero-actions {
+    justify-content: center;
+  }
+
+  .home-page .scroll-cue {
+    display: none;
+  }
+
+  .home-page .highlight-grid,
+  .works-page .highlight-grid {
+    width: min(520px, 100%);
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-inline: auto;
+  }
+
+  .home-page .work-card a,
+  .works-page .work-card a {
+    min-height: auto;
+    padding: 12px 14px 10px;
+    border-radius: 18px;
+  }
+
+  .home-page .work-card img,
+  .home-page .work-card.large img,
+  .works-page .work-card img,
+  .works-page .work-card.large img {
+    height: clamp(128px, 22vw, 170px);
+    margin: 8px 0 6px;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+
+  .home-page .work-card h3,
+  .works-page .work-card h3 {
+    margin-top: 4px;
+    font-size: clamp(22px, 3.8vw, 26px);
+    line-height: 1;
+  }
+
+  .home-page .work-card p,
+  .home-page .work-card em,
+  .home-page .work-meta,
+  .home-page .work-tags,
+  .home-page .work-cta,
+  .works-page .work-card p,
+  .works-page .work-card em,
+  .works-page .work-meta,
+  .works-page .work-tags,
+  .works-page .work-cta {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .home-page .hero {
+    min-height: auto;
+    padding-top: 70px;
+    padding-bottom: 48px;
+  }
+
+  .home-page .hero-media {
+    opacity: 0.84;
+  }
+
+  .home-page .hero-copy {
+    margin-top: clamp(282px, 34vh, 318px);
+  }
+
+  .home-page .hero h1 {
+    text-align: center;
+  }
+
+  .home-page .hero-actions {
+    margin-inline: auto;
+  }
+
+  .home-page .work-card img,
+  .home-page .work-card.large img,
+  .works-page .work-card img,
+  .works-page .work-card.large img {
+    height: clamp(116px, 31vw, 146px);
+  }
+}
