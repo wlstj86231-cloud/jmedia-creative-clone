@@ -266,6 +266,84 @@ if (motionTrack) {
   });
 }
 
+document.querySelectorAll("[data-path-lab]").forEach((pathLab) => {
+  const pathBoard = pathLab.querySelector("[data-path-board]");
+  const pathNodes = pathLab.querySelectorAll("[data-path-node]");
+  const pathModeButtons = pathLab.querySelectorAll("[data-path-mode]");
+
+  pathModeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const mode = button.dataset.pathMode || "atl";
+      pathLab.dataset.mode = mode;
+      pathModeButtons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+    });
+  });
+
+  if (!pathBoard) return;
+
+  let isPathDragging = false;
+  let pathStartX = 0;
+  let pathStartScroll = 0;
+  let pathDidDrag = false;
+
+  pathBoard.addEventListener("pointermove", (event) => {
+    if (isPathDragging) {
+      const delta = event.clientX - pathStartX;
+      if (Math.abs(delta) > 6) pathDidDrag = true;
+      pathBoard.scrollLeft = pathStartScroll - delta;
+      return;
+    }
+
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const rect = pathBoard.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    pathNodes.forEach((node) => {
+      const depth = Number(node.dataset.depth || 0);
+      node.style.translate = `${x * depth}px ${y * depth}px`;
+    });
+  });
+
+  pathBoard.addEventListener("pointerleave", () => {
+    if (isPathDragging) return;
+    pathNodes.forEach((node) => {
+      node.style.translate = "0 0";
+    });
+  });
+
+  pathBoard.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    isPathDragging = true;
+    pathDidDrag = false;
+    pathStartX = event.clientX;
+    pathStartScroll = pathBoard.scrollLeft;
+    pathBoard.classList.add("is-dragging");
+    pathBoard.setPointerCapture(event.pointerId);
+  });
+
+  function endPathDrag(event) {
+    if (!isPathDragging) return;
+    isPathDragging = false;
+    pathBoard.classList.remove("is-dragging");
+    if (pathBoard.hasPointerCapture(event.pointerId)) {
+      pathBoard.releasePointerCapture(event.pointerId);
+    }
+  }
+
+  pathBoard.addEventListener("pointerup", endPathDrag);
+  pathBoard.addEventListener("pointercancel", endPathDrag);
+  pathBoard.addEventListener("click", (event) => {
+    if (!pathDidDrag) return;
+    event.preventDefault();
+    pathDidDrag = false;
+  });
+});
+
 const contactForm = document.querySelector("[data-contact-form]");
 const formStatus = document.querySelector("[data-form-status]");
 
