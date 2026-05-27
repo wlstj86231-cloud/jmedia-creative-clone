@@ -5640,6 +5640,78 @@ body.is-loaded .frame-c {
   display: none;
 }
 
+/* Desktop landing recentering: keep the first viewport composed around the middle. */
+@media (min-width: 981px) {
+  .home-page .hero {
+    min-height: calc(100svh - 92px);
+    padding-top: clamp(74px, 8vh, 96px);
+    padding-bottom: clamp(72px, 8vh, 98px);
+    place-items: center;
+  }
+
+  .home-page .hero-media {
+    inset: 0 auto 0 50%;
+    width: min(1540px, calc(100% - 128px));
+    transform: translateX(-50%);
+    opacity: 0.9;
+  }
+
+  .home-page .hero-copy {
+    width: min(880px, 100%);
+    margin: 0 auto;
+    text-align: center;
+    transform: translateY(clamp(4px, 1.7vh, 18px));
+  }
+
+  .home-page .hero h1 {
+    max-width: none;
+    font-size: clamp(52px, 4.65vw, 76px);
+    line-height: 1.02;
+  }
+
+  .home-page .hero p {
+    width: min(560px, 100%);
+    margin-top: 18px;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 24px;
+  }
+
+  .home-page .hero-frame {
+    width: clamp(230px, 18vw, 330px);
+  }
+
+  .home-page .frame-a {
+    left: clamp(48px, 5.4vw, 86px);
+    top: clamp(72px, 9vh, 108px);
+  }
+
+  .home-page .frame-b {
+    right: clamp(48px, 5.4vw, 86px);
+    top: clamp(68px, 9vh, 104px);
+  }
+
+  .home-page .frame-c {
+    right: clamp(230px, 18.5vw, 360px);
+    bottom: clamp(52px, 7vh, 88px);
+    width: clamp(220px, 17vw, 305px);
+  }
+
+  .home-page .orbit-a {
+    width: clamp(560px, 46vw, 760px);
+    height: clamp(560px, 46vw, 760px);
+    top: 52%;
+  }
+
+  .home-page .orbit-b {
+    width: clamp(410px, 34vw, 620px);
+    height: clamp(410px, 34vw, 620px);
+    right: clamp(84px, 8vw, 132px);
+    bottom: clamp(42px, 6vh, 78px);
+  }
+}
+
 .home-page .highlight-grid .more-label,
 .home-page .highlight-grid .work-card:nth-of-type(n + 5) {
   display: none;
