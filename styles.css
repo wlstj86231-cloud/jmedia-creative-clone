@@ -6653,9 +6653,11 @@ body.is-loaded .frame-c {
 
 .road-blocks rect:nth-child(2) { --block: #ffb6d4; }
 .road-blocks rect:nth-child(3) { --block: #bfeeb5; }
-.road-blocks rect:nth-child(4) { --block: #a8d3ff; }
-.road-blocks rect:nth-child(5) { --block: #ffe58a; }
-.road-blocks rect:nth-child(6) { --block: #cdbbff; }
+.road-blocks rect:nth-child(4) { --block: #ffe58a; }
+.road-blocks rect:nth-child(5) { --block: #a8d3ff; }
+.road-blocks rect:nth-child(6) { --block: #ffe58a; }
+.road-blocks rect:nth-child(7) { --block: #cdbbff; }
+.road-blocks rect:nth-child(8) { --block: #d9ff17; }
 
 .path-node {
   position: absolute;
@@ -6895,7 +6897,7 @@ body.is-loaded .frame-c {
 
   .node-policy { left: 58px; top: 62px; }
   .node-report { left: 334px; top: 158px; }
-  .node-trip { left: 570px; top: 70px; }
+  .node-trip { left: 420px; top: 70px; }
   .node-goa { left: 112px; top: 292px; }
   .node-sumi { left: 376px; top: 288px; }
   .node-play { left: 602px; top: 294px; }
