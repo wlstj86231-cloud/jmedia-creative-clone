@@ -300,10 +300,32 @@ const motionTrack = document.querySelector("[data-motion-track]");
 const motionProgress = document.querySelector("[data-motion-progress]");
 const motionPrev = document.querySelector("[data-motion-prev]");
 const motionNext = document.querySelector("[data-motion-next]");
+const motionJumps = document.querySelectorAll("[data-motion-jump]");
 const motionSection = motionTrack?.closest(".works-motion");
 const finePointer = window.matchMedia("(pointer: fine)");
 let motionTargetScroll = 0;
 let motionFrame = 0;
+
+function updateMotionJumps(ratio) {
+  if (!motionJumps.length) return;
+  let closest = motionJumps[0];
+  let closestDistance = Number.POSITIVE_INFINITY;
+
+  motionJumps.forEach((button) => {
+    const value = Number(button.dataset.motionJump || 0);
+    const distance = Math.abs(value - ratio);
+    if (distance < closestDistance) {
+      closest = button;
+      closestDistance = distance;
+    }
+  });
+
+  motionJumps.forEach((button) => {
+    const active = button === closest;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
 
 function updateMotionProgress() {
   if (!motionTrack || !motionProgress) return;
@@ -311,6 +333,7 @@ function updateMotionProgress() {
   const ratio = maxScroll > 0 ? motionTrack.scrollLeft / maxScroll : 0;
   const width = maxScroll > 0 ? 18 + ratio * 82 : 100;
   motionProgress.style.width = `${Math.min(width, 100)}%`;
+  updateMotionJumps(ratio);
 }
 
 function moveMotionTo(left) {
@@ -355,9 +378,25 @@ if (motionTrack) {
   motionPrev?.addEventListener("click", () => scrollMotion(-1));
   motionNext?.addEventListener("click", () => scrollMotion(1));
 
+  motionJumps.forEach((button) => {
+    const jump = () => {
+      const maxScroll = motionTrack.scrollWidth - motionTrack.clientWidth;
+      const ratio = Number(button.dataset.motionJump || 0);
+      moveMotionTo(maxScroll * Math.max(0, Math.min(ratio, 1)));
+    };
+
+    button.addEventListener("click", jump);
+    button.addEventListener("focus", jump);
+    if (finePointer.matches) {
+      button.addEventListener("pointerenter", jump);
+    }
+  });
+
   if (finePointer.matches && motionSection) {
     motionTrack.classList.add("is-pointer-follow");
     motionSection.addEventListener("pointermove", (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+      if (target?.closest("[data-motion-jump]")) return;
       const maxScroll = motionTrack.scrollWidth - motionTrack.clientWidth;
       if (maxScroll <= 0) return;
       const rect = motionSection.getBoundingClientRect();

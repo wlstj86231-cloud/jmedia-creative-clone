@@ -6458,11 +6458,11 @@ body.is-loaded .frame-c {
 .motion-sidebar {
   position: absolute;
   left: max(32px, calc((100vw - var(--max)) / 2));
-  top: 126px;
+  top: clamp(146px, 9.4vw, 176px);
   z-index: 3;
   width: 170px;
   display: grid;
-  gap: 22px;
+  gap: 18px;
   color: var(--ink);
 }
 
@@ -6476,12 +6476,12 @@ body.is-loaded .frame-c {
 }
 
 .motion-switch span {
-  min-height: 56px;
+  min-height: 50px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0 18px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 950;
   letter-spacing: 0.03em;
   color: #747874;
@@ -6501,18 +6501,37 @@ body.is-loaded .frame-c {
 
 .motion-beads {
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  justify-items: start;
 }
 
-.motion-beads span {
+.motion-beads button {
   width: 34px;
   aspect-ratio: 1;
+  padding: 0;
+  border: 0;
   border-radius: 50%;
   background: #ff4e9d;
+  cursor: pointer;
+  transition:
+    width 220ms var(--ease-out),
+    transform 220ms var(--ease-out),
+    box-shadow 220ms var(--ease-out),
+    background 220ms var(--ease-out);
 }
 
-.motion-beads span:nth-child(2) { width: 28px; background: #ff7fb6; }
-.motion-beads span:nth-child(3) { width: 24px; background: #ff9ac8; }
+.motion-beads button:nth-child(2) { width: 28px; background: #ff7fb6; }
+.motion-beads button:nth-child(3) { width: 24px; background: #ff9ac8; }
+
+.motion-beads button:hover,
+.motion-beads button:focus-visible,
+.motion-beads button.is-active {
+  width: 42px;
+  transform: translateX(8px) scale(1.08);
+  background: #df4f56;
+  box-shadow: 0 0 0 8px rgba(255, 78, 163, 0.16);
+  outline: none;
+}
 
 .motion-head {
   position: relative;
