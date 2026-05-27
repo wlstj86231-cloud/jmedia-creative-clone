@@ -1349,8 +1349,49 @@ img {
 
 .services-page .entry-grid a {
   position: relative;
-  min-height: 272px;
+  min-height: 324px;
   overflow: hidden;
+}
+
+.services-page .entry-grid a > span,
+.services-page .entry-grid a > strong,
+.services-page .entry-grid a > p {
+  position: relative;
+  z-index: 1;
+}
+
+.services-page .entry-card-art {
+  top: 22px;
+  height: 96px;
+  opacity: 0.9;
+}
+
+.services-page .entry-card-art::before {
+  top: 48px;
+  height: 34px;
+  border-left-width: 14px;
+}
+
+.services-page .entry-card-art::after {
+  top: 14px;
+  height: 50px;
+}
+
+.services-page .entry-card-art i {
+  top: 24px;
+  height: 44px;
+}
+
+.services-page .entry-card-art b {
+  top: 72px;
+  height: 23px;
+}
+
+.services-page .entry-card-art em {
+  right: 1%;
+  bottom: 11px;
+  width: 32px;
+  height: 32px;
 }
 
 .industry-templates {
@@ -7056,48 +7097,74 @@ body.is-loaded .frame-c {
 
 @media (max-width: 980px) {
   .services-page .entry-grid a {
-    min-height: 238px;
+    min-height: 276px;
   }
 
-  .entry-card-art {
-    height: 104px;
+  .services-page .entry-card-art {
+    height: 86px;
+  }
+
+  .services-page .entry-card-art::before {
+    top: 40px;
+    height: 30px;
+  }
+
+  .services-page .entry-card-art::after {
+    top: 10px;
+    height: 42px;
+  }
+
+  .services-page .entry-card-art i {
+    top: 19px;
+    height: 36px;
+  }
+
+  .services-page .entry-card-art b {
+    top: 58px;
+    height: 20px;
+  }
+
+  .services-page .entry-card-art em {
+    bottom: 8px;
+    width: 28px;
+    height: 28px;
   }
 }
 
 @media (max-width: 620px) {
   .services-page .entry-grid a {
     min-height: 190px;
-    padding-top: 116px;
+    padding-top: 112px;
   }
 
-  .entry-card-art {
+  .services-page .entry-card-art {
     top: 14px;
-    height: 86px;
+    height: 78px;
     opacity: 0.86;
   }
 
-  .entry-card-art::before {
+  .services-page .entry-card-art::before {
     top: 38px;
-    height: 34px;
+    height: 30px;
     border-left-width: 12px;
   }
 
-  .entry-card-art::after {
+  .services-page .entry-card-art::after {
     top: 10px;
     height: 44px;
   }
 
-  .entry-card-art i {
+  .services-page .entry-card-art i {
     top: 20px;
     height: 38px;
   }
 
-  .entry-card-art b {
-    top: 62px;
+  .services-page .entry-card-art b {
+    top: 58px;
     height: 22px;
   }
 
-  .entry-card-art em {
+  .services-page .entry-card-art em {
     width: 26px;
     height: 26px;
   }
