@@ -82,6 +82,128 @@ img {
   background: var(--acid);
 }
 
+.site-scroll-meter {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 89;
+  width: min(520px, calc(100vw - 68px));
+  height: 58px;
+  transform: translateX(-50%);
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 180ms ease, bottom 220ms var(--ease-out);
+}
+
+.site-scroll-meter.is-hidden,
+.menu-open .site-scroll-meter {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sticky-cta-visible .site-scroll-meter {
+  bottom: 86px;
+}
+
+.site-scroll-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 10px 32px rgba(12, 13, 12, 0.12);
+  cursor: pointer;
+  touch-action: none;
+}
+
+.site-scroll-track span {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffc22e;
+}
+
+.site-scroll-current {
+  --scroll-x: 0px;
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  z-index: 2;
+  width: 52px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  transform: translateX(var(--scroll-x));
+  transition: transform 90ms linear;
+  cursor: grab;
+}
+
+.site-scroll-current:active {
+  cursor: grabbing;
+}
+
+.site-scroll-current i {
+  width: 40px;
+  height: 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #ffc22e;
+  color: var(--ink);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.site-scroll-current b {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--acid);
+  font-size: 17px;
+  font-weight: 950;
+  box-shadow: 5px 6px 0 rgba(12, 13, 12, 0.18);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 620px) {
+  .site-scroll-meter {
+    bottom: 12px;
+    width: min(360px, calc(100vw - 42px));
+    height: 48px;
+  }
+
+  .site-scroll-track {
+    height: 20px;
+  }
+
+  .site-scroll-current {
+    bottom: 1px;
+  }
+
+  .site-scroll-current b {
+    bottom: 23px;
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+}
+
 .site-header {
   position: sticky;
   top: 0;

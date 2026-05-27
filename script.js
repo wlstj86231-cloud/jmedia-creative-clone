@@ -5,6 +5,54 @@ const mobileNav = document.querySelector("[data-mobile-nav]");
 const cursor = document.querySelector("[data-cursor]");
 const hero = document.querySelector("[data-hero]");
 const mobileStickyCta = document.querySelector(".mobile-sticky-cta");
+const scrollMeter = document.createElement("div");
+
+scrollMeter.className = "site-scroll-meter";
+scrollMeter.setAttribute("data-scroll-meter", "");
+scrollMeter.innerHTML = `
+  <div class="site-scroll-track" data-scroll-track role="progressbar" aria-label="페이지 진행도" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <span></span><span></span><span></span><span></span><span></span>
+    <div class="site-scroll-current" data-scroll-current aria-hidden="true"><b>J</b><i>‹›</i></div>
+  </div>
+`;
+document.body.appendChild(scrollMeter);
+
+const scrollMeterTrack = scrollMeter.querySelector("[data-scroll-track]");
+const scrollMeterCurrent = scrollMeter.querySelector("[data-scroll-current]");
+let isScrollMeterDragging = false;
+
+function getPageScrollRatio() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  return scrollable > 0 ? Math.min(Math.max(window.scrollY / scrollable, 0), 1) : 0;
+}
+
+function updateScrollMeter() {
+  if (!scrollMeterTrack || !scrollMeterCurrent) return;
+
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const isScrollable = scrollable > 48;
+  scrollMeter.classList.toggle("is-hidden", !isScrollable);
+
+  const ratio = isScrollable ? getPageScrollRatio() : 0;
+  const markerWidth = scrollMeterCurrent.offsetWidth || 52;
+  const travel = Math.max(scrollMeterTrack.clientWidth - markerWidth, 0);
+
+  scrollMeterCurrent.style.setProperty("--scroll-x", `${travel * ratio}px`);
+  scrollMeterTrack.setAttribute("aria-valuenow", String(Math.round(ratio * 100)));
+}
+
+function scrollPageFromMeter(clientX, smooth = false) {
+  if (!scrollMeterTrack || !scrollMeterCurrent) return;
+
+  const rect = scrollMeterTrack.getBoundingClientRect();
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = Math.min(Math.max((clientX - rect.left) / Math.max(rect.width, 1), 0), 1);
+
+  window.scrollTo({
+    top: scrollable * ratio,
+    behavior: smooth ? "smooth" : "auto",
+  });
+}
 
 function updateChrome() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -14,12 +62,38 @@ function updateChrome() {
   if (mobileStickyCta) {
     const shouldShow = window.matchMedia("(max-width: 980px)").matches && window.scrollY > window.innerHeight * 0.55;
     mobileStickyCta.classList.toggle("is-visible", shouldShow);
+    document.body.classList.toggle("sticky-cta-visible", shouldShow);
   }
+  updateScrollMeter();
 }
 
 window.addEventListener("scroll", updateChrome, { passive: true });
 window.addEventListener("resize", updateChrome);
 updateChrome();
+
+scrollMeterTrack?.addEventListener("pointerdown", (event) => {
+  if (event.button !== 0) return;
+  isScrollMeterDragging = true;
+  scrollMeterTrack.setPointerCapture(event.pointerId);
+  scrollPageFromMeter(event.clientX, !scrollMeterCurrent?.contains(event.target));
+});
+
+scrollMeterTrack?.addEventListener("pointermove", (event) => {
+  if (!isScrollMeterDragging) return;
+  scrollPageFromMeter(event.clientX);
+});
+
+function endScrollMeterDrag(event) {
+  if (!isScrollMeterDragging || !scrollMeterTrack) return;
+  isScrollMeterDragging = false;
+  if (scrollMeterTrack.hasPointerCapture(event.pointerId)) {
+    scrollMeterTrack.releasePointerCapture(event.pointerId);
+  }
+}
+
+scrollMeterTrack?.addEventListener("pointerup", endScrollMeterDrag);
+scrollMeterTrack?.addEventListener("pointercancel", endScrollMeterDrag);
+window.addEventListener("load", updateScrollMeter);
 
 function markLoaded() {
   document.body.classList.add("is-loaded");
