@@ -207,6 +207,30 @@ worldStage?.addEventListener("pointerleave", () => {
   });
 });
 
+const studyCards = document.querySelectorAll(".study-cards article");
+
+if (studyCards.length && window.matchMedia("(pointer: fine)").matches) {
+  studyCards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+      card.style.setProperty("--study-x", `${x * 16}px`);
+      card.style.setProperty("--study-y", `${y * 12}px`);
+      card.style.setProperty("--study-tilt-x", `${x * 3.4}deg`);
+      card.style.setProperty("--study-tilt-y", `${y * -3.4}deg`);
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--study-x", "0px");
+      card.style.setProperty("--study-y", "0px");
+      card.style.setProperty("--study-tilt-x", "0deg");
+      card.style.setProperty("--study-tilt-y", "0deg");
+    });
+  });
+}
+
 if (cursor && window.matchMedia("(pointer: fine)").matches) {
   window.addEventListener("pointermove", (event) => {
     cursor.style.left = `${event.clientX}px`;
