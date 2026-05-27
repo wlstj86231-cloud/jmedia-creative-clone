@@ -202,6 +202,10 @@ const motionTrack = document.querySelector("[data-motion-track]");
 const motionProgress = document.querySelector("[data-motion-progress]");
 const motionPrev = document.querySelector("[data-motion-prev]");
 const motionNext = document.querySelector("[data-motion-next]");
+const motionSection = motionTrack?.closest(".works-motion");
+const finePointer = window.matchMedia("(pointer: fine)");
+let motionTargetScroll = 0;
+let motionFrame = 0;
 
 function updateMotionProgress() {
   if (!motionTrack || !motionProgress) return;
@@ -211,11 +215,33 @@ function updateMotionProgress() {
   motionProgress.style.width = `${Math.min(width, 100)}%`;
 }
 
+function moveMotionTo(left) {
+  if (!motionTrack) return;
+  const maxScroll = motionTrack.scrollWidth - motionTrack.clientWidth;
+  motionTargetScroll = Math.max(0, Math.min(left, maxScroll));
+
+  if (motionFrame) return;
+
+  const animate = () => {
+    const delta = motionTargetScroll - motionTrack.scrollLeft;
+    if (Math.abs(delta) < 0.6) {
+      motionTrack.scrollLeft = motionTargetScroll;
+      motionFrame = 0;
+      return;
+    }
+
+    motionTrack.scrollLeft += delta * 0.26;
+    motionFrame = requestAnimationFrame(animate);
+  };
+
+  motionFrame = requestAnimationFrame(animate);
+}
+
 function scrollMotion(direction) {
   if (!motionTrack) return;
   const card = motionTrack.querySelector(".motion-card");
   const step = card ? card.getBoundingClientRect().width + 24 : motionTrack.clientWidth * 0.8;
-  motionTrack.scrollBy({ left: step * direction, behavior: "smooth" });
+  moveMotionTo(motionTrack.scrollLeft + step * direction);
 }
 
 if (motionTrack) {
@@ -231,8 +257,19 @@ if (motionTrack) {
   motionPrev?.addEventListener("click", () => scrollMotion(-1));
   motionNext?.addEventListener("click", () => scrollMotion(1));
 
+  if (finePointer.matches && motionSection) {
+    motionTrack.classList.add("is-pointer-follow");
+    motionSection.addEventListener("pointermove", (event) => {
+      const maxScroll = motionTrack.scrollWidth - motionTrack.clientWidth;
+      if (maxScroll <= 0) return;
+      const rect = motionSection.getBoundingClientRect();
+      const ratio = (event.clientX - rect.left) / rect.width;
+      moveMotionTo(maxScroll * Math.max(0, Math.min(ratio, 1)));
+    });
+  }
+
   motionTrack.addEventListener("pointerdown", (event) => {
-    if (event.button !== 0) return;
+    if (event.button !== 0 || finePointer.matches) return;
     isDragging = true;
     didDrag = false;
     dragStartX = event.clientX;
