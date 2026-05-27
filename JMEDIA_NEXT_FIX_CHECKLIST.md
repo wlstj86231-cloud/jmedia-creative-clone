@@ -50,7 +50,7 @@ Review date: 2026-05-27
 - [x] 공식 이메일 노출 위치를 `weblaunch.j@gmail.com`으로 통일
 - [x] `Studio Brief` 페이지 생성
 - [x] `Internal Labs / Owned Products / Style Studies` 구분 강화
-- [ ] 커스텀 도메인 연결 후 `pages.dev` 흔적 축소
+- [x] 커스텀 도메인 연결 후 `pages.dev` 흔적 축소
 
 ## P5. Technical quality
 

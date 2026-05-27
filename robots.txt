@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jmedia-creative-clone.pages.dev/sitemap.xml
+Sitemap: https://jnewmedia.com/sitemap.xml

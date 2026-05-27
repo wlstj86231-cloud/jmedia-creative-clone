@@ -46,7 +46,7 @@
 - [x] Run desktop and mobile QA
 - [x] Add robots, sitemap, manifest, canonical, and OG image
 - [ ] Confirm Cloudflare Pages Git Provider connection in the Cloudflare dashboard
-- [ ] Connect custom domain and replace `pages.dev` canonical/sitemap URLs
+- [x] Connect custom domain and replace `pages.dev` canonical/sitemap URLs
 
 ## P5. Optimization And Productization
 

@@ -50,4 +50,4 @@ if ($hasChanges) {
 }
 
 Invoke-Git push origin main
-Write-Host "Live site: https://jmedia-creative-clone.pages.dev/"
+Write-Host "Live site: https://jnewmedia.com/"
