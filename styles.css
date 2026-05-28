@@ -531,7 +531,7 @@ img {
   min-height: 54px;
   flex: 0 0 auto;
   align-self: center;
-  gap: 9px;
+  gap: 0;
   padding: 0;
   border-color: rgba(12, 13, 12, 0.9);
   background: #fff;
@@ -555,12 +555,16 @@ img {
 
 .hero-kakao-chat span {
   max-width: 0;
+  margin-left: 0;
   opacity: 0;
   overflow: hidden;
   white-space: nowrap;
   font-size: 13px;
   line-height: 1;
-  transition: max-width 220ms var(--ease-out), opacity 160ms ease;
+  transition:
+    max-width 220ms var(--ease-out),
+    margin-left 220ms var(--ease-out),
+    opacity 160ms ease;
 }
 
 .hero-kakao-chat:hover,
@@ -576,6 +580,7 @@ img {
 .hero-kakao-chat:focus-visible span,
 .hero-kakao-chat.is-open span {
   max-width: 176px;
+  margin-left: 9px;
   opacity: 1;
 }
 
