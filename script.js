@@ -4,6 +4,7 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const cursor = document.querySelector("[data-cursor]");
 const hero = document.querySelector("[data-hero]");
+const kakaoChat = document.querySelector("[data-kakao-chat]");
 const mobileStickyCta = document.querySelector(".mobile-sticky-cta");
 const scrollMeter = document.createElement("div");
 
@@ -253,6 +254,20 @@ const projectPreviewImage = projectPreview?.querySelector("img");
 const projectPreviewLabel = projectPreview?.querySelector("span");
 const previewCards = document.querySelectorAll("[data-preview]");
 const coarsePointer = window.matchMedia("(pointer: coarse)");
+
+if (kakaoChat) {
+  kakaoChat.addEventListener("click", (event) => {
+    if (!coarsePointer.matches || kakaoChat.classList.contains("is-open")) return;
+    event.preventDefault();
+    kakaoChat.classList.add("is-open");
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!coarsePointer.matches || target?.closest("[data-kakao-chat]")) return;
+    kakaoChat.classList.remove("is-open");
+  });
+}
 
 function hideProjectPreview() {
   projectPreview?.classList.remove("is-visible");
