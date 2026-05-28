@@ -233,11 +233,13 @@ img {
 }
 
 .brand img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #000;
+  width: 54px;
+  height: 54px;
+  padding: 3px;
+  border: 1px solid rgba(12, 13, 12, 0.1);
+  border-radius: 14px;
+  object-fit: contain;
+  background: #fff;
 }
 
 .brand span {
@@ -303,6 +305,76 @@ img {
 
 .mobile-nav.open {
   display: grid;
+}
+
+.landing-kakao {
+  --kakao-strip-h: 64px;
+  position: relative;
+  z-index: 4;
+  min-height: var(--kakao-strip-h);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 9px var(--gutter);
+  border-bottom: 2px solid var(--ink);
+  background: #fee500;
+  color: var(--ink);
+  box-shadow: 0 8px 0 rgba(12, 13, 12, 0.08);
+}
+
+.landing-kakao img {
+  width: 46px;
+  height: 46px;
+  padding: 2px;
+  border: 1px solid rgba(12, 13, 12, 0.12);
+  border-radius: 12px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.landing-kakao span {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.landing-kakao strong {
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.12;
+  font-weight: 950;
+  word-break: keep-all;
+}
+
+.landing-kakao em {
+  color: rgba(12, 13, 12, 0.7);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  word-break: keep-all;
+}
+
+.landing-kakao b {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fee500;
+  font-size: 12px;
+  font-weight: 950;
+  white-space: nowrap;
+  box-shadow: 4px 4px 0 rgba(12, 13, 12, 0.16);
+  transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+
+.landing-kakao:hover b,
+.landing-kakao:focus-visible b {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 rgba(12, 13, 12, 0.18);
 }
 
 .hero {
@@ -1998,6 +2070,27 @@ img {
 
   .menu-toggle {
     display: block;
+  }
+
+  .brand img {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .landing-kakao {
+    --kakao-strip-h: 58px;
+    gap: 11px;
+    padding-block: 8px;
+  }
+
+  .landing-kakao img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .landing-kakao em {
+    display: none;
   }
 
   .hero {
@@ -3966,6 +4059,28 @@ body.is-loaded .frame-c {
     height: 64px;
   }
 
+  .landing-kakao {
+    --kakao-strip-h: 54px;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 7px var(--gutter);
+  }
+
+  .landing-kakao img {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .landing-kakao strong {
+    font-size: 14px;
+    line-height: 1.18;
+  }
+
+  .landing-kakao b {
+    display: none;
+  }
+
   .menu-toggle {
     width: 42px;
     height: 42px;
@@ -4285,8 +4400,10 @@ body.is-loaded .frame-c {
   }
 
   .brand img {
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
+    padding: 2px;
+    border-radius: 11px;
   }
 
   .brand span {
@@ -5733,7 +5850,7 @@ body.is-loaded .frame-c {
 /* Desktop landing recentering: keep the first viewport composed around the middle. */
 @media (min-width: 981px) {
   .home-page .hero {
-    min-height: calc(100svh - 92px);
+    min-height: calc(100svh - 92px - 64px);
     padding-top: clamp(74px, 8vh, 96px);
     padding-bottom: clamp(72px, 8vh, 98px);
     place-items: center;
