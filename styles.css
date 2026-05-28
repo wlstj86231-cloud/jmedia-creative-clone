@@ -494,6 +494,7 @@ img {
   display: inline-flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   margin-top: 32px;
 }
@@ -526,14 +527,17 @@ img {
   position: relative;
   width: 54px;
   min-width: 54px;
+  height: 54px;
   min-height: 54px;
+  flex: 0 0 auto;
+  align-self: center;
   gap: 9px;
-  padding: 4px;
+  padding: 0;
   border-color: rgba(12, 13, 12, 0.9);
   background: #fff;
   color: var(--ink);
   overflow: hidden;
-  box-shadow: 5px 6px 0 rgba(12, 13, 12, 0.14);
+  box-shadow: none;
   transition:
     width 220ms var(--ease-out),
     padding 220ms var(--ease-out),
@@ -564,8 +568,8 @@ img {
 .hero-kakao-chat.is-open {
   width: 248px;
   padding-right: 17px;
-  transform: translateY(-2px);
-  box-shadow: 8px 9px 0 rgba(12, 13, 12, 0.16);
+  transform: none;
+  box-shadow: none;
 }
 
 .hero-kakao-chat:hover span,
@@ -7731,8 +7735,9 @@ body.is-loaded .frame-c {
   .hero-actions .hero-kakao-chat {
     width: 50px;
     min-width: 50px;
+    height: 50px;
     min-height: 50px;
-    padding: 4px;
+    padding: 0;
   }
 
   .hero-kakao-chat img {
