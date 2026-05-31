@@ -2518,14 +2518,17 @@ body.is-loaded .frame-c {
 }
 
 .package-grid p {
-  margin: 18px 0 0;
+  min-height: 48px;
+  margin: 16px 0 0;
   color: #555b55;
-  font-size: 28px;
-  font-weight: 950;
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.35;
+  font-weight: 800;
+  word-break: keep-all;
 }
 
 .package-grid .featured-package p {
-  color: var(--acid);
+  color: rgba(255,255,255,0.78);
 }
 
 .price-hint {
@@ -3762,6 +3765,7 @@ body.is-loaded .frame-c {
 .budget-options label {
   position: relative;
   display: block;
+  min-width: 0;
   cursor: pointer;
 }
 
@@ -3775,27 +3779,73 @@ body.is-loaded .frame-c {
   cursor: pointer;
 }
 
-.budget-options span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
+.budget-options .budget-card {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  min-height: 82px;
+  padding: 12px 14px;
   border: 1px solid rgba(255,255,255,0.22);
   border-radius: 8px;
   color: #fff;
-  font-size: 18px;
-  font-weight: 950;
+  font-size: 14px;
+  font-weight: 850;
   letter-spacing: 0;
   transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
 }
 
-.budget-options input:checked + span {
+.budget-card strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: inherit;
+  font-size: clamp(18px, 1.35vw, 21px);
+  line-height: 1.05;
+  font-weight: 950;
+}
+
+.budget-card em {
+  font-style: normal;
+}
+
+.budget-card b {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  color: inherit;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.budget-card small {
+  color: rgba(255,255,255,0.58);
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 800;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.budget-options input:checked + .budget-card {
   border-color: var(--acid);
   background: var(--acid);
   color: #0c0f11;
 }
 
-.budget-options label:focus-within span {
+.budget-options input:checked + .budget-card b {
+  background: rgba(12,15,17,0.12);
+}
+
+.budget-options input:checked + .budget-card small {
+  color: rgba(12,15,17,0.64);
+}
+
+.budget-options label:focus-within .budget-card {
   border-color: var(--acid);
 }
 
@@ -4863,7 +4913,6 @@ body.is-loaded .frame-c {
   .world-copy p,
   .owned-lead,
   .contact p,
-  .package-grid p,
   .trust-list article p {
     display: none;
   }
@@ -5904,7 +5953,6 @@ body.is-loaded .frame-c {
 .home-page .entry,
 .home-page .industry-templates,
 .home-page .method,
-.home-page .packages,
 .home-page .fast-workflow,
 .home-page .structure-flow,
 .home-page .process,
@@ -6205,6 +6253,14 @@ body.is-loaded .frame-c {
   .contact-hero h1 {
     line-height: 1.14;
   }
+}
+
+.contact-form .budget-options .budget-card em {
+  display: inline;
+}
+
+body main section .package-grid article p {
+  display: block;
 }
 
 /* Services + landing hero polish pass */
