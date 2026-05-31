@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | J MEDIA</title>
-  <meta name="description" content="J MEDIA 웹사이트 제작 상담 요청 페이지입니다.">
+  <meta name="description" content="J MEDIA A 7만원 DB 수집 랜딩페이지와 B 21만원 맞춤 사이트 상담 요청 페이지입니다.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20260528-contact-kakao">
 </head>
@@ -42,7 +42,7 @@
       <div>
         <div class="section-index">CONTACT</div>
         <h1>먼저,<br>간단한 구조<br>상담부터 시작합니다.</h1>
-        <p>제작 목적, 참고 사이트, 필요한 기능, 예산 범위를 남겨주시면 J MEDIA 기준으로 어떤 구조가 맞는지 먼저 정리해드립니다.</p>
+        <p>제작 목적, 참고 사이트, 필요한 기능, A/B 상품을 남겨주시면 J MEDIA 기준으로 어떤 구조가 맞는지 먼저 정리해드립니다.</p>
       </div>
       <aside class="contact-side">
         <a class="contact-kakao-card" href="https://open.kakao.com/o/scuvl1wi" target="_blank" rel="noopener" aria-label="카카오톡 오픈채팅 24시 문의">
@@ -126,10 +126,19 @@
           </select>
         </label>
 
-        <label>
-          <span>예산 범위</span>
-          <input name="budget_range" type="text" placeholder="예: 200~300만원 / 협의">
-        </label>
+        <fieldset class="budget-field">
+          <legend>상품 선택 *</legend>
+          <div class="budget-options" aria-label="상품 선택">
+            <label>
+              <input name="budget_range" type="radio" value="A - 7만원 랜딩페이지 / DB 수집" required>
+              <span>A</span>
+            </label>
+            <label>
+              <input name="budget_range" type="radio" value="B - 21만원 맞춤 사이트 / 어떤 사이트든 요청 가능">
+              <span>B</span>
+            </label>
+          </div>
+        </fieldset>
 
         <fieldset class="full chip-field">
           <legend>필요 기능</legend>

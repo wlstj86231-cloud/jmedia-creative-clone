@@ -561,7 +561,7 @@ function prepareContactPayload(form) {
     `브랜드명: ${brand}`,
     `벤치마크/참고 사이트: ${formData.get("reference_site") || ""}`,
     `사이트 유형: ${formData.get("site_type") || ""}`,
-    `예산 범위: ${formData.get("budget_range") || ""}`,
+    `선택 상품: ${formData.get("budget_range") || ""}`,
     `필요 기능: ${features.join(", ") || "미선택"}`,
     `사업 내용: ${formData.get("business_summary") || ""}`,
     `요청사항: ${formData.get("request_detail") || ""}`,

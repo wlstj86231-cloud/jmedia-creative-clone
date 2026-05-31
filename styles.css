@@ -2493,7 +2493,7 @@ body.is-loaded .frame-c {
   width: min(var(--max), 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -3741,6 +3741,62 @@ body.is-loaded .frame-c {
 
 .chip-field input {
   width: auto;
+}
+
+.budget-field {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.budget-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.28);
+  padding-bottom: 10px;
+}
+
+.budget-options label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.budget-options input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.budget-options span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: 0;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.budget-options input:checked + span {
+  border-color: var(--acid);
+  background: var(--acid);
+  color: #0c0f11;
+}
+
+.budget-options label:focus-within span {
+  border-color: var(--acid);
 }
 
 .agree {
@@ -6201,7 +6257,7 @@ body.is-loaded .frame-c {
   }
 
   .services-page .package-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
