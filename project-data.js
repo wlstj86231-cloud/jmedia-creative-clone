@@ -8,6 +8,14 @@ window.JMEDIA_PROJECTS = [
     preview: "assets/portfolio/05_policyfundpedia.png",
   },
   {
+    slug: "boribay",
+    title: "Boribay",
+    type: "Marketplace",
+    period: "Live",
+    core: "Search / Utility",
+    preview: "assets/portfolio/11_boribay.png",
+  },
+  {
     slug: "reportools",
     title: "Reportools",
     type: "Utility",
