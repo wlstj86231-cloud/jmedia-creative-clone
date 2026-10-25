@@ -91,7 +91,7 @@ const STORIES = [
 const STRIP = ['produce-direct-sale', 'used-machinery-inspection', 'hongro-apple', 'machinery-transport', 'humusa-plum', 'used-cultivator-inspection', 'farm-supplies-disposal'];
 
 const CSS = `
-:root{--ink:#212124;--ink2:#1a1c20;--sub:#4d5159;--mute:#868b94;--line:#eaebee;--gray:#d1d3d8;--bg:#fff;--soft:#f7f8fa;--yellow:#f5c02b;--yellow2:#fff4c7;--green:#3d6842;--green2:#e8f2e3;--blue2:#eaf0fb}
+:root{--ink:#212124;--ink2:#1a1c20;--sub:#4d5159;--mute:#6b7079;--line:#eaebee;--gray:#868b94;--bg:#fff;--soft:#f7f8fa;--yellow:#f5c02b;--yellow2:#fff4c7;--green:#3d6842;--green2:#e8f2e3;--blue2:#eaf0fb}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
