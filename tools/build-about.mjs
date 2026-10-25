@@ -1,4 +1,5 @@
-// J MEDIA 회사 소개 사이트(홈·서비스·소식·회사) 정적 HTML 생성
+// J MEDIA 회사 소개 사이트(홈·서비스·소식·회사 정보) 정적 HTML 생성
+// 구성과 비율은 about.daangn.com을 따르고, 색·이미지는 보리장터 테마를 쓴다.
 // 사용법: node tools/build-about.mjs  (저장소 루트에서 실행, 결과 HTML을 그대로 커밋)
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -6,16 +7,17 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://jnewmedia.com';
-const BASE_DATE = '2026년 10월 26일';
-const BORIBAY = 'https://boribay.com/?utm_source=jnewmedia&utm_medium=referral&utm_campaign=about';
+const UTM = 'utm_source=jnewmedia&utm_medium=referral&utm_campaign=about';
+const BORIBAY = `https://boribay.com/?${UTM}`;
 const PLAY = 'https://play.google.com/store/apps/details?id=com.boribay.app';
-const KAKAO_BORIBAY = 'https://open.kakao.com/o/p6HiJ9Pi';
 const KAKAO_JMEDIA = 'https://open.kakao.com/o/scuvl1wi';
+const KAKAO_BORIBAY = 'https://open.kakao.com/o/p6HiJ9Pi';
 const PHONE = '010-2846-2011';
+const IMG = '/assets/boribay';
 
 const TOOLS = [
   ['yomiwiki', '요미위키', 'https://yomiwiki.com/', '농업 거래 지식사전', '농산물 등급·선별, 보관·출하, 농기계 점검과 거래 용어를 현장 기준으로 빠르게 찾아봅니다.'],
-  ['scamreader', '스캠판독기', 'https://scamreader.com/', '거래 안전 점검', '농산물 직거래와 중고 농기계 거래에서 선입금·계좌 변경·가짜 결제 같은 위험 신호를 점검하고, 피해 후 대응 순서를 정리합니다.'],
+  ['scamreader', '스캠판독기', 'https://scamreader.com/', '거래 안전 점검', '농산물 직거래와 중고 농기계 거래의 선입금·계좌 변경·가짜 결제 같은 위험 신호를 점검하고, 피해 후 대응 순서를 정리합니다.'],
   ['reportools', '리포툴스', 'https://www.reportools.com/', '판매 손익 계산', '판매가와 생산·선별·포장·배송비, 수수료와 감모를 넣어 예상 이익과 손익분기 가격을 계산합니다.'],
   ['goatool', '고아툴', 'https://goatool.com/', '거래 증빙 파일 도구', '농기계 명판·인도 사진과 출하·정산 파일을 브라우저 안에서 점검하고 증빙 목록과 파일명을 정리합니다.'],
   ['occultworldcup', '농사월드컵', 'https://occultworldcup.com/', '품종·산지·농기계 비교', '감자 품종, 사과 산지, 중고 트랙터와 농기계를 질문에 답하며 비교하고 내 거래 기준을 만듭니다.'],
@@ -28,7 +30,7 @@ const TOOLS = [
 // 소식: 실제로 있었던 출시·운영 기록만 담는다 (최신순)
 const NEWS = [
   {
-    slug: 'daum-search-registration', date: '2026.10.26', tag: '운영',
+    slug: 'daum-search-registration', date: '2026.10.26', img: 'hero-768',
     title: '보리장터 등 10개 서비스, 다음 검색에 등록했습니다',
     summary: '다음 웹마스터도구에 서비스 10곳을 등록하고 사이트맵 수집을 요청했습니다.',
     body: [
@@ -38,7 +40,7 @@ const NEWS = [
     ],
   },
   {
-    slug: 'boribay-app-0-11-32', date: '2026.10.21', tag: '출시',
+    slug: 'boribay-app-0-11-32', date: '2026.10.21', img: 'produce-direct-sale-480',
     title: '보리장터 앱 0.11.32를 출시했습니다',
     summary: 'Google Play에서 보리장터 Android 앱 0.11.32를 정식으로 내보냈습니다.',
     body: [
@@ -48,7 +50,7 @@ const NEWS = [
     ],
   },
   {
-    slug: 'boribay-chat-notification', date: '2026.10.18', tag: '업데이트',
+    slug: 'boribay-chat-notification', date: '2026.10.18', img: 'humusa-plum-480',
     title: '채팅 알림 전달 과정을 개선했습니다',
     summary: '앱을 꺼 두거나 화면이 꺼진 상태에서도 채팅 알림을 받는지 실제 기기로 확인했습니다.',
     body: [
@@ -58,7 +60,7 @@ const NEWS = [
     ],
   },
   {
-    slug: 'boribay-app-redesign', date: '2026.10.17', tag: '업데이트',
+    slug: 'boribay-app-redesign', date: '2026.10.17', img: 'used-cultivator-inspection-480',
     title: '보리장터 앱 화면을 새로 단장했습니다',
     summary: '큰 검색창과 둥근 카드, 하단 탐색 메뉴로 매물을 더 빨리 찾을 수 있게 했습니다.',
     body: [
@@ -68,7 +70,7 @@ const NEWS = [
     ],
   },
   {
-    slug: 'boribay-operator-sources', date: '2026.10.15', tag: '운영',
+    slug: 'boribay-operator-sources', date: '2026.10.15', img: 'hongro-apple-480',
     title: '보리장터 운영자·출처 정보를 보강했습니다',
     summary: '안내 글의 작성 범위, 자료 날짜, 정정 방법을 서비스 소개에 명시했습니다.',
     body: [
@@ -79,123 +81,159 @@ const NEWS = [
   },
 ];
 
-const ICON = {
-  produce: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 20 5c0 9-6 14-15 14Z"/><path d="M5 19c4-5 7-8 11-10"/></svg>',
-  machinery: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="16" r="3.5"/><circle cx="18" cy="17.5" r="2"/><path d="M3.5 12V6.5H10l2 5.5h6.5l2 3.5"/><path d="M10 6.5V3.5"/></svg>',
-  transport: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 6h11v10h-11z"/><path d="M13.5 9.5h4l3 3.5v3h-7"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
-  community: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>',
-};
+const STORIES = [
+  ['농산물', '제철 농산물을 가까운 곳에서', '같은 지역에서 키운 농산물을 매물로 올리고, 필요한 사람은 동네 단위로 찾아봅니다. 궁금한 점은 채팅으로 판매자에게 바로 묻고, 직접 만나 거래합니다.', 'produce-direct-sale', `https://boribay.com/?category=PRODUCE&${UTM}`, '농산물 매물 보기'],
+  ['중고 농기계', '직접 보고 점검한 뒤 거래해요', '트랙터와 관리기 같은 중고 농기계는 판매자와 방문 일정을 정해 현장에서 상태를 확인하고 거래합니다. 농기계 가격자료로 시세 감도 미리 잡을 수 있어요.', 'used-machinery-inspection', `https://boribay.com/?category=MACHINERY&${UTM}`, '농기계 매물 보기'],
+  ['탁송 업체', '산 농기계를 옮기는 일까지', '농기계를 옮겨야 할 때는 지역의 탁송 업체를 찾아 연락합니다. 탁송 비용을 미리 따져 볼 수 있는 안내 글도 함께 볼 수 있어요.', 'machinery-transport', `https://boribay.com/?category=TRANSPORT&${UTM}`, '탁송 업체 보기'],
+  ['농촌생활 안내', '농사 뒤처리까지 함께 챙겨요', '영농폐기물 처리, 위탁판매, 제철 과일 고르는 법처럼 농촌 생활에 필요한 안내 글을 읽고, 커뮤니티에서 이웃과 질문을 나눕니다.', 'farm-supplies-disposal', `https://boribay.com/guides?${UTM}`, '안내 글 보기'],
+];
+
+const STRIP = ['produce-direct-sale', 'used-machinery-inspection', 'hongro-apple', 'machinery-transport', 'humusa-plum', 'used-cultivator-inspection', 'farm-supplies-disposal'];
 
 const CSS = `
-:root{--ink:#1b2118;--sub:#5a6355;--line:#e6e0d1;--bg:#fffdf7;--soft:#f6f1e3;--green:#2c5532;--green2:#3d6842;--yellow:#f5c02b;--ysoft:#fff4c8}
+:root{--ink:#212124;--ink2:#1a1c20;--sub:#4d5159;--mute:#868b94;--line:#eaebee;--gray:#d1d3d8;--bg:#fff;--soft:#f7f8fa;--yellow:#f5c02b;--yellow2:#fff4c7;--green:#3d6842;--green2:#e8f2e3;--blue2:#eaf0fb}
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;word-break:keep-all;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.in{max-width:1040px;margin:0 auto;padding:0 20px}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:9}
-a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:6px}
-header.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;gap:28px;height:64px}
-.logo{font-weight:800;font-size:19px;letter-spacing:-.02em}.logo b{color:var(--green2)}
-nav.gnb{display:flex;gap:22px;font-size:15px;font-weight:600;color:var(--sub)}
-nav.gnb a:hover,nav.gnb a[aria-current]{color:var(--ink)}
-.top .cta{margin-left:auto}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-weight:700;font-size:15px;line-height:1.2}
-.btn.primary{background:var(--green);color:#fff}.btn.primary:hover{background:#21452a}
-.btn.ghost{background:#fff;border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--ink)}
-.btn.small{padding:9px 16px;font-size:14px}
-main section{padding:96px 0}
-.cv{content-visibility:auto;contain-intrinsic-size:auto 800px}
-.eyebrow{font-size:14px;font-weight:700;color:var(--green2);letter-spacing:.02em;margin-bottom:14px}
-h1{font-size:clamp(38px,7vw,76px);line-height:1.12;letter-spacing:-.035em;font-weight:800}
-h2{font-size:clamp(28px,4.4vw,44px);line-height:1.2;letter-spacing:-.03em;font-weight:800}
-h3{font-size:22px;line-height:1.35;letter-spacing:-.02em}
-.lead{font-size:clamp(17px,2.1vw,20px);color:var(--sub);margin-top:20px;max-width:640px}
-.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}.center .actions{justify-content:center}
-.hero{padding:88px 0 72px}
-.shot{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 20px 50px -30px rgba(27,33,24,.45)}
-.hero .shot{margin-top:56px}
-.big-text{font-size:clamp(24px,3.6vw,38px);line-height:1.45;letter-spacing:-.025em;font-weight:700;max-width:900px}
-.big-text em{font-style:normal;background:linear-gradient(transparent 62%,var(--ysoft) 0)}
-.soft{background:var(--soft)}
-.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:72px}
-.story:nth-of-type(even) .panel{order:2}
-.panel{aspect-ratio:4/3;border-radius:28px;background:var(--ysoft);display:grid;place-items:center;position:relative}
-.panel svg{width:34%;height:auto;fill:none;stroke:var(--green);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.panel .chip{position:absolute;bottom:22px;left:22px;background:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:700}
-.story p{color:var(--sub);margin-top:14px;font-size:17px}
-.more{display:inline-block;margin-top:18px;font-weight:700;color:var(--green2)}.more:hover{text-decoration:underline}
-.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
-.num{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px 24px}
-.num strong{display:block;font-size:clamp(34px,4.6vw,48px);letter-spacing:-.03em;line-height:1.1}
-.num span{display:block;font-weight:700;margin-top:10px}.num small{display:block;color:var(--sub);font-size:14px;margin-top:4px}
-.basis{color:var(--sub);font-size:14px;margin-top:16px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
-.card{display:block}
-.thumb{aspect-ratio:16/9;border-radius:18px;display:flex;align-items:flex-end;padding:18px;font-weight:800;font-size:15px}
-.t-출시{background:var(--green2);color:#fff}.t-업데이트{background:var(--yellow)}.t-운영{background:#e9e3d2}
-.card h3{font-size:19px;margin-top:16px}.card:hover h3{text-decoration:underline}
-.card p{color:var(--sub);font-size:15px;margin-top:8px}.card time{display:block;color:var(--sub);font-size:14px;margin-top:8px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.pair a{border-radius:24px;padding:40px 36px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between}
-.pair a:first-child{background:var(--green);color:#fff}.pair a:last-child{background:var(--ysoft)}
-.pair b{font-size:26px;letter-spacing:-.02em}.pair span{font-weight:700}
-.head-row{display:flex;align-items:end;justify-content:space-between;gap:20px}
-.svc{display:grid;grid-template-columns:96px 1fr 540px;gap:32px;align-items:start;padding:48px 0;border-top:1px solid var(--line)}
-.svc .icon{width:96px;height:96px;border-radius:24px;background:var(--ysoft);display:grid;place-items:center;font-weight:800;font-size:28px;color:var(--green)}
-.svc h3 a:hover{text-decoration:underline}.svc .kind{color:var(--green2);font-weight:700;font-size:14px;margin-top:6px}
-.svc p{color:var(--sub);margin-top:12px}
-.svc .shot{border-radius:16px}
-.flag{padding-top:24px}.flag .shot{margin:40px 0}
-.subs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.subs div{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
-.subs svg{width:36px;height:36px;fill:none;stroke:var(--green);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.subs h3{font-size:18px;margin-top:12px}.subs p{color:var(--sub);font-size:15px;margin-top:6px}
-.list{margin-top:40px;border-top:1px solid var(--line)}
-.list a{display:grid;grid-template-columns:180px 1fr 110px;gap:24px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}
-.list .thumb{aspect-ratio:16/10;font-size:14px;padding:14px}
-.list h3{font-size:20px}.list a:hover h3{text-decoration:underline}.list p{color:var(--sub);font-size:15px;margin-top:6px}
-.list time{color:var(--sub);font-size:14px;text-align:right}
-article.post{max-width:720px;margin:0 auto}
-article.post time{color:var(--sub);font-size:15px;display:block;margin-top:18px}
-article.post .body{margin-top:40px;font-size:18px}article.post .body p+p{margin-top:20px}
-.back{display:inline-block;margin-top:56px;font-weight:700;color:var(--green2)}
-dl.info{display:grid;grid-template-columns:200px 1fr;margin-top:40px;border-top:1px solid var(--line)}
-dl.info dt,dl.info dd{padding:20px 0;border-bottom:1px solid var(--line)}dl.info dt{font-weight:700}dl.info dd{color:var(--sub)}
-.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
-.rules div{background:#fff;border:1px solid var(--line);border-radius:22px;padding:30px 28px}
-.rules b{display:block;font-size:19px;letter-spacing:-.02em}.rules p{color:var(--sub);margin-top:10px}
-ol.timeline{list-style:none;margin-top:40px;border-left:2px solid var(--line);padding-left:28px}
-ol.timeline li{position:relative;padding-bottom:28px}
-ol.timeline li::before{content:"";position:absolute;left:-36px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--yellow);border:2px solid var(--bg)}
-ol.timeline time{font-weight:800}ol.timeline p{color:var(--sub)}
-.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-.contact a{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px}
-.contact a:hover{border-color:var(--ink)}.contact b{display:block;font-size:18px}.contact span{display:block;color:var(--sub);margin-top:8px}
-footer{background:#1e3322;color:#d9dfd2;padding:64px 0 48px;font-size:14px}
-footer .logo{color:#fff}footer .logo b{color:var(--yellow)}
-.f-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:22px;font-weight:600;color:#fff}
-.f-links a:hover{text-decoration:underline}
-.f-info{margin-top:28px;line-height:1.9}.f-info span+span::before{content:" · "}
-.f-copy{margin-top:20px;color:#9fab98}
-@media (max-width:900px){
- main section{padding:64px 0}.hero{padding:56px 0 48px}
- .story,.pair,.subs,.rules,.contact{grid-template-columns:1fr}.story{gap:28px;margin-top:56px}.story:nth-of-type(even) .panel{order:0}
- .nums{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}
- .svc{grid-template-columns:64px 1fr;gap:18px}.svc .icon{width:64px;height:64px;font-size:20px;border-radius:18px}.svc .shot{grid-column:1/-1}
- .list a{grid-template-columns:1fr;gap:12px}.list time{text-align:left}
- dl.info{grid-template-columns:1fr}dl.info dt{padding-bottom:0;border-bottom:0}
- .head-row{flex-direction:column;align-items:flex-start}
+a:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:8px}
+header.gnb{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96)}
+header.gnb .in{display:flex;align-items:center;height:68px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;letter-spacing:-.03em;color:var(--green);white-space:nowrap}
+.logo img{width:28px;height:28px;border-radius:8px}
+header.gnb nav{margin-left:auto;display:flex;gap:40px;font-size:16px;font-weight:700}
+header.gnb nav a{color:var(--ink)}header.gnb nav a[aria-current]{color:var(--green)}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:12px 20px;font-size:15px;font-weight:700;line-height:1}
+.pill:hover{background:#000}.pill.light{background:#fff;color:var(--ink)}
+.eyebrow{font-size:18px;font-weight:700;line-height:28px;color:var(--ink2)}
+h1{font-size:64px;line-height:84px;font-weight:700;letter-spacing:-.02em}
+h2{font-size:42px;line-height:58px;font-weight:700;letter-spacing:-.02em;color:var(--ink2)}
+.hero{padding:92px 0 64px}
+.media{position:relative;margin:56px auto 0;max-width:1000px;border-radius:24px;overflow:hidden;background:var(--yellow)}
+.media img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:right center}
+.media .over{position:absolute;left:56px;top:50%;transform:translateY(-50%);font-size:44px;line-height:60px;font-weight:700;color:var(--ink2);letter-spacing:-.02em}
+.intro{padding:120px 0 96px}
+.intro p{font-size:28px;line-height:44px;font-weight:700;letter-spacing:-.01em;max-width:960px}
+.strip{overflow:hidden;padding-bottom:140px}
+.track{display:flex;gap:20px;width:max-content;align-items:center;animation:flow 60s linear infinite}
+.track img{border-radius:16px;object-fit:cover;width:270px;height:270px}
+.track img:nth-child(odd){width:236px;height:340px}
+.track img:nth-child(3n){width:342px;height:212px}
+@keyframes flow{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}}
+.sec{padding:120px 0}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:80px}
+.story h3{font-size:28px;line-height:40px;font-weight:700;letter-spacing:-.02em}
+.story p{margin-top:16px;font-size:16px;line-height:26px;color:var(--sub)}
+.story .tag{display:inline-block;font-size:14px;font-weight:700;color:var(--green);background:var(--green2);border-radius:999px;padding:6px 12px;margin-bottom:16px}
+.pic{position:relative;border-radius:24px;overflow:hidden}
+.pic img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.pic .chip{position:absolute;left:20px;bottom:20px;background:rgba(0,0,0,.45);color:#fff;font-size:14px;font-weight:700;border-radius:999px;padding:8px 14px}
+.pic .pill{position:absolute;right:20px;bottom:20px}
+.two{display:grid;grid-template-columns:380px 1fr;gap:60px;align-items:start}
+.two .head{position:sticky;top:120px}
+.qlist{display:flex;flex-direction:column;gap:16px}
+.q{display:grid;grid-template-columns:96px 1fr;gap:24px;align-items:center;border:1px solid var(--line);border-radius:20px;padding:24px}
+.q:hover{border-color:var(--gray)}
+.q img{width:96px;height:96px;border-radius:16px;object-fit:cover;object-position:center;background:var(--soft)}
+.q b{display:block;font-size:18px;line-height:28px;letter-spacing:-.01em}
+.q span{display:block;margin-top:4px;font-size:15px;line-height:24px;color:var(--sub)}
+.q small{display:block;margin-top:10px;font-size:14px;color:var(--mute);font-weight:700}
+.vision .pic{margin-top:48px}
+.vision .pic img{aspect-ratio:16/9}
+.vision .pic .pill{right:50%;transform:translateX(50%);bottom:28px}
+.nums{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.nums::-webkit-scrollbar{display:none}
+.num{flex:0 0 240px;height:300px;border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.num:nth-child(1){background:var(--yellow2)}.num:nth-child(2){background:var(--green2)}.num:nth-child(3){background:var(--blue2)}.num:nth-child(4){background:#fdeee6}
+.num span{font-size:16px;font-weight:700}.num strong{font-size:48px;line-height:1.1;letter-spacing:-.02em}
+.basis{margin-top:16px;font-size:14px;color:var(--mute)}
+.cards2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.card2{border:1px solid var(--line);border-radius:24px;padding:40px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.card2 b{font-size:28px;line-height:40px;letter-spacing:-.02em;max-width:300px}
+.card2 .pill{align-self:flex-start}
+.card2 img{position:absolute;right:28px;bottom:28px;width:110px;height:110px;border-radius:50%;object-fit:cover}
+.newshead{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ncards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.ncard img{border-radius:16px;aspect-ratio:16/10;object-fit:cover;width:100%}
+.ncard h3{margin-top:16px;font-size:18px;line-height:28px;font-weight:700}
+.ncard:hover h3{text-decoration:underline}
+.ncard time,.row time{display:block;margin-top:6px;font-size:14px;color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:40px 0 56px;font-size:14px;color:var(--sub)}
+footer .top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+footer .links{display:flex;flex-wrap:wrap;gap:12px 32px;font-weight:700;color:var(--ink)}
+footer .sns{display:flex;gap:16px}footer .sns svg{width:24px;height:24px;fill:var(--ink)}
+footer p{margin-top:28px;line-height:24px}footer p+p{margin-top:4px}
+.svc-h1{padding:92px 0 40px}
+.svc{display:grid;grid-template-columns:1fr 540px;gap:60px;align-items:center;padding:72px 0;border-bottom:1px solid var(--line)}
+.svc .ico{width:56px;height:56px;border-radius:16px;background:var(--yellow2);display:grid;place-items:center;font-weight:800;font-size:20px;color:var(--green);margin-bottom:24px}
+.svc .ico img{width:40px;height:40px;border-radius:10px}
+.svc h2 a:hover{text-decoration:underline}
+.svc h2{font-size:28px;line-height:40px}
+.svc p{margin-top:12px;font-size:16px;line-height:26px;color:var(--sub);max-width:420px}
+.svc .shot{border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+.svc .shot img{width:100%;aspect-ratio:540/320;object-fit:cover;object-position:top}
+.subs{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:8px}
+.subs h3{font-size:18px;line-height:28px}.subs p{margin-top:6px;font-size:15px;line-height:24px}
+.list-h{padding:92px 0 40px;text-align:center}
+.list{max-width:760px;margin:0 auto;padding-bottom:120px}
+.row{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;padding:20px 0}
+.row img{border-radius:12px;aspect-ratio:16/9;object-fit:cover;width:100%}
+.row h2{font-size:18px;line-height:28px}.row:hover h2{text-decoration:underline}
+.row p{margin-top:4px;font-size:15px;line-height:24px;color:var(--sub)}
+article.post{max-width:760px;margin:0 auto;padding:92px 0 120px}
+article.post h1{font-size:40px;line-height:56px}
+article.post .pic{margin-top:40px}article.post .pic img{aspect-ratio:16/9}
+article.post .body{margin-top:40px;font-size:17px;line-height:30px;color:#2e3138}
+article.post .body p+p{margin-top:20px}
+.back{display:inline-flex;margin-top:56px}
+dl.info{display:grid;grid-template-columns:200px 1fr;margin-top:40px;border-top:1px solid var(--ink)}
+dl.info dt,dl.info dd{padding:20px 0;border-bottom:1px solid var(--line);font-size:16px}dl.info dt{font-weight:700}dl.info dd{color:var(--sub)}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.rules div{border:1px solid var(--line);border-radius:20px;padding:28px}
+.rules b{display:block;font-size:20px;line-height:30px}.rules p{margin-top:8px;font-size:15px;line-height:24px;color:var(--sub)}
+.hist{margin-top:40px;border-top:1px solid var(--ink)}
+.hist li{list-style:none;display:grid;grid-template-columns:200px 1fr;padding:20px 0;border-bottom:1px solid var(--line);font-size:16px}
+.hist time{font-weight:700}.hist span{color:var(--sub)}
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.contact a{border:1px solid var(--line);border-radius:20px;padding:28px}.contact a:hover{border-color:var(--gray)}
+.contact b{display:block;font-size:18px}.contact span{display:block;margin-top:6px;color:var(--sub)}
+@supports (animation-timeline:view()){
+ .media{max-width:none;margin-left:0;margin-right:0;animation:open linear both;animation-timeline:view();animation-range:cover 10% cover 45%}
+ @keyframes open{from{clip-path:inset(0 max(20px,calc((100% - 1000px)/2)) round 24px)}to{clip-path:inset(0 0 round 0)}}
+ .media .over{left:max(56px,calc((100% - 1000px)/2 + 56px))}
+ .intro p span{color:var(--gray);animation:ink linear both;animation-timeline:view();animation-range:cover 35% cover 50%}
+ @keyframes ink{to{color:var(--ink)}}
 }
-@media (max-width:560px){header.top .wrap{gap:16px}nav.gnb{gap:16px;font-size:14px}.top .cta{display:none}}
+@media (max-width:900px){
+ h1{font-size:36px;line-height:48px}h2{font-size:28px;line-height:40px}.eyebrow{font-size:16px}
+ header.gnb nav{gap:18px;font-size:15px;white-space:nowrap}header.gnb nav a:last-child{display:none}
+ .hero{padding:56px 0 40px}.media{margin-top:32px;border-radius:16px}.media img{aspect-ratio:4/3}.media .over{left:40px;font-size:24px;line-height:34px}
+ .intro{padding:72px 0 56px}.intro p{font-size:22px;line-height:34px}
+ .strip{padding-bottom:80px}.track img,.track img:nth-child(odd),.track img:nth-child(3n){width:180px;height:200px}
+ .sec{padding:80px 0}
+ .story,.two,.cards2,.ncards,.rules,.contact,.svc{grid-template-columns:1fr}.story{gap:28px;margin-top:56px}.two{gap:32px}.two .head{position:static}
+ .q{grid-template-columns:72px 1fr;gap:16px;padding:18px}.q img{width:72px;height:72px}
+ .num{flex-basis:200px;height:240px}.num strong{font-size:40px}
+ .card2{padding:28px;min-height:220px}.card2 b{font-size:22px;line-height:32px;max-width:200px}.card2 img{width:80px;height:80px}
+ .newshead{flex-direction:column;align-items:flex-start}
+ .svc{gap:28px;padding:48px 0}.subs{grid-template-columns:1fr 1fr;gap:20px}
+ .row{grid-template-columns:120px 1fr;gap:16px}
+ article.post h1{font-size:28px;line-height:40px}
+ dl.info,.hist li{grid-template-columns:120px 1fr}
+ footer .top{flex-direction:column;align-items:flex-start}
+}
+@media (min-width:901px){.story:nth-of-type(even) .pic{order:-1}}
+@supports not (animation-timeline:view()){@media (max-width:900px){.media{margin:32px 20px 0}}}
 `.replace(/\n\s*/g, '');
 
 const NAV = [['/service/', '서비스'], ['/news/', '소식'], ['/company/', '회사 정보']];
+const INSTAGRAM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM21 8.1c-.1-1.5-.4-2.8-1.5-3.9S17.1 2.8 15.6 2.7C14 2.6 10 2.6 8.4 2.7 6.9 2.8 5.6 3.1 4.5 4.2S3 6.6 2.9 8.1C2.8 9.7 2.8 14.3 2.9 15.9c.1 1.5.4 2.8 1.6 3.9 1.1 1.1 2.4 1.4 3.9 1.5 1.6.1 5.6.1 7.2 0 1.5-.1 2.8-.4 3.9-1.5s1.4-2.4 1.5-3.9c.1-1.6.1-6.2 0-7.8Zm-2 9.6a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3A3 3 0 0 1 6.7 5.4C7.9 4.9 10.7 5 12 5s4.1-.1 5.3.4A3 3 0 0 1 19 7.1c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3Z"/></svg>';
 
-function page({ path, title, description, body, current, jsonld }) {
+function page({ path, title, description, body, current, jsonld, preload }) {
   const url = SITE + path;
   const nav = NAV.map(([href, label]) => `<a href="${href}"${href === current ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   return `<!doctype html>
@@ -213,124 +251,100 @@ function page({ path, title, description, body, current, jsonld }) {
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${SITE}/assets/og-jmedia-about.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#2c5532">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="${IMG}/borijangteo-logo-v4-64.png" type="image/png">${preload ? `\n${preload}` : ''}
 <style>${CSS}</style>${jsonld ? `\n<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
-<header class="top"><div class="wrap"><a class="logo" href="/" aria-label="제이 미디어 홈">J <b>MEDIA</b></a><nav class="gnb" aria-label="주요 메뉴">${nav}</nav><a class="btn primary small cta" href="${BORIBAY}">보리장터 바로가기</a></div></header>
+<header class="gnb"><div class="in"><a class="logo" href="/" aria-label="제이 미디어 홈"><img src="${IMG}/borijangteo-logo-v4-64.png" width="28" height="28" alt="">J MEDIA</a><nav aria-label="주요 메뉴">${nav}<a href="${BORIBAY}">보리장터 ↗</a></nav></div></header>
 <main id="main">
 ${body}
 </main>
-<footer><div class="wrap"><a class="logo" href="/">J <b>MEDIA</b></a>
-<div class="f-links"><a href="/service/">서비스</a><a href="/news/">소식</a><a href="/company/">회사 정보</a><a href="${BORIBAY}">보리장터</a><a href="https://www.instagram.com/boribaydotcom/">인스타그램</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용약관</a><a href="/services.html">웹 제작 의뢰</a></div>
-<p class="f-info"><span>제이 미디어(Media)</span><span>대표 이정우</span><span>사업자등록번호 456-33-01705</span><span>고객센터 <a href="tel:${PHONE.replace(/-/g, '')}">${PHONE}</a></span></p>
-<p class="f-copy">© 2026 제이 미디어(Media). 보리장터는 거래를 연결하며 개별 거래의 당사자가 아닙니다.</p>
+<footer><div class="in">
+<div class="top"><div class="links"><a href="/company/">회사 정보</a><a href="/news/">소식</a><a href="/privacy.html">개인정보처리방침</a><a href="/terms.html">이용약관</a><a href="/services.html">웹 제작 의뢰</a></div><div class="sns"><a href="https://www.instagram.com/boribaydotcom/" aria-label="보리장터 인스타그램">${INSTAGRAM}</a></div></div>
+<p>제이 미디어(Media) · 대표 이정우 · 사업자등록번호 456-33-01705 · 고객센터 <a href="tel:${PHONE.replace(/-/g, '')}">${PHONE}</a></p>
+<p>© 제이 미디어. 보리장터는 거래를 연결하며 개별 거래의 당사자가 아닙니다.</p>
 </div></footer>
 </body>
 </html>
 `;
 }
 
-const thumb = n => `<div class="thumb t-${n.tag}">${n.tag}</div>`;
-const newsCard = n => `<a class="card" href="/news/${n.slug}/">${thumb(n)}<h3>${n.title}</h3><p>${n.summary}</p><time datetime="${n.date.replace(/\./g, '-')}">${n.date}</time></a>`;
+const iso = d => d.replace(/\./g, '-');
+const pic = (name, w, alt, attrs = 'loading="lazy" decoding="async"') =>
+  `<img src="${IMG}/${name}-960.webp" srcset="${IMG}/${name}-480.webp 480w, ${IMG}/${name}-960.webp 960w" sizes="(max-width:900px) 100vw, ${w}px" width="960" height="720" alt="${alt}" ${attrs}>`;
 
-const STORIES = [
-  ['produce', '농산물', '제철 농산물을 가까운 곳에서', '같은 지역에서 키운 농산물을 매물로 올리고, 필요한 사람은 동네 단위로 찾아봅니다. 궁금한 점은 채팅으로 판매자에게 바로 묻습니다.', 'https://boribay.com/?category=PRODUCE&utm_source=jnewmedia&utm_medium=referral&utm_campaign=about', '농산물 매물 보기'],
-  ['machinery', '중고 농기계', '직접 보고 점검한 뒤 거래합니다', '트랙터와 관리기 같은 중고 농기계는 판매자와 방문 일정을 정해 현장에서 상태를 확인하고 거래합니다. 농기계 가격자료로 시세 감도 미리 잡을 수 있습니다.', 'https://boribay.com/?category=MACHINERY&utm_source=jnewmedia&utm_medium=referral&utm_campaign=about', '농기계 매물 보기'],
-  ['transport', '탁송 업체', '농기계를 옮길 방법까지', '산 농기계를 옮겨야 할 때는 지역의 탁송 업체를 찾아 연락합니다. 탁송 비용을 미리 따져 볼 수 있는 안내도 함께 제공합니다.', 'https://boribay.com/?category=TRANSPORT&utm_source=jnewmedia&utm_medium=referral&utm_campaign=about', '탁송 업체 보기'],
-  ['community', '커뮤니티', '농촌 생활의 질문과 답', '농사와 거래에 관한 질문을 이웃과 나누고, 영농폐기물 처리나 위탁판매 같은 농촌생활 안내 글을 읽을 수 있습니다.', 'https://boribay.com/community?utm_source=jnewmedia&utm_medium=referral&utm_campaign=about', '커뮤니티 둘러보기'],
-];
-
-// 홈
+// 홈 (당근 홈 구성: 히어로 → 소개 문단 → 이미지 띠 → 이야기 → 인터뷰형 목록 → 비전 → 숫자 → 일하는 방식 → 소식)
+const intro = ['제이 미디어는 농촌의 가까운 거래에 주목합니다.', ' 같은 지역의 농산물과 중고 농기계를 이웃끼리 사고팔 수 있도록 보리장터를 만들고 있어요.', ' 판매자와 구매자는 직접 보고, 묻고, 확인한 뒤 거래합니다.', ' 거래 전후에 필요한 계산과 확인은 아홉 개의 도구가 함께 돕습니다.'];
+const stripImgs = STRIP.map(n => `<img src="${IMG}/${n}-480.webp" width="480" height="360" alt="" loading="lazy" decoding="async">`).join('');
 const home = page({
   path: '/', current: '/',
-  title: '제이 미디어 | 농촌의 거래를 가까이, 보리장터',
+  title: '제이 미디어 | 우리 농촌 가까이, 보리장터',
   description: '제이 미디어는 농산물과 중고 농기계를 같은 지역 사람끼리 사고파는 보리장터와 농촌 거래 도구 9곳을 만들고 운영합니다.',
+  preload: `<link rel="preload" as="image" href="${IMG}/hero-1536.webp" imagesrcset="${IMG}/hero-768.webp 768w, ${IMG}/hero-1536.webp 1536w" imagesizes="(max-width:900px) 100vw, 1000px" fetchpriority="high">`,
   jsonld: { '@context': 'https://schema.org', '@type': 'Organization', name: '제이 미디어', alternateName: 'J MEDIA', url: SITE + '/', logo: SITE + '/assets/jmedia-new-logo.jpg', telephone: '+82-10-2846-2011', brand: { '@type': 'Brand', name: '보리장터', url: 'https://boribay.com/' } },
-  body: `<section class="hero"><div class="wrap center">
-<p class="eyebrow">제이 미디어</p>
-<h1>농촌의 거래를<br>가까이 잇습니다</h1>
-<p class="lead">농산물과 중고 농기계를 같은 지역 사람끼리 사고팔 수 있도록, 제이 미디어는 지역 거래 서비스 보리장터를 만들고 있습니다.</p>
-<div class="actions"><a class="btn primary" href="${BORIBAY}">보리장터 둘러보기</a><a class="btn ghost" href="${PLAY}">앱 설치하기</a></div>
-<div class="shot"><img src="/assets/service/boribay.webp" width="1080" height="640" alt="보리장터 첫 화면. 농산물과 농기계를 가까이서 만나자는 문구와 지역 매물 검색창" fetchpriority="high"></div>
+  body: `<section class="hero"><div class="in"><h1>우리 농촌 가까이, 보리장터</h1></div>
+<div class="media"><img src="${IMG}/hero-1536.webp" srcset="${IMG}/hero-768.webp 768w, ${IMG}/hero-1536.webp 1536w" sizes="(max-width:900px) 100vw, 1000px" width="1536" height="1024" alt="노란 들판과 비닐하우스, 트랙터와 농산물 상자가 있는 보리장터 일러스트" fetchpriority="high"><p class="over">농산물과 농기계,<br>가까이서 만나요</p></div></section>
+<section class="intro"><div class="in"><p>${intro.map(s => `<span>${s}</span>`).join('')}</p></div></section>
+<div class="strip" aria-hidden="true"><div class="track">${stripImgs}${stripImgs}</div></div>
+<section class="sec" style="padding-top:0"><div class="in">
+<p class="eyebrow">보리장터 이야기</p>
+<h2>보리장터에서 달라지는 거래</h2>
+${STORIES.map(([tag, title, text, img, href, more]) => `<div class="story"><div><span class="tag">${tag}</span><h3>${title}</h3><p>${text}</p></div><div class="pic">${pic(img, 460, '')}<span class="chip">${tag}</span><a class="pill light" href="${href}">${more} →</a></div></div>`).join('\n')}
 </div></section>
-<section class="cv"><div class="wrap">
-<p class="eyebrow">우리가 하는 일</p>
-<p class="big-text">농사에 필요한 물건과 정보는 생각보다 가까이 있습니다. <em>다만 서로 찾기 어려울 뿐입니다.</em> 제이 미디어는 같은 지역의 판매자와 구매자가 직접 보고, 묻고, 확인한 뒤 거래할 수 있는 길을 만듭니다.</p>
+<section class="sec"><div class="in two">
+<div class="head"><p class="eyebrow">거래 전후를 돕는 도구</p><h2>보리장터와 함께<br>운영하는 서비스</h2></div>
+<div class="qlist">${TOOLS.map(([key, name, url, kind, text]) => `<a class="q" href="${url}"><img src="/assets/service/${key}.webp" width="1080" height="640" alt="" loading="lazy" decoding="async"><div><b>${kind}, ${name}</b><span>${text}</span><small>사이트 보러 가기 →</small></div></a>`).join('')}</div>
 </div></section>
-<section class="soft cv"><div class="wrap">
-<p class="eyebrow">보리장터에서는</p>
-<h2>이렇게 거래합니다</h2>
-${STORIES.map(([icon, label, title, text, href, more]) => `<div class="story"><div class="panel">${ICON[icon]}<span class="chip">${label}</span></div><div><h3>${title}</h3><p>${text}</p><a class="more" href="${href}">${more} →</a></div></div>`).join('\n')}
+<section class="sec vision"><div class="in">
+<h2>농촌의 거래를<br>가까이 잇는 일을 해요</h2>
+<div class="pic">${pic('hongro-apple', 1000, '사과 상자와 과수원이 그려진 보리장터 일러스트')}<a class="pill" href="${BORIBAY}">보리장터 둘러보기 →</a></div>
 </div></section>
-<section class="cv"><div class="wrap">
-<p class="eyebrow">숫자로 보는 제이 미디어</p>
-<h2>작게, 꾸준히 넓혀 가고 있습니다</h2>
+<section class="sec"><div class="in two">
+<div class="head"><h2>제이 미디어는<br>조금씩 넓혀 가고 있어요</h2><p class="basis">2026년 10월 기준</p></div>
 <div class="nums">
-<div class="num"><strong>10</strong><span>운영 서비스</span><small>보리장터와 농촌 거래 도구</small></div>
-<div class="num"><strong>2</strong><span>지원 언어</span><small>한국어·몽골어 마켓</small></div>
-<div class="num"><strong>8</strong><span>농촌생활 안내 글</span><small>보리장터 안내 페이지</small></div>
-<div class="num"><strong>9,553</strong><span>공동집하장 주소</span><small>한국환경공단 공개자료 기준</small></div>
+<div class="num"><span>운영 서비스</span><strong>10</strong></div>
+<div class="num"><span>지원 언어</span><strong>2</strong></div>
+<div class="num"><span>농촌생활 안내 글</span><strong>8</strong></div>
+<div class="num"><span>공동집하장 주소</span><strong>9,553</strong></div>
 </div>
-<p class="basis">${BASE_DATE} 기준</p>
 </div></section>
-<section class="soft cv"><div class="wrap">
-<div class="head-row"><h2>제이 미디어 소식</h2><a class="more" href="/news/">소식 더 보기 →</a></div>
-<div class="cards">${NEWS.slice(0, 3).map(newsCard).join('')}</div>
+<section class="sec"><div class="in">
+<h2>제이 미디어가 일하는 방식</h2>
+<div class="cards2">
+<div class="card2"><b>거래는 이용자의 것,<br>정보는 확인한 만큼</b><a class="pill" href="/company/#principles">일하는 방식 보러 가기 →</a><img src="${IMG}/used-machinery-inspection-480.webp" width="480" height="360" alt="" loading="lazy" decoding="async"></div>
+<div class="card2"><b>함께할 파트너를<br>찾고 있어요!</b><a class="pill" href="${KAKAO_JMEDIA}">제휴 문의하기 →</a><img src="${IMG}/produce-direct-sale-480.webp" width="480" height="360" alt="" loading="lazy" decoding="async"></div>
+</div>
 </div></section>
-<section class="cv"><div class="wrap pair">
-<a href="/service/"><b>서비스 전체 보기</b><span>보리장터와 거래 도구 9곳 →</span></a>
-<a href="/company/"><b>회사 정보·문의</b><span>사업자 정보와 연락처 →</span></a>
+<section class="sec"><div class="in">
+<div class="newshead"><h2>제이 미디어의 최근 소식을 확인하세요</h2><a class="pill" href="/news/">소식 보러 가기 →</a></div>
+<div class="ncards">${NEWS.slice(0, 3).map(n => `<a class="ncard" href="/news/${n.slug}/"><img src="${IMG}/${n.img}.webp" width="480" height="300" alt="" loading="lazy" decoding="async"><h3>${n.title}</h3><time datetime="${iso(n.date)}">${n.date}</time></a>`).join('')}</div>
 </div></section>`,
 });
 
-// 서비스
-const SUBS = [
-  ['produce', '농산물', '제철 농산물을 같은 지역에서 바로 사고팝니다.'],
-  ['machinery', '중고 농기계', '방문 일정을 잡아 현장에서 점검한 뒤 거래합니다.'],
-  ['transport', '탁송 업체', '농기계를 옮겨 줄 업체를 지역별로 찾습니다.'],
-  ['community', '커뮤니티', '농사와 거래에 관한 질문을 이웃과 나눕니다.'],
-];
+// 서비스 (당근 서비스 페이지 구성: 제목 → 서비스마다 아이콘·이름↗·설명 + 오른쪽 큰 이미지)
+const SUBS = [['농산물', '제철 농산물을 같은 지역에서 바로 사고팝니다.'], ['중고 농기계', '방문 일정을 잡아 현장에서 점검한 뒤 거래합니다.'], ['탁송 업체', '농기계를 옮겨 줄 업체를 지역별로 찾습니다.'], ['커뮤니티', '농사와 거래에 관한 질문을 이웃과 나눕니다.']];
 const service = page({
   path: '/service/', current: '/service/',
   title: '서비스 | 제이 미디어',
   description: '보리장터와 거래 전후를 돕는 농촌 거래 도구 9곳, 제이 미디어가 운영하는 서비스를 소개합니다.',
-  body: `<section class="hero"><div class="wrap">
-<p class="eyebrow">서비스</p>
-<h1>농촌 거래의<br>처음부터 끝까지</h1>
-<p class="lead">매물을 찾는 일부터 가격을 따지고, 위험을 점검하고, 농기계를 옮기는 일까지. 거래 전후에 필요한 일을 서비스마다 나눠 운영합니다.</p>
+  body: `<section class="svc-h1"><div class="in"><h1>우리 농촌 가까이,<br>농촌 거래의 모든 것</h1></div></section>
+<section><div class="in">
+<div class="svc"><div><div class="ico"><img src="${IMG}/borijangteo-logo-v4-64.png" width="40" height="40" alt=""></div><h2><a href="${BORIBAY}">보리장터 ↗</a></h2><p>지역 농산물과 중고 농기계 매물을 둘러보고, 채팅으로 묻고, 현장에서 확인한 뒤 거래하는 농촌 지역 거래 서비스예요. 웹과 Android 앱에서 쓸 수 있고, 몽골어 마켓도 함께 운영합니다.</p><p><a class="pill" href="${PLAY}" style="margin-top:8px">Google Play에서 앱 받기 →</a></p></div><div class="shot"><img src="/assets/service/boribay.webp" width="1080" height="640" alt="보리장터 웹 첫 화면" fetchpriority="high"></div>
+<div class="subs">${SUBS.map(([n, t]) => `<div><h3>${n}</h3><p>${t}</p></div>`).join('')}</div></div>
+${TOOLS.map(([key, name, url, kind, text]) => `<div class="svc"><div><div class="ico">${name.slice(0, 1)}</div><h2><a href="${url}">${name} ↗</a></h2><p><b>${kind}.</b> ${text}</p></div><a class="shot" href="${url}" tabindex="-1" aria-hidden="true"><img src="/assets/service/${key}.webp" width="1080" height="640" alt="" loading="lazy" decoding="async"></a></div>`).join('\n')}
 </div></section>
-<section class="flag"><div class="wrap">
-<p class="eyebrow">주력 서비스</p>
-<h2><a href="${BORIBAY}">보리장터</a></h2>
-<p class="lead">우리 농촌 가까이. 지역 농산물과 중고 농기계 매물을 둘러보고, 채팅으로 묻고, 현장에서 확인한 뒤 거래합니다. 웹과 Android 앱에서 쓸 수 있고, 몽골어 마켓도 함께 운영합니다.</p>
-<div class="actions"><a class="btn primary" href="${BORIBAY}">보리장터 바로가기</a><a class="btn ghost" href="${PLAY}">Google Play에서 앱 받기</a></div>
-<div class="shot"><img src="/assets/service/boribay.webp" width="1080" height="640" alt="보리장터 웹 첫 화면" fetchpriority="high"></div>
-<div class="subs">${SUBS.map(([icon, name, text]) => `<div>${ICON[icon]}<h3>${name}</h3><p>${text}</p></div>`).join('')}</div>
-</div></section>
-<section class="cv"><div class="wrap">
-<p class="eyebrow">보리장터를 돕는 도구</p>
-<h2>거래 전후에 필요한 정보와 계산</h2>
-<p class="lead">아래 사이트들도 제이 미디어가 직접 만들고 운영합니다. 보리장터와 같은 운영자가 만든 서비스입니다.</p>
-<div style="margin-top:40px">
-${TOOLS.map(([key, name, url, kind, text]) => `<div class="svc"><div class="icon" aria-hidden="true">${name.slice(0, 1)}</div><div><h3><a href="${url}">${name}</a></h3><p class="kind">${kind}</p><p>${text}</p><a class="more" href="${url}">바로가기 →</a></div><a class="shot" href="${url}" tabindex="-1" aria-hidden="true"><img src="/assets/service/${key}.webp" width="1080" height="640" alt="" loading="lazy" decoding="async"></a></div>`).join('\n')}
-</div>
-</div></section>`,
+<div style="height:80px"></div>`,
 });
 
-// 소식 목록
+// 소식 목록 (당근 보도자료 구성: 가운데 제목 → 썸네일·제목·요약·날짜 목록)
 const newsList = page({
   path: '/news/', current: '/news/',
   title: '소식 | 제이 미디어',
   description: '보리장터와 제이 미디어 서비스의 출시, 업데이트, 운영 소식입니다.',
-  body: `<section class="hero"><div class="wrap">
-<p class="eyebrow">소식</p>
-<h1>제이 미디어 소식</h1>
-<p class="lead">보리장터와 제이 미디어 서비스에서 실제로 출시하고 바꾼 것들을 기록합니다.</p>
-<div class="list">${NEWS.map(n => `<a href="/news/${n.slug}/">${thumb(n)}<div><h3>${n.title}</h3><p>${n.summary}</p></div><time datetime="${n.date.replace(/\./g, '-')}">${n.date}</time></a>`).join('')}</div>
-</div></section>`,
+  body: `<section class="list-h"><div class="in"><h1 style="font-size:40px;line-height:56px">제이 미디어 소식</h1></div></section>
+<section><div class="in"><div class="list">${NEWS.map(n => `<a class="row" href="/news/${n.slug}/"><img src="${IMG}/${n.img}.webp" width="480" height="300" alt="" loading="lazy" decoding="async"><div><h2>${n.title}</h2><p>${n.summary}</p><time datetime="${iso(n.date)}">${n.date}</time></div></a>`).join('')}</div></div></section>`,
 });
 
 // 소식 상세
@@ -338,24 +352,23 @@ const newsPages = NEWS.map(n => [`news/${n.slug}/index.html`, page({
   path: `/news/${n.slug}/`, current: '/news/',
   title: `${n.title} | 제이 미디어 소식`,
   description: n.summary,
-  body: `<section class="hero"><div class="wrap"><article class="post">
-<p class="eyebrow">${n.tag}</p>
-<h1 style="font-size:clamp(30px,5vw,46px)">${n.title}</h1>
-<time datetime="${n.date.replace(/\./g, '-')}">${n.date}</time>
+  body: `<div class="in"><article class="post">
+<time datetime="${iso(n.date)}">${n.date}</time>
+<h1>${n.title}</h1>
+<div class="pic"><img src="${IMG}/${n.img}.webp" width="480" height="300" alt=""></div>
 <div class="body">${n.body.map(p => `<p>${p}</p>`).join('')}</div>
-<a class="back" href="/news/">← 소식 목록</a>
-</article></div></section>`,
+<a class="pill back" href="/news/">← 소식 목록</a>
+</article></div>`,
 })]);
 
-// 회사 정보
+// 회사 정보 (당근 IR 자리: 개요 → 일하는 방식 → 연혁 목록 → 문의)
 const company = page({
   path: '/company/', current: '/company/',
   title: '회사 정보 | 제이 미디어',
   description: '제이 미디어의 사업자 정보, 일하는 방식, 연혁과 문의 방법입니다.',
-  body: `<section class="hero"><div class="wrap">
+  body: `<section class="list-h" style="text-align:left"><div class="in">
 <p class="eyebrow">회사 정보</p>
 <h1>제이 미디어</h1>
-<p class="lead">농산물과 중고 농기계 지역 거래 서비스 보리장터를 중심으로, 농촌 거래에 필요한 웹 서비스를 만들고 운영합니다.</p>
 <dl class="info">
 <dt>상호</dt><dd>제이 미디어(Media)</dd>
 <dt>대표</dt><dd>이정우</dd>
@@ -364,9 +377,8 @@ const company = page({
 <dt>고객센터</dt><dd><a href="tel:${PHONE.replace(/-/g, '')}">${PHONE}</a></dd>
 </dl>
 </div></section>
-<section class="soft cv"><div class="wrap">
-<p class="eyebrow">일하는 방식</p>
-<h2>거래는 이용자의 것, 정보는 확인한 만큼</h2>
+<section class="sec" id="principles" style="padding-top:40px"><div class="in">
+<h2>일하는 방식</h2>
 <div class="rules">
 <div><b>거래의 주인은 이용자입니다</b><p>보리장터는 판매자와 구매자를 연결할 뿐 개별 거래의 당사자가 아니며, 결제와 배송을 대신하지 않습니다.</p></div>
 <div><b>물건은 현장에서 확인합니다</b><p>특히 농기계는 판매자와 일정을 잡아 직접 보고 점검한 뒤 거래하도록 안내합니다.</p></div>
@@ -374,17 +386,15 @@ const company = page({
 <div><b>출처와 날짜를 구분합니다</b><p>가격자료와 안내 글은 출처와 확인한 날짜를 나눠 적고, 고친 내용은 수정 이력으로 남깁니다.</p></div>
 </div>
 </div></section>
-<section class="cv"><div class="wrap">
-<p class="eyebrow">연혁</p>
-<h2>걸어온 길</h2>
-<ol class="timeline">
-${[...NEWS].reverse().map(n => `<li><time datetime="${n.date.replace(/\./g, '-')}">${n.date}</time><p>${n.title.replace(/했습니다$/, '')}</p></li>`).join('\n')}
+<section class="sec" style="padding-top:0"><div class="in">
+<h2>연혁</h2>
+<ol class="hist">
+${NEWS.map(n => `<li><time datetime="${iso(n.date)}">${n.date}</time><span>${n.title.replace(/했습니다$/, '')}</span></li>`).join('\n')}
+<li><time datetime="2026-05">2026.05</time><span>제이 미디어 웹사이트(jnewmedia.com) 개설</span></li>
 </ol>
-<p class="basis">2026년 5월 제이 미디어 웹사이트(jnewmedia.com)를 열었습니다.</p>
 </div></section>
-<section class="soft cv" id="contact"><div class="wrap">
-<p class="eyebrow">문의</p>
-<h2>필요한 곳으로 바로 연락하세요</h2>
+<section class="sec" id="contact" style="padding-top:0"><div class="in">
+<h2>문의</h2>
 <div class="contact">
 <a href="tel:${PHONE.replace(/-/g, '')}"><b>고객센터 전화</b><span>${PHONE}</span></a>
 <a href="${KAKAO_BORIBAY}"><b>보리장터 이용 문의</b><span>카카오톡 오픈채팅</span></a>
