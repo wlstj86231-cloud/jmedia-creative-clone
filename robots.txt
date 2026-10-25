@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jnewmedia.com/sitemap.xml
+#DaumWebMasterTool:bb031e949fb652ad23fd66b2b2e1c56557cbbd414a419d5b3932f06ee1bc5313:dSlZXvWuL7UAVoESNn1QCg==
