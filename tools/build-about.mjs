@@ -292,7 +292,7 @@ footer{background:var(--warm);border-top:1px solid var(--line);padding:72px 0 56
 footer .logo{color:var(--ink)}
 .ftop{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
 .ftop .tag{margin-top:14px;line-height:1.7;max-width:280px}
-.ftop h4{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:14px}
+.ftop .fh{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:14px}
 .ftop ul{list-style:none;display:grid;gap:10px}.ftop li a:hover{color:var(--ink);text-decoration:underline}
 .fbot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
 .fbot p{line-height:1.8}.nw{white-space:nowrap}.sns{display:flex;gap:12px}
@@ -455,9 +455,9 @@ ${body}
 <footer><div class="in">
 <div class="ftop">
 <div><a class="logo" href="/">${MARK}J MEDIA</a><p class="tag">농산물과 중고 농기계 지역 거래 서비스, 보리장터를 만드는 제이 미디어입니다.</p></div>
-<div><h4>서비스</h4><ul><li><a href="${BORIBAY}">보리장터</a></li><li><a href="${PLAY}">보리장터 앱</a></li><li><a href="/service/">거래 도구 9곳</a></li></ul></div>
-<div><h4>회사</h4><ul><li><a href="/company/">회사 정보</a></li><li><a href="/news/">소식</a></li><li><a href="/company/#contact">문의</a></li></ul></div>
-<div><h4>안내</h4><ul><li><a href="/privacy.html">개인정보처리방침</a></li><li><a href="/terms.html">이용약관</a></li><li><a href="/services.html">웹 제작 의뢰</a></li></ul></div>
+<div><p class="fh">서비스</p><ul><li><a href="${BORIBAY}">보리장터</a></li><li><a href="${PLAY}">보리장터 앱</a></li><li><a href="/service/">거래 도구 9곳</a></li></ul></div>
+<div><p class="fh">회사</p><ul><li><a href="/company/">회사 정보</a></li><li><a href="/news/">소식</a></li><li><a href="/company/#contact">문의</a></li></ul></div>
+<div><p class="fh">안내</p><ul><li><a href="/privacy.html">개인정보처리방침</a></li><li><a href="/terms.html">이용약관</a></li><li><a href="/services.html">웹 제작 의뢰</a></li></ul></div>
 </div>
 <div class="fbot"><div><p>제이 미디어(Media) · 대표 이정우 · <span class="nw">사업자등록번호 456-33-01705</span> · <span class="nw">고객센터 <a href="tel:${PHONE.replace(/-/g, '')}">${PHONE}</a></span></p><p>© 제이 미디어. 보리장터는 거래를 연결하며 개별 거래의 당사자가 아닙니다.</p></div>
 <div class="sns"><a href="https://www.instagram.com/boribaydotcom/" aria-label="보리장터 인스타그램">${INSTAGRAM}</a></div></div>
