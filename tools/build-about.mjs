@@ -499,7 +499,7 @@ function page({ path, title, description, body, current, jsonld, preload = '' })
 <meta property="og:image" content="${SITE}/assets/og-jmedia-about.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-boribay-32.png" sizes="32x32" type="image/png"><link rel="icon" href="/assets/favicon-boribay-96.png" sizes="96x96" type="image/png"><link rel="apple-touch-icon" href="/assets/favicon-boribay-192.png">
 <script>document.documentElement.className='js'</script>
 <style>${FONT_CSS}${CSS}</style>${preload}
 <script src="/assets/site.js?v=${JS_V}" defer></script>${jsonld ? `\n<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}

@@ -7,9 +7,9 @@
   "theme_color": "#dfff18",
   "icons": [
     {
-      "src": "assets/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/assets/favicon-boribay-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ]
 }
