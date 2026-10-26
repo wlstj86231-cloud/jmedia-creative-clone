@@ -251,7 +251,7 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .vision .frame img{width:100%;aspect-ratio:16/8;object-fit:cover}
 .vision .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(16,24,18,.6))}
 .vision .cap{position:absolute;left:48px;right:48px;bottom:44px;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;color:#fff}
-.vision .cap strong{font-size:30px;line-height:1.4;letter-spacing:-.025em}
+.vision .cap strong{font-size:30px;line-height:1.4;letter-spacing:-.025em;text-shadow:0 1px 14px rgba(0,0,0,.3)}
 
 /* 숫자 */
 .nums{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:-24px;padding-right:24px;-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
@@ -367,7 +367,7 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
  @keyframes open{from{clip-path:inset(0 max(24px,calc((100% - 1032px)/2)) round 32px)}to{clip-path:inset(0 0 round 0)}}
  .stage-copy,.float.f1,.float.f2{margin-left:max(0px,calc((100vw - 1032px)/2))}
  .stage .phone,.float.f3{margin-right:max(0px,calc((100vw - 1032px)/2))}
- .intro p span{color:#a2a9b3;animation:ink linear both;animation-timeline:view();animation-range:cover 30% cover 48%}
+ .intro p span{color:#7f8894;animation:ink linear both;animation-timeline:view();animation-range:cover 30% cover 48%}
  @keyframes ink{to{color:var(--ink)}}
 }
 @media (prefers-reduced-motion:reduce){.track,.tabs.run [role=tab][aria-selected=true]::after{animation:none}.js [data-r]{transform:none}}
@@ -391,7 +391,7 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
  .visual .phone{width:170px;right:20px;bottom:-110px}
  .two{grid-template-columns:1fr;gap:40px}.two .head{position:static}
  .q{grid-template-columns:52px 1fr;gap:16px;padding:20px}.q>.ic{display:none}.tile{width:52px;height:52px;border-radius:15px}.q b{font-size:17px;flex-wrap:wrap;gap:6px}
- .vision .frame img{aspect-ratio:4/3}.vision .frame::after{background:linear-gradient(180deg,rgba(0,0,0,0) 18%,rgba(16,24,18,.78))}.vision .cap{left:24px;right:24px;bottom:24px;flex-direction:column;align-items:flex-start}.vision .cap strong{font-size:21px}
+ .vision .frame img{aspect-ratio:4/5}.vision .frame::after{background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(16,24,18,.8))}.vision .cap{left:24px;right:24px;bottom:24px;flex-direction:column;align-items:flex-start}.vision .cap strong{font-size:21px}
  .ncard{flex-basis:220px;height:280px}.ncard strong{font-size:48px}
  .cards2,.grid3,.overview,.rules,.contact,.feature,.svc{grid-template-columns:1fr}
  .card2{padding:32px;min-height:260px}.card2 b{font-size:22px}.card2 img{width:140px;height:140px}
@@ -409,7 +409,11 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
 
 const hash = s => createHash('sha1').update(s).digest('hex').slice(0, 8);
 const JS = readFileSync(join(ROOT, 'assets/site.js'), 'utf8');
-const CSS_V = hash(CSS), JS_V = hash(JS);
+const JS_V = hash(JS);
+// 글꼴 선언과 사이트 CSS는 페이지에 바로 넣어 첫 화면을 막는 요청을 없앤다
+const FONT_CSS = '/* Pretendard: SIL OFL 1.1, /assets/fonts/OFL.txt */' + readFileSync(join(ROOT, 'assets/fonts/pretendardvariable-dynamic-subset.css'), 'utf8')
+  .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{};,])\s*/g, '$1').replace(/:\s+/g, ':')
+  .replaceAll('url(./woff2-dynamic-subset/', 'url(/assets/fonts/woff2-dynamic-subset/');
 
 // ── 공통 틀 ────────────────────────────────────────────────
 const NAV = [['/service/', '서비스'], ['/news/', '소식'], ['/company/', '회사 정보']];
@@ -436,8 +440,7 @@ function page({ path, title, description, body, current, jsonld, preload = '' })
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
 <script>document.documentElement.className='js'</script>
-<link rel="stylesheet" href="/assets/fonts/pretendardvariable-dynamic-subset.css">
-<link rel="stylesheet" href="/assets/site.css?v=${CSS_V}">${preload}
+<style>${FONT_CSS}${CSS}</style>${preload}
 <script src="/assets/site.js?v=${JS_V}" defer></script>${jsonld ? `\n<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
 <body>
@@ -465,7 +468,7 @@ ${body}
 
 const lazy = 'loading="lazy" decoding="async"';
 const art = (name, alt = '') => `<img src="${IMG}/${name}-960.webp" srcset="${IMG}/${name}-480.webp 480w, ${IMG}/${name}-960.webp 960w" sizes="(max-width:960px) 100vw, 560px" width="960" height="720" alt="${alt}" ${lazy}>`;
-const phone = (name, eager = false) => `<div class="phone" aria-hidden="true"><div class="scr"><img src="${IMG}/${name}.webp" width="520" height="1126" alt="" ${eager ? 'decoding="async"' : lazy}></div></div>`;
+const phone = (name, eager = false) => `<div class="phone" aria-hidden="true"><div class="scr"><img src="${IMG}/${name}.webp" srcset="${IMG}/${name}-360.webp 360w, ${IMG}/${name}.webp 520w" sizes="(max-width:960px) 200px, 250px" width="520" height="1126" alt="" ${eager ? 'decoding="async"' : lazy}></div></div>`;
 const newsCard = n => `<a class="ncard2" href="/news/${n.slug}/"><div class="thumb"><img src="${IMG}/${n.img}.webp" width="480" height="300" alt="" ${lazy}><span class="chip ${n.tag === '출시' ? '' : n.tag === '업데이트' ? 'gold' : 'gray'}">${n.tag}</span></div><h3>${n.title}</h3><time datetime="${iso(n.date)}">${n.date}</time></a>`;
 
 // ── 홈 ────────────────────────────────────────────────────
@@ -615,7 +618,6 @@ ${NEWS.map(n => `<li data-r><time datetime="${iso(n.date)}">${n.date}</time><spa
 
 // ── 쓰기 ──────────────────────────────────────────────────
 const files = [['index.html', home], ['service/index.html', service], ['news/index.html', newsList], ['company/index.html', company], ...newsPages,
-  ['assets/site.css', CSS],
   ['assets/mark.svg', MARK.replace('<svg class="mark" ', '<svg xmlns="http://www.w3.org/2000/svg" ')]];
 for (const [rel, text] of files) {
   const out = join(ROOT, rel);

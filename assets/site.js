@@ -1,18 +1,15 @@
 // 제이 미디어 사이트 상호작용: 헤더 그림자, 모바일 메뉴, 등장 효과, 이야기 탭, 숫자 카운트, 소식 넘기기
-// 움직임은 transform·opacity만 쓰고, 스크롤 처리는 requestAnimationFrame으로 묶어 저사양 폰에서도 가볍게 돈다.
+// 움직임은 transform·opacity만 쓰고, 스크롤 이벤트 대신 IntersectionObserver를 써서 저사양 폰에서도 가볍게 돈다.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 헤더: 조금이라도 내려가면 아래 경계선 표시
+  // 헤더: 맨 위 표시점이 화면에서 벗어나면 아래 경계선 표시 (스크롤 이벤트 없이)
   const header = document.querySelector('.gnb');
-  let ticking = false;
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { header.classList.toggle('scrolled', scrollY > 4); ticking = false; });
-  };
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  const top = document.createElement('div');
+  top.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:5px';
+  top.setAttribute('aria-hidden', 'true');
+  document.body.prepend(top);
+  new IntersectionObserver(([e]) => header.classList.toggle('scrolled', !e.isIntersecting)).observe(top);
 
   // 모바일 메뉴
   const toggle = document.querySelector('.menu-btn');
