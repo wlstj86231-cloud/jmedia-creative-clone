@@ -1,8 +1,6 @@
-// 제이 미디어 사이트 상호작용: 헤더 그림자, 모바일 메뉴, 등장 효과, 이야기 탭, 숫자 카운트, 소식 넘기기
+// 제이 미디어 사이트 상호작용: 헤더 그림자, 모바일 메뉴, 등장 효과, 사진 릴, 이야기 전환, 숫자 카운트, 소식 넘기기
 // 움직임은 transform·opacity만 쓰고, 스크롤 이벤트 대신 IntersectionObserver를 써서 저사양 폰에서도 가볍게 돈다.
 (() => {
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   // 헤더: 맨 위 표시점이 화면에서 벗어나면 아래 경계선 표시 (스크롤 이벤트 없이)
   const header = document.querySelector('.gnb');
   const top = document.createElement('div');
@@ -30,7 +28,6 @@
       if (!e.isIntersecting) continue;
       counter.unobserve(e.target);
       const el = e.target, end = Number(el.dataset.count);
-      if (reduce) { el.textContent = end.toLocaleString('ko-KR'); continue; }
       const t0 = performance.now();
       const tick = t => {
         const p = Math.min(1, (t - t0) / 1200), v = Math.round(end * (1 - Math.pow(1 - p, 3)));
@@ -42,28 +39,25 @@
   }, { threshold: 0.6 });
   document.querySelectorAll('[data-count]').forEach(el => counter.observe(el));
 
-  // 이야기 탭: 누르면 바뀌고, 보이는 동안 7초마다 다음 탭으로
-  const tabs = document.querySelector('.tabs');
-  if (tabs) {
-    const btns = [...tabs.querySelectorAll('[role=tab]')];
-    const panels = btns.map(b => document.getElementById(b.getAttribute('aria-controls')));
-    let cur = 0, timer = 0, visible = false;
-    const show = i => {
-      cur = (i + btns.length) % btns.length;
-      btns.forEach((b, k) => { b.setAttribute('aria-selected', String(k === cur)); b.tabIndex = k === cur ? 0 : -1; });
-      panels.forEach((p, k) => p.classList.toggle('active', k === cur));
-      restart();
-    };
-    const restart = () => {
-      clearTimeout(timer);
-      tabs.classList.remove('run'); void tabs.offsetWidth; tabs.classList.add('run');
-      if (visible && !reduce) timer = setTimeout(() => show(cur + 1), 7000);
-    };
-    btns.forEach((b, i) => {
-      b.addEventListener('click', () => show(i));
-      b.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { show(cur + 1); btns[cur].focus(); } if (e.key === 'ArrowLeft') { show(cur - 1); btns[cur].focus(); } });
-    });
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting; restart(); }, { threshold: 0.4 }).observe(tabs.closest('section'));
+  // 첫 화면 사진 릴: 화면 밖으로 나가면 넘김을 멈춘다
+  const reel = document.querySelector('.reel');
+  if (reel) new IntersectionObserver(([e]) => reel.classList.toggle('off', !e.isIntersecting)).observe(reel);
+
+  // 보리장터 이야기: 화면 가운데를 지나는 단계에 맞춰 사진과 글을 바꾼다 (큰 화면에서만 겹쳐 보임)
+  const stories = document.querySelector('[data-stories]');
+  if (stories) {
+    const items = [...stories.querySelectorAll('.story')];
+    const bars = [...stories.querySelectorAll('.st-bar i')];
+    const steps = [...stories.querySelectorAll('.st-steps i')];
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const k = steps.indexOf(e.target);
+        items.forEach((it, j) => it.classList.toggle('on', j === k));
+        bars.forEach((b, j) => b.classList.toggle('on', j === k));
+      }
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    steps.forEach(s => io.observe(s));
   }
 
   // 소식 카드 넘기기

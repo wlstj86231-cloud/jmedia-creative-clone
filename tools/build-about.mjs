@@ -85,13 +85,21 @@ const NEWS = [
 ];
 
 const STORIES = [
-  { tab: '농산물', icon: 'leaf', title: '제철 농산물을\n가까운 곳에서', text: '같은 지역에서 키운 농산물을 매물로 올리고, 필요한 사람은 동네 단위로 찾아봅니다. 궁금한 점은 채팅으로 판매자에게 바로 묻고, 직접 만나 거래합니다.', img: 'produce-direct-sale', phone: 'm-home', href: `https://boribay.com/?category=PRODUCE&${UTM}`, more: '농산물 매물 보기' },
-  { tab: '중고 농기계', icon: 'tractor', title: '직접 보고 점검한 뒤\n거래해요', text: '트랙터와 관리기 같은 중고 농기계는 판매자와 방문 일정을 정해 현장에서 상태를 확인하고 거래합니다. 명판·사용시간·누유를 확인하는 순서도 안내 글로 정리해 두었어요.', img: 'used-machinery-inspection', phone: 'm-tractor', href: `https://boribay.com/?category=MACHINERY&${UTM}`, more: '농기계 매물 보기' },
-  { tab: '탁송 업체', icon: 'truck', title: '산 농기계를\n옮기는 일까지', text: '농기계를 옮겨야 할 때는 지역의 탁송 업체를 찾아 연락합니다. 작업기 크기와 상차 조건, 대기료까지 같은 기준으로 견적을 비교하는 방법도 함께 볼 수 있어요.', img: 'machinery-transport', phone: 'm-transport', href: `https://boribay.com/?category=TRANSPORT&${UTM}`, more: '탁송 업체 보기' },
-  { tab: '농촌생활 안내', icon: 'book', title: '농사 뒤처리까지\n함께 챙겨요', text: '영농폐기물 처리, 위탁판매, 제철 과일 고르는 법처럼 농촌 생활에 필요한 안내 글을 공식 자료를 확인해 만들고, 커뮤니티에서 이웃과 질문을 나눕니다.', img: 'farm-supplies-disposal', phone: 'm-guides', href: `https://boribay.com/guides?${UTM}`, more: '안내 글 보기' },
+  { tab: '농산물', title: '제철 농산물을\n가까운 곳에서', text: '같은 지역에서 키운 농산물을 매물로 올리고, 필요한 사람은 동네 단위로 찾아봅니다. 궁금한 점은 채팅으로 판매자에게 바로 묻고, 직접 만나 거래합니다.', img: 'peach-box', href: `https://boribay.com/?category=PRODUCE&${UTM}`, more: '농산물 매물 보기' },
+  { tab: '중고 농기계', title: '직접 보고 점검한 뒤\n거래해요', text: '트랙터와 관리기 같은 중고 농기계는 판매자와 방문 일정을 정해 현장에서 상태를 확인하고 거래합니다. 명판·사용시간·누유를 확인하는 순서도 안내 글로 정리해 두었어요.', img: 'used-machinery-inspection', href: `https://boribay.com/?category=MACHINERY&${UTM}`, more: '농기계 매물 보기' },
+  { tab: '탁송 업체', title: '산 농기계를\n옮기는 일까지', text: '농기계를 옮겨야 할 때는 지역의 탁송 업체를 찾아 연락합니다. 작업기 크기와 상차 조건, 대기료까지 같은 기준으로 견적을 비교하는 방법도 함께 볼 수 있어요.', img: 'machinery-transport', href: `https://boribay.com/?category=TRANSPORT&${UTM}`, more: '탁송 업체 보기' },
+  { tab: '농촌생활 안내', title: '농사 뒤처리까지\n함께 챙겨요', text: '영농폐기물 처리, 위탁판매, 제철 과일 고르는 법처럼 농촌 생활에 필요한 안내 글을 공식 자료를 확인해 만들고, 커뮤니티에서 이웃과 질문을 나눕니다.', img: 'farm-supplies-disposal', href: `https://boribay.com/guides?${UTM}`, more: '안내 글 보기' },
 ];
 
-const STRIP = ['produce-direct-sale', 'used-machinery-inspection', 'hongro-apple', 'machinery-transport', 'humusa-plum', 'used-cultivator-inspection', 'farm-supplies-disposal'];
+// 첫 화면 릴(영상처럼 넘어가는 사진)과 이미지 띠
+const REEL = ['plum-orchard', 'radish-sowing', 'sesame-harvest'];
+// 세로 화면에서는 가로 사진을 높이에 맞춰 채우므로 화면 높이 기준으로 고른다
+const REEL_SIZES = '(max-aspect-ratio: 3/2) 150vh, 100vw';
+// 폰처럼 세로로 긴 화면에는 원본 높이 그대로 세로로 잘라 둔 사진(-tall)을 쓴다
+const TALL = '(max-aspect-ratio: 4/5)';
+const STRIP = ['peach-box', 'used-machinery-inspection', 'plum-orchard', 'produce-direct-sale', 'radish-sowing', 'machinery-transport', 'sesame-harvest', 'hongro-apple'];
+// 사진별로 만들어 둔 폭과 원본 비율 (없으면 480·960, 4:3)
+const SIZES = { 'plum-orchard': [[480, 768, 1536], 2 / 3], 'peach-box': [[480, 768, 1200], 2 / 3], 'radish-sowing': [[480, 768, 1200], 3 / 4], 'sesame-harvest': [[480, 768, 1200], 3 / 4], hero: [[768, 1536], 2 / 3] };
 
 const NUMS = [
   ['운영 서비스', '보리장터와 농촌 거래 도구', 10, '개'],
@@ -143,7 +151,7 @@ html{-webkit-text-size-adjust:100%;scroll-padding-top:88px}
 body{font-family:"Pretendard JM","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.65;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 img{display:block;max-width:100%;height:auto}
-.in{max-width:1080px;margin:0 auto;padding:0 24px}
+.in{max-width:1200px;margin:0 auto;padding:0 24px}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:20;border-radius:8px}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:10px}
 .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
@@ -186,54 +194,88 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .js [data-r="2"]{transition-delay:.12s}.js [data-r="3"]{transition-delay:.24s}
 
 /* 히어로 */
-.hero{padding:96px 0 0}
+.hero{padding:104px 0 0}
+.hero h1{font-size:72px;line-height:1.24;letter-spacing:-.04em}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
-.stage{position:relative;margin:72px auto 0;max-width:1032px;height:620px;border-radius:32px;overflow:hidden;background:var(--gold)}
-.stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 60%}
-.stage-copy{position:absolute;left:clamp(32px,6vw,72px);top:72px;font-size:40px;line-height:1.35;font-weight:800;letter-spacing:-.03em;color:var(--green-d)}
-.stage-copy small{display:block;margin-top:14px;font-size:18px;font-weight:600;line-height:1.6;color:#4a4a1e;letter-spacing:-.01em}
+.hero .in>*,.page-h .in>*{animation:rise .9s var(--ease) both}.hero h1,.page-h h1{animation-delay:.06s}.hero .lead,.page-h .lead{animation-delay:.14s}.hero .cta{animation-delay:.22s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}}
+
+/* 첫 화면 사진 릴: 스크롤하면 화면 가득 커지고, 사진 세 장이 영상처럼 천천히 넘어간다 */
+.reel{position:relative;margin-top:72px}
+.reel-pin{position:relative;height:min(86vh,820px);overflow:hidden}
+.reel-media{position:absolute;inset:0;background:#26331f;overflow:hidden}
+.reel-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;will-change:opacity,transform;animation:reel 21s linear infinite}
+.reel-media .r1{animation-delay:-1.26s}.reel-media .r2{animation-delay:5.74s}.reel-media .r3{animation-delay:12.74s}
+@keyframes reel{0%{opacity:0;transform:scale(1.12)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.02)}100%{opacity:0;transform:scale(1.02)}}
+.reel.off .reel-media img{animation-play-state:paused}
+.reel-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,14,.5),rgba(14,22,14,.12) 55%,rgba(14,22,14,.45))}
+.reel-copy{position:absolute;left:0;right:0;top:22%;color:#fff}
+.reel-copy p{font-size:56px;line-height:1.3;font-weight:700;letter-spacing:-.035em;text-shadow:0 2px 24px rgba(0,0,0,.25)}
+.reel-copy .mb{display:none}
+.reel-copy small{display:block;margin-top:20px;font-size:20px;font-weight:600;letter-spacing:-.01em;opacity:.92}
 .phone{position:relative;width:268px;aspect-ratio:9/19;border-radius:44px;background:#111;padding:9px;box-shadow:0 40px 80px -30px rgba(31,66,40,.55),0 0 0 1px rgba(0,0,0,.06)}
 .phone::before{content:"";position:absolute;top:18px;left:50%;width:84px;height:24px;margin-left:-42px;border-radius:20px;background:#111;z-index:2}
 .phone .scr{height:100%;border-radius:36px;overflow:hidden;background:#fff;padding-top:34px}
 .phone img{width:100%;height:100%;object-fit:cover;object-position:top}
-.stage .phone{position:absolute;right:clamp(32px,7vw,96px);top:56px}
-.float{position:absolute;display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:18px;background:rgba(255,255,255,.94);box-shadow:0 16px 40px -18px rgba(25,31,40,.35);font-size:15px;font-weight:700;white-space:nowrap}
-.float .ic{width:22px;height:22px;color:var(--green)}
-.float.f1{left:clamp(32px,6vw,72px);bottom:150px}.float.f2{left:clamp(140px,18vw,240px);bottom:72px}.float.f3{right:clamp(250px,30vw,370px);top:300px}
 
 /* 소개 문단·이미지 띠 */
-.intro{padding:160px 0 120px}
-.intro p{font-size:32px;line-height:1.6;font-weight:700;letter-spacing:-.025em;max-width:980px}
-.strip{overflow:hidden;padding-bottom:160px}
-.track{display:flex;align-items:center;gap:20px;width:max-content;animation:flow 70s linear infinite}
+.intro{padding:180px 0 140px}
+.intro p{font-size:36px;line-height:1.62;font-weight:700;letter-spacing:-.03em;max-width:1000px}
+.strip{overflow:hidden;padding-bottom:180px}
+.track{display:flex;align-items:center;gap:24px;width:max-content;animation:flow 80s linear infinite}
 .strip:hover .track{animation-play-state:paused}
-.track img{flex:none;border-radius:20px;object-fit:cover;width:300px;height:300px}
-.track img:nth-child(3n+1){width:260px;height:340px}.track img:nth-child(3n+2){width:380px;height:250px}
+.track img{flex:none;border-radius:24px;object-fit:cover;width:320px;height:320px}
+.track img:nth-child(odd){width:280px;height:400px}
 @keyframes flow{to{transform:translateX(-50%)}}
 
-/* 이야기(탭) */
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:48px}
-.tabs [role=tab]{position:relative;overflow:hidden;height:48px;padding:0 20px;border-radius:999px;background:var(--line2);font-size:16px;font-weight:700;color:var(--sub);transition:background .25s,color .25s}
-.tabs [role=tab][aria-selected=true]{background:var(--ink);color:#fff}
-.tabs [role=tab]::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left}
-.tabs.run [role=tab][aria-selected=true]::after{animation:prog 7s linear forwards}
-@keyframes prog{to{transform:scaleX(1)}}
-.panels{display:grid;margin-top:56px}
-.panel{grid-area:1/1;display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s}
-.panel.active{opacity:1;visibility:visible;transform:none}
-.panel .num{font-size:15px;font-weight:800;color:#8a6400;letter-spacing:.06em}
-.panel h3{margin-top:12px;font-size:36px;line-height:1.38;white-space:pre-line}
-.panel p{margin-top:20px;font-size:18px;line-height:1.75;color:var(--sub)}
-.panel .btn{margin-top:32px}
-.visual{position:relative;border-radius:32px;overflow:hidden;aspect-ratio:1/1;background:var(--sand)}
-.visual>img{width:100%;height:100%;object-fit:cover}
-.visual .phone{position:absolute;right:28px;bottom:-120px;width:220px;border-radius:36px;padding:8px}
-.visual .phone .scr{border-radius:29px;padding-top:28px}.visual .phone::before{top:15px;width:66px;height:20px;margin-left:-33px}
-.visual .tagchip{position:absolute;left:24px;top:24px;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:rgba(255,255,255,.95);font-size:15px;font-weight:700}
-.visual .tagchip .ic{width:18px;height:18px;color:var(--green)}
+/* 보리장터 이야기: 큰 화면에서는 제목을 고정하고 스크롤에 따라 사진과 글이 바뀐다 */
+.stories{position:relative;padding:40px 0 140px}
+.story{margin-top:72px}
+.st-fig{position:relative;border-radius:32px;overflow:hidden;aspect-ratio:4/3;background:var(--sand)}
+.st-fig img{width:100%;height:100%;object-fit:cover}
+.st-fig figcaption{position:absolute;left:24px;right:24px;bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.st-chip,.st-more{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 20px;border-radius:999px;background:rgba(25,31,40,.62);color:#fff;font-size:15px;font-weight:700}
+.st-more .ic{width:18px;height:18px}.st-more:hover{background:rgba(25,31,40,.82)}
+.st-no{font-size:15px;font-weight:800;color:#8a6400;letter-spacing:.06em}.st-no i{font-style:normal;color:var(--mute);font-weight:700}
+.st-text h3{margin-top:12px;font-size:34px;line-height:1.38;white-space:pre-line}
+.st-text p{margin-top:18px;font-size:18px;line-height:1.75;color:var(--sub);max-width:460px}
+.st-text .btn{margin-top:28px}
+.st-steps,.st-bar{display:none}
+@media (min-width:961px){
+ .js .stories{height:calc(var(--n) * 100vh + 40px);padding:0}
+ .js .st-pin{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding-top:72px}
+ .js .st-grid{display:grid;grid-template-columns:1fr 1.12fr;grid-template-rows:auto 1fr;column-gap:88px;width:100%;height:min(700px,calc(100vh - 140px))}
+ .js .st-head{grid-column:1;grid-row:1}
+ .js .st-items,.js .story{display:contents}
+ .js .st-fig{grid-column:2;grid-row:1/3;aspect-ratio:auto;opacity:0;transform:scale(1.05);transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+ .js .st-text{grid-column:1;grid-row:2;align-self:center;opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .8s var(--ease);pointer-events:none}
+ .js .story.on .st-fig{opacity:1;transform:none}
+ .js .story.on .st-text{opacity:1;transform:none;transition-delay:.12s;pointer-events:auto}
+ .js .st-text .btn{display:none}
+ .js .st-steps{display:grid;position:absolute;inset:0;grid-template-rows:repeat(var(--n),1fr);pointer-events:none}
+ .js .st-bar{grid-column:1;grid-row:2;align-self:end;display:flex;gap:6px}
+ .st-bar i{width:28px;height:4px;border-radius:2px;background:var(--line);transition:background .3s,width .3s}
+ .st-bar i.on{width:48px;background:var(--green)}
+}
+
+/* 앱 */
+.app{position:relative;overflow:clip;background:var(--green-d);color:#fff;padding:150px 0 0}
+.app::before{content:"";position:absolute;right:-10%;top:-30%;width:70%;height:120%;background:radial-gradient(closest-side,rgba(242,183,5,.22),transparent);pointer-events:none}
+.app .in{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:end}
+.app .eyebrow{color:var(--gold)}
+.app h2{font-size:52px}
+.app .lead{color:rgba(255,255,255,.78)}
+.app .cta{display:flex;flex-wrap:wrap;gap:12px;margin:40px 0 150px}
+.btn.gold{background:var(--gold);color:var(--ink)}.btn.gold:hover{background:#ffc928}
+.btn.ghost{color:#fff;border:1px solid rgba(255,255,255,.35)}.btn.ghost:hover{border-color:#fff}
+.phones{position:relative;height:600px}
+.phones .phone{position:absolute;bottom:-80px;left:50%;width:270px;margin-left:-135px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6)}
+.phones .p1{transform:translateX(-62%) rotate(-9deg) scale(.86);transform-origin:bottom center}
+.phones .p3{transform:translateX(62%) rotate(9deg) scale(.86);transform-origin:bottom center}
+.phones .p2{z-index:1}
 
 /* 도구 목록 (인터뷰형) */
-.two{display:grid;grid-template-columns:360px 1fr;gap:72px;align-items:start}
+.two{display:grid;grid-template-columns:440px 1fr;gap:72px;align-items:start}
 .two .head{position:sticky;top:120px}
 .two .head p{margin-top:20px;color:var(--sub)}
 .qlist{display:flex;flex-direction:column;gap:14px}
@@ -247,20 +289,19 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .q p{margin-top:6px;font-size:15px;line-height:1.65;color:var(--sub)}
 .q>.ic{color:var(--mute);transition:transform .25s var(--ease),color .25s}.q:hover>.ic{transform:translateX(3px);color:var(--ink)}
 
-/* 비전 */
-.vision .frame{position:relative;margin-top:56px;border-radius:32px;overflow:hidden}
-.vision .frame img{width:100%;aspect-ratio:16/8;object-fit:cover}
-.vision .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(16,24,18,.6))}
-.vision .cap{position:absolute;left:48px;right:48px;bottom:44px;z-index:1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;color:#fff}
-.vision .cap strong{font-size:30px;line-height:1.4;letter-spacing:-.025em;text-shadow:0 1px 14px rgba(0,0,0,.3)}
+/* 비전: 넓은 그림 한 장과 가운데 버튼 */
+.wide{position:relative;max-width:1280px;margin:64px auto 0;padding:0 24px}
+.wide img{width:100%;aspect-ratio:16/8.4;object-fit:cover;border-radius:32px}
+.wide .btn{position:absolute;left:50%;bottom:48px;transform:translateX(-50%);box-shadow:0 18px 40px -16px rgba(0,0,0,.5)}
+.wide .btn:hover{transform:translateX(-50%) translateY(-1px)}
 
 /* 숫자 */
 .nums{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-right:-24px;padding-right:24px;-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
 .nums::-webkit-scrollbar{display:none}
-.ncard{flex:0 0 260px;height:340px;scroll-snap-align:start;border-radius:28px;padding:30px;display:flex;flex-direction:column}
+.ncard{flex:0 0 270px;height:360px;scroll-snap-align:start;border-radius:28px;padding:30px;display:flex;flex-direction:column}
 .ncard:nth-child(1){background:var(--green);color:#fff}.ncard:nth-child(2){background:var(--gold-t)}.ncard:nth-child(3){background:var(--green-t)}.ncard:nth-child(4){background:var(--sand)}
 .ncard span{font-size:17px;font-weight:700}.ncard small{display:block;margin-top:6px;font-size:14px;line-height:1.5;opacity:.75}
-.ncard strong{margin-top:auto;font-size:60px;line-height:1;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.ncard strong{margin-top:auto;font-size:68px;line-height:1;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .ncard strong em{font-style:normal;font-size:24px;margin-left:4px;letter-spacing:-.02em}
 .basis{margin-top:16px;font-size:14px;color:var(--mute)}
 
@@ -363,15 +404,6 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
 .contact a:hover{transform:translateY(-2px);box-shadow:0 18px 40px -22px rgba(25,31,40,.35)}
 .contact b{font-size:19px}.contact span{color:var(--sub);font-size:15px;margin-top:-10px}
 
-@supports (animation-timeline:view()){
- .stage{max-width:none;margin-left:0;margin-right:0;border-radius:0;animation:open linear both;animation-timeline:view();animation-range:cover 8% cover 42%}
- @keyframes open{from{clip-path:inset(0 max(24px,calc((100% - 1032px)/2)) round 32px)}to{clip-path:inset(0 0 round 0)}}
- .stage-copy,.float.f1,.float.f2{margin-left:max(0px,calc((100vw - 1032px)/2))}
- .stage .phone,.float.f3{margin-right:max(0px,calc((100vw - 1032px)/2))}
- .intro p span{color:#7f8894;animation:ink linear both;animation-timeline:view();animation-range:cover 30% cover 48%}
- @keyframes ink{to{color:var(--ink)}}
-}
-@media (prefers-reduced-motion:reduce){.track,.tabs.run [role=tab][aria-selected=true]::after{animation:none}.js [data-r]{transform:none}}
 @media (max-width:960px){
  body{font-size:16px}
  h1{font-size:40px}h2{font-size:30px}h3{font-size:22px}.lead{font-size:17px}
@@ -380,19 +412,19 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
  .nav{position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;background:#fff;border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
  .gnb.open .nav{opacity:1;visibility:visible;transform:none}
  .nav a{padding:14px 4px;font-size:17px}.nav a::after{display:none}.nav .out{margin-top:10px;justify-content:center;padding:12px}
- .hero{padding:56px 0 0}.btn{height:50px}
- .stage{height:560px;margin-top:48px;border-radius:24px}
- .stage>img{object-position:72% 50%}
- .stage-copy{left:24px;top:36px;font-size:26px}.stage-copy small{font-size:15px;margin-top:8px}
- .stage .phone{right:50%;margin-right:-110px!important;top:auto;bottom:-150px;width:220px}
- .float{font-size:13px;padding:10px 14px}.float .ic{width:18px;height:18px}.float.f1{left:20px;bottom:auto;top:190px}.float.f2,.float.f3{display:none}
- .intro{padding:96px 0 72px}.intro p{font-size:23px}
- .strip{padding-bottom:96px}.track img,.track img:nth-child(3n+1),.track img:nth-child(3n+2){width:200px;height:220px}
- .panel{grid-template-columns:1fr;gap:36px}.panel h3{font-size:26px}.panel p{font-size:16px}
- .visual .phone{width:170px;right:20px;bottom:-110px}
+ .hero{padding:56px 0 0}.hero h1{font-size:42px}.btn{height:50px}
+ .reel{margin-top:48px}.reel-pin{height:78vh}
+ .reel-copy{top:16%}.reel-copy .mb{display:inline}.reel-copy p{font-size:31px;line-height:1.36}.reel-copy small{font-size:16px;margin-top:14px}
+ .intro{padding:110px 0 90px}.intro p{font-size:25px;line-height:1.6}
+ .strip{padding-bottom:110px}.track{gap:14px}.track img{width:210px;height:210px;border-radius:20px}.track img:nth-child(odd){width:180px;height:260px}
+ .stories{padding:0 0 96px}.story{margin-top:56px}
+ .st-fig{margin:0 -20px;border-radius:0;aspect-ratio:4/5}.st-more{display:none}.st-chip{height:38px;padding:0 16px;font-size:14px}
+ .st-text{margin-top:28px}.st-text h3{font-size:26px}.st-text p{font-size:16px}
+ .app{padding-top:96px}.app .in{grid-template-columns:1fr;gap:0}.app h2{font-size:34px}.app .cta{margin:32px 0 48px}
+ .phones{height:430px}.phones .phone{width:200px;margin-left:-100px;bottom:-70px;border-radius:36px;padding:8px}.phones .phone .scr{border-radius:29px;padding-top:28px}.phones .phone::before{top:15px;width:62px;height:18px;margin-left:-31px}
+ .wide{margin-top:40px;padding:0}.wide img{border-radius:0;aspect-ratio:4/5}.wide .btn{bottom:28px}
  .two{grid-template-columns:1fr;gap:40px}.two .head{position:static}
  .q{grid-template-columns:52px 1fr;gap:16px;padding:20px}.q>.ic{display:none}.tile{width:52px;height:52px;border-radius:15px}.q b{font-size:17px;flex-wrap:wrap;gap:6px}
- .vision .frame img{aspect-ratio:4/5}.vision .frame::after{background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(16,24,18,.8))}.vision .cap{left:24px;right:24px;bottom:24px;flex-direction:column;align-items:flex-start}.vision .cap strong{font-size:21px}
  .ncard{flex-basis:220px;height:280px}.ncard strong{font-size:48px}
  .cards2,.grid3,.overview,.rules,.contact,.feature,.svc{grid-template-columns:1fr}
  .card2{padding:32px;min-height:260px}.card2 b{font-size:22px}.card2 img{width:140px;height:140px}
@@ -406,6 +438,32 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
  dl.info{padding:4px 22px}dl.info div{grid-template-columns:110px 1fr}
  .tl li{grid-template-columns:1fr;gap:4px}
 }
+@supports (animation-timeline:view()){
+ .reel{height:210vh;view-timeline-name:--reel}
+ .reel-pin{position:sticky;top:0;height:100vh;height:100svh}
+ .reel-media{animation:reel-open linear both;animation-timeline:--reel;animation-range:entry 50% contain 28%}
+ @keyframes reel-open{from{clip-path:inset(0 max(24px,calc((100% - 1152px)/2)) 12% round 32px)}to{clip-path:inset(0 0 0 0 round 0)}}
+ .reel-shade{animation:fade linear both;animation-timeline:--reel;animation-range:contain 18% contain 40%}
+ .reel-copy{animation:copy-in linear both;animation-timeline:--reel;animation-range:contain 22% contain 44%}
+ @keyframes fade{from{opacity:0}}
+ @keyframes copy-in{from{opacity:0;transform:translateY(40px)}}
+ .intro{height:280vh;padding:0;view-timeline-name:--intro}
+ .intro .in{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center}
+ .intro p span{color:#8b95a1;animation:hl linear both;animation-timeline:--intro}
+ .intro p span:nth-child(1){animation-range:contain 0% contain 25%}.intro p span:nth-child(2){animation-range:contain 25% contain 50%}.intro p span:nth-child(3){animation-range:contain 50% contain 75%}.intro p span:nth-child(4){animation-name:hl-last;animation-range:contain 75% contain 100%}
+ @keyframes hl{0%,100%{color:#8b95a1}18%,82%{color:var(--ink)}}
+ @keyframes hl-last{0%{color:#8b95a1}18%,100%{color:var(--ink)}}
+ .phones .p1{animation:fan-l linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+ .phones .p3{animation:fan-r linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+ .phones .p2{animation:lift linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+ @keyframes fan-l{from{transform:translateX(-8%) rotate(0) scale(.86)}}
+ @keyframes fan-r{from{transform:translateX(8%) rotate(0) scale(.86)}}
+ @keyframes lift{from{transform:translateY(140px)}}
+ .wide img{animation:grow linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
+ @keyframes grow{from{transform:scale(.9)}}
+ @media (max-width:960px){@keyframes reel-open{from{clip-path:inset(0 16px 10% round 24px)}to{clip-path:inset(0 0 0 0 round 0)}}}
+}
+@media (prefers-reduced-motion:reduce){@keyframes reel{0%{opacity:0}6%{opacity:1}33%{opacity:1}40%{opacity:0}100%{opacity:0}}}
 `.replace(/\n\s*/g, '').replace(/\/\*[^*]*\*\//g, '');
 
 const hash = s => createHash('sha1').update(s).digest('hex').slice(0, 8);
@@ -468,40 +526,51 @@ ${body}
 }
 
 const lazy = 'loading="lazy" decoding="async"';
-const art = (name, alt = '') => `<img src="${IMG}/${name}-960.webp" srcset="${IMG}/${name}-480.webp 480w, ${IMG}/${name}-960.webp 960w" sizes="(max-width:960px) 100vw, 560px" width="960" height="720" alt="${alt}" ${lazy}>`;
-const phone = (name, eager = false) => `<div class="phone" aria-hidden="true"><div class="scr"><img src="${IMG}/${name}.webp" srcset="${IMG}/${name}-360.webp 360w, ${IMG}/${name}.webp 520w" sizes="(max-width:960px) 200px, 250px" width="520" height="1126" alt="" ${eager ? 'decoding="async"' : lazy}></div></div>`;
+const pic = (name, sizes, alt = '', attrs = lazy) => {
+  const [ws, ratio] = SIZES[name] || [[480, 960], 3 / 4];
+  const big = ws[ws.length - 1];
+  return `<img src="${IMG}/${name}-${big}.webp" srcset="${ws.map(w => `${IMG}/${name}-${w}.webp ${w}w`).join(', ')}" sizes="${sizes}" width="${big}" height="${Math.round(big * ratio)}" alt="${alt}" ${attrs}>`;
+};
+const phone = (name, eager = false, cls = '') => `<div class="phone${cls ? ' ' + cls : ''}" aria-hidden="true"><div class="scr"><img src="${IMG}/${name}.webp" srcset="${IMG}/${name}-360.webp 360w, ${IMG}/${name}.webp 520w" sizes="(max-width:960px) 200px, 270px" width="520" height="1126" alt="" ${eager ? 'decoding="async"' : lazy}></div></div>`;
 const newsCard = n => `<a class="ncard2" href="/news/${n.slug}/"><div class="thumb"><img src="${IMG}/${n.img}.webp" width="480" height="300" alt="" ${lazy}><span class="chip ${n.tag === '출시' ? '' : n.tag === '업데이트' ? 'gold' : 'gray'}">${n.tag}</span></div><h3>${n.title}</h3><time datetime="${iso(n.date)}">${n.date}</time></a>`;
 
 // ── 홈 ────────────────────────────────────────────────────
 const intro = ['제이 미디어는 농촌의 가까운 거래에 주목합니다.', ' 같은 지역의 농산물과 중고 농기계를 이웃끼리 사고팔 수 있도록 보리장터를 만들고 있어요.', ' 판매자와 구매자는 직접 보고, 묻고, 확인한 뒤 거래합니다.', ' 거래 전후에 필요한 계산과 확인은 아홉 개의 도구가 함께 돕습니다.'];
-const stripImgs = STRIP.map(n => `<img src="${IMG}/${n}-480.webp" width="480" height="360" alt="" ${lazy}>`).join('');
+const stripImgs = STRIP.map(n => pic(n, '(max-width:960px) 260px, 420px')).join('');
+const reelImgs = REEL.map((n, i) => `<picture><source media="${TALL}" srcset="${IMG}/${n}-tall.webp">${pic(n, REEL_SIZES, '', i === 0 ? 'fetchpriority="high" decoding="async"' : 'fetchpriority="low" decoding="async"').replace('<img ', `<img class="r${i + 1}" `)}</picture>`).join('');
 const home = page({
   path: '/', current: '/',
   title: '제이 미디어 | 우리 농촌 가까이, 보리장터',
   description: '제이 미디어는 농산물과 중고 농기계를 같은 지역 사람끼리 사고파는 보리장터와 농촌 거래 도구 9곳을 만들고 운영합니다.',
-  preload: `\n<link rel="preload" as="image" href="${IMG}/hero-1536.webp" imagesrcset="${IMG}/hero-768.webp 768w, ${IMG}/hero-1536.webp 1536w" imagesizes="(max-width:960px) 100vw, 1032px" fetchpriority="high">`,
+  preload: `\n<link rel="preload" as="image" href="${IMG}/${REEL[0]}-tall.webp" media="${TALL}" fetchpriority="high">\n<link rel="preload" as="image" href="${IMG}/${REEL[0]}-1536.webp" imagesrcset="${SIZES[REEL[0]][0].map(w => `${IMG}/${REEL[0]}-${w}.webp ${w}w`).join(', ')}" imagesizes="${REEL_SIZES}" media="(min-aspect-ratio: 801/1000)" fetchpriority="high">`,
   jsonld: { '@context': 'https://schema.org', '@type': 'Organization', name: '제이 미디어', alternateName: 'J MEDIA', url: SITE + '/', logo: SITE + '/assets/mark.svg', telephone: '+82-10-2846-2011', brand: { '@type': 'Brand', name: '보리장터', url: 'https://boribay.com/' } },
   body: `<section class="hero"><div class="in">
 <p class="eyebrow">보리장터를 만드는 회사, 제이 미디어</p>
 <h1>우리 농촌 가까이,<br>보리장터</h1>
 <p class="lead">농산물과 중고 농기계를 같은 지역 사람끼리 직접 보고, 묻고, 확인한 뒤 거래하는 서비스를 만듭니다.</p>
 <div class="cta"><a class="btn primary" href="${BORIBAY}">보리장터 둘러보기${ic('arrow')}</a><a class="btn line" href="${PLAY}">${ic('phone')}Google Play에서 앱 받기</a></div>
-</div>
-<div class="stage">
-<img src="${IMG}/hero-1536.webp" srcset="${IMG}/hero-768.webp 768w, ${IMG}/hero-1536.webp 1536w" sizes="(max-width:960px) 100vw, 1032px" width="1536" height="1024" alt="노란 들판과 비닐하우스, 트랙터와 농산물 상자가 있는 보리장터 일러스트" fetchpriority="high">
-<p class="stage-copy">이웃과 직접 만나는<br>농촌의 장터<small>가까운 곳의 매물을 둘러보고 채팅으로 거래하세요</small></p>
-${phone('m-home', true)}
-<div class="float f1">${ic('pin')}우리 동네 매물부터</div>
-<div class="float f2">${ic('chat')}채팅으로 바로 문의</div>
-<div class="float f3">${ic('check')}현장에서 확인하고 거래</div>
+</div></section>
+<section class="reel" aria-label="보리장터가 잇는 농촌"><div class="reel-pin">
+<div class="reel-media">${reelImgs}</div>
+<div class="reel-shade"></div>
+<div class="reel-copy"><div class="in"><p>농사짓는 사람과<br class="mb"> 필요한 사람을<br>가까운 동네에서 이어요<small>농산물부터 중고 농기계, 탁송 업체까지 한곳에서</small></p></div></div>
 </div></section>
 <section class="intro"><div class="in"><p>${intro.map(s => `<span>${s}</span>`).join('')}</p></div></section>
 <div class="strip cv" aria-hidden="true"><div class="track">${stripImgs}${stripImgs}</div></div>
-<section class="sec cv" style="padding-top:0"><div class="in">
-<p class="eyebrow" data-r>보리장터 이야기</p>
-<h2 data-r>보리장터에서 달라지는 거래</h2>
-<div class="tabs" role="tablist" aria-label="보리장터 거래 분야">${STORIES.map((s, i) => `<button type="button" role="tab" id="tab-${i}" aria-controls="panel-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${s.tab}</button>`).join('')}</div>
-<div class="panels">${STORIES.map((s, i) => `<div class="panel${i === 0 ? ' active' : ''}" id="panel-${i}" role="tabpanel" aria-labelledby="tab-${i}"><div><p class="num">0${i + 1}</p><h3>${s.title}</h3><p>${s.text}</p><a class="btn dark sm" href="${s.href}">${s.more}${ic('arrow')}</a></div><div class="visual">${art(s.img)}<span class="tagchip">${ic(s.icon)}${s.tab}</span>${phone(s.phone)}</div></div>`).join('')}</div>
+<section class="stories" data-stories style="--n:${STORIES.length}"><div class="st-pin"><div class="in st-grid">
+<div class="st-head"><p class="eyebrow">보리장터 이야기</p><h2>보리장터에서<br>달라지는 거래</h2></div>
+<div class="st-items">${STORIES.map((s, i) => `<article class="story${i === 0 ? ' on' : ''}">
+<figure class="st-fig">${pic(s.img, '(max-width:960px) 100vw, 620px')}<figcaption><span class="st-chip">${s.tab}</span><a class="st-more" href="${s.href}">${s.more}${ic('arrow')}</a></figcaption></figure>
+<div class="st-text"><p class="st-no">0${i + 1} <i>/ 0${STORIES.length}</i></p><h3>${s.title}</h3><p>${s.text}</p><a class="btn dark sm" href="${s.href}">${s.more}${ic('arrow')}</a></div>
+</article>`).join('')}</div>
+<div class="st-bar" aria-hidden="true">${STORIES.map((_, i) => `<i${i === 0 ? ' class="on"' : ''}></i>`).join('')}</div>
+</div></div>
+<div class="st-steps" aria-hidden="true">${STORIES.map(() => '<i></i>').join('')}</div>
+</section>
+<section class="app cv"><div class="in">
+<div><p class="eyebrow" data-r>보리장터 앱</p><h2 data-r>손안에서 여는<br>우리 동네 장터</h2><p class="lead" data-r>매물 검색과 채팅, 커뮤니티, 농촌생활 안내까지. 웹과 Android 앱에서 함께 쓸 수 있어요.</p>
+<div class="cta" data-r><a class="btn gold" href="${PLAY}">${ic('phone')}Google Play에서 받기</a><a class="btn ghost" href="${BORIBAY}">웹으로 둘러보기${ic('arrow')}</a></div></div>
+<div class="phones">${phone('m-tractor', false, 'p1')}${phone('m-home', false, 'p2')}${phone('m-guides', false, 'p3')}</div>
 </div></section>
 <section class="sec warm cv"><div class="in two">
 <div class="head" data-r><p class="eyebrow">거래 전후를 돕는 도구</p><h2>보리장터와 함께<br>운영하는 서비스</h2><p>매물을 고르기 전 확인할 것, 거래 뒤에 남길 것까지. 필요한 일을 서비스마다 나눠 만들었어요.</p></div>
@@ -510,8 +579,9 @@ ${phone('m-home', true)}
 <section class="sec vision cv"><div class="in">
 <p class="eyebrow" data-r>우리가 꿈꾸는 농촌</p>
 <h2 data-r>가까운 곳에서 직접 보고,<br>묻고, 확인하는 거래</h2>
-<div class="frame" data-r>${art('hongro-apple', '사과 상자와 과수원이 그려진 보리장터 일러스트')}<div class="cap"><strong>농사짓는 사람과 필요한 사람을<br>같은 동네에서 이어 드려요</strong><a class="btn line sm" href="${BORIBAY}">보리장터 둘러보기${ic('arrow')}</a></div></div>
-</div></section>
+</div>
+<div class="wide" data-r>${pic('hero', '(max-width:1280px) 100vw, 1232px', '노란 들판과 비닐하우스, 트랙터와 농산물 상자가 있는 보리장터 일러스트')}<a class="btn dark" href="${BORIBAY}">보리장터 둘러보기${ic('arrow')}</a></div>
+</section>
 <section class="sec cv" style="padding-top:0"><div class="in two">
 <div class="head" data-r><p class="eyebrow">숫자로 보는 제이 미디어</p><h2>작게 시작해<br>꾸준히 넓혀 가고 있어요</h2><p class="basis">${BASIS}</p></div>
 <div class="nums">${NUMS.map(([label, small, n, unit]) => `<div class="ncard" data-r><span>${label}</span><small>${small}</small><strong><b data-count="${n}">${n.toLocaleString('ko-KR')}</b><em>${unit}</em></strong></div>`).join('')}</div>
