@@ -140,7 +140,7 @@ const CSS = `
 :root{--ink:#191f28;--ink2:#333d4b;--sub:#4e5968;--mute:#6b7684;--line:#e5e8eb;--line2:#f2f4f6;--bg:#fff;--warm:#faf8f2;--green:#2c5a37;--green-d:#1f4228;--green-t:#edf4ea;--gold:#f2b705;--gold-t:#fff6d6;--sand:#f5efe2;--ease:cubic-bezier(.2,.7,.2,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:88px}
-body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.65;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:"Pretendard JM","Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;color:var(--ink);background:var(--bg);font-size:17px;line-height:1.65;letter-spacing:-.01em;word-break:keep-all;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 img{display:block;max-width:100%;height:auto}
 .in{max-width:1080px;margin:0 auto;padding:0 24px}
@@ -180,6 +180,7 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .lead{margin-top:24px;font-size:20px;line-height:1.6;color:var(--sub);max-width:600px}
 .sec{padding:140px 0}
 .sec.warm{background:var(--warm)}
+.cv{content-visibility:auto;contain-intrinsic-size:auto 1000px}
 .js [data-r]{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js [data-r].on{opacity:1;transform:none}
 .js [data-r="2"]{transition-delay:.12s}.js [data-r="3"]{transition-delay:.24s}
@@ -220,7 +221,7 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .panels{display:grid;margin-top:56px}
 .panel{grid-area:1/1;display:grid;grid-template-columns:1fr 1.15fr;gap:72px;align-items:center;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s}
 .panel.active{opacity:1;visibility:visible;transform:none}
-.panel .num{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:.06em}
+.panel .num{font-size:15px;font-weight:800;color:#8a6400;letter-spacing:.06em}
 .panel h3{margin-top:12px;font-size:36px;line-height:1.38;white-space:pre-line}
 .panel p{margin-top:20px;font-size:18px;line-height:1.75;color:var(--sub)}
 .panel .btn{margin-top:32px}
@@ -411,9 +412,9 @@ const hash = s => createHash('sha1').update(s).digest('hex').slice(0, 8);
 const JS = readFileSync(join(ROOT, 'assets/site.js'), 'utf8');
 const JS_V = hash(JS);
 // 글꼴 선언과 사이트 CSS는 페이지에 바로 넣어 첫 화면을 막는 요청을 없앤다
-const FONT_CSS = '/* Pretendard: SIL OFL 1.1, /assets/fonts/OFL.txt */' + readFileSync(join(ROOT, 'assets/fonts/pretendardvariable-dynamic-subset.css'), 'utf8')
-  .replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{};,])\s*/g, '$1').replace(/:\s+/g, ':')
-  .replaceAll('url(./woff2-dynamic-subset/', 'url(/assets/fonts/woff2-dynamic-subset/');
+// 글꼴은 이 페이지들에 쓰인 글자만 담은 파일 하나 (tools/build-font.mjs가 만든다)
+const FONT = '/assets/fonts/pretendard-jm.woff2?v=' + hash(readFileSync(join(ROOT, 'assets/fonts/pretendard-jm.woff2')));
+const FONT_CSS = `/* Pretendard: SIL OFL 1.1, /assets/fonts/OFL.txt */@font-face{font-family:"Pretendard JM";font-style:normal;font-display:swap;font-weight:45 920;src:url(${FONT}) format("woff2-variations"),url(${FONT}) format("woff2")}`;
 
 // ── 공통 틀 ────────────────────────────────────────────────
 const NAV = [['/service/', '서비스'], ['/news/', '소식'], ['/company/', '회사 정보']];
@@ -445,7 +446,7 @@ function page({ path, title, description, body, current, jsonld, preload = '' })
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a>
-<header class="gnb"><div class="in"><a class="logo" href="/" aria-label="제이 미디어 홈">${MARK}J MEDIA<small>제이 미디어</small></a>
+<header class="gnb"><div class="in"><a class="logo" href="/">${MARK}J MEDIA<small>제이 미디어</small></a>
 <button class="menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false">${ic('menu')}</button>
 <nav class="nav" aria-label="주요 메뉴">${nav}<a class="out" href="${BORIBAY}">보리장터${ic('ext')}</a></nav></div></header>
 <main id="main">
@@ -495,27 +496,27 @@ ${phone('m-home', true)}
 <div class="float f3">${ic('check')}현장에서 확인하고 거래</div>
 </div></section>
 <section class="intro"><div class="in"><p>${intro.map(s => `<span>${s}</span>`).join('')}</p></div></section>
-<div class="strip" aria-hidden="true"><div class="track">${stripImgs}${stripImgs}</div></div>
-<section class="sec" style="padding-top:0"><div class="in">
+<div class="strip cv" aria-hidden="true"><div class="track">${stripImgs}${stripImgs}</div></div>
+<section class="sec cv" style="padding-top:0"><div class="in">
 <p class="eyebrow" data-r>보리장터 이야기</p>
 <h2 data-r>보리장터에서 달라지는 거래</h2>
 <div class="tabs" role="tablist" aria-label="보리장터 거래 분야">${STORIES.map((s, i) => `<button type="button" role="tab" id="tab-${i}" aria-controls="panel-${i}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${s.tab}</button>`).join('')}</div>
 <div class="panels">${STORIES.map((s, i) => `<div class="panel${i === 0 ? ' active' : ''}" id="panel-${i}" role="tabpanel" aria-labelledby="tab-${i}"><div><p class="num">0${i + 1}</p><h3>${s.title}</h3><p>${s.text}</p><a class="btn dark sm" href="${s.href}">${s.more}${ic('arrow')}</a></div><div class="visual">${art(s.img)}<span class="tagchip">${ic(s.icon)}${s.tab}</span>${phone(s.phone)}</div></div>`).join('')}</div>
 </div></section>
-<section class="sec warm"><div class="in two">
+<section class="sec warm cv"><div class="in two">
 <div class="head" data-r><p class="eyebrow">거래 전후를 돕는 도구</p><h2>보리장터와 함께<br>운영하는 서비스</h2><p>매물을 고르기 전 확인할 것, 거래 뒤에 남길 것까지. 필요한 일을 서비스마다 나눠 만들었어요.</p></div>
 <div class="qlist">${TOOLS.map(([, icon, name, url, kind, text]) => `<a class="q" href="${url}" data-r><span class="tile">${ic(icon)}</span><div><b>${name}<span>${kind}</span></b><p>${text}</p></div>${ic('arrow')}</a>`).join('')}</div>
 </div></section>
-<section class="sec vision"><div class="in">
+<section class="sec vision cv"><div class="in">
 <p class="eyebrow" data-r>우리가 꿈꾸는 농촌</p>
 <h2 data-r>가까운 곳에서 직접 보고,<br>묻고, 확인하는 거래</h2>
 <div class="frame" data-r>${art('hongro-apple', '사과 상자와 과수원이 그려진 보리장터 일러스트')}<div class="cap"><strong>농사짓는 사람과 필요한 사람을<br>같은 동네에서 이어 드려요</strong><a class="btn line sm" href="${BORIBAY}">보리장터 둘러보기${ic('arrow')}</a></div></div>
 </div></section>
-<section class="sec" style="padding-top:0"><div class="in two">
+<section class="sec cv" style="padding-top:0"><div class="in two">
 <div class="head" data-r><p class="eyebrow">숫자로 보는 제이 미디어</p><h2>작게 시작해<br>꾸준히 넓혀 가고 있어요</h2><p class="basis">${BASIS}</p></div>
 <div class="nums">${NUMS.map(([label, small, n, unit]) => `<div class="ncard" data-r><span>${label}</span><small>${small}</small><strong><b data-count="${n}">${n.toLocaleString('ko-KR')}</b><em>${unit}</em></strong></div>`).join('')}</div>
 </div></section>
-<section class="sec warm"><div class="in">
+<section class="sec warm cv"><div class="in">
 <p class="eyebrow" data-r>제이 미디어가 일하는 방식</p>
 <h2 data-r>거래는 이용자의 것,<br>정보는 확인한 만큼</h2>
 <div class="cards2">
@@ -523,7 +524,7 @@ ${phone('m-home', true)}
 <div class="card2" data-r="2"><b>함께할 파트너를<br>찾고 있어요!</b><a class="btn dark sm" href="${KAKAO_JMEDIA}">제휴 문의하기${ic('arrow')}</a><img src="${IMG}/produce-direct-sale-480.webp" width="480" height="360" alt="" ${lazy}></div>
 </div>
 </div></section>
-<section class="sec"><div class="in" data-rail>
+<section class="sec cv"><div class="in" data-rail>
 <div class="newshead"><div><p class="eyebrow" data-r>소식</p><h2 data-r>제이 미디어의 최근 소식</h2></div><div class="ctrls"><button class="round" type="button" data-prev aria-label="이전 소식">${ic('left')}</button><button class="round" type="button" data-next aria-label="다음 소식">${ic('arrow')}</button><a class="btn dark sm" href="/news/">소식 보러 가기${ic('arrow')}</a></div></div>
 <div class="rail">${NEWS.map(newsCard).join('')}</div>
 </div></section>`,
@@ -625,3 +626,11 @@ for (const [rel, text] of files) {
   writeFileSync(out, text, 'utf8');
   console.log(rel, Buffer.byteLength(text), 'bytes');
 }
+
+// 글꼴에 없는 글자가 생기면 알린다 (그 글자만 시스템 글꼴로 보이므로 build-font.mjs를 다시 실행)
+const have = new Set(readFileSync(join(ROOT, 'assets/fonts/pretendard-jm.chars.txt'), 'utf8'));
+const missing = new Set();
+for (const [rel, text] of files) if (rel.endsWith('.html')) {
+  for (const ch of text.replace(/<(script|style|svg)[\s\S]*?<\/\1>/g, ' ').replace(/<[^>]+>/g, ' ')) if (ch.codePointAt(0) > 0x20 && !have.has(ch)) missing.add(ch);
+}
+if (missing.size) console.warn('글꼴에 없는 글자:', [...missing].join(''), '→ cd tools && node build-font.mjs 후 다시 빌드');

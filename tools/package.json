@@ -1,0 +1,10 @@
+{
+  "name": "jnewmedia-tools",
+  "private": true,
+  "type": "module",
+  "description": "회사 소개 페이지용 글꼴 부분집합 생성 (build-font.mjs)",
+  "dependencies": {
+    "pretendard": "1.3.9",
+    "subset-font": "2.4.0"
+  }
+}
