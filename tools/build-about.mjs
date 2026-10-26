@@ -19,15 +19,15 @@ const BASIS = '2026년 10월 26일 기준';
 
 // ── 콘텐츠 ────────────────────────────────────────────────
 const TOOLS = [
-  ['yomiwiki', 'book', '요미위키', 'https://yomiwiki.com/', '농업 거래 지식사전', '농산물 등급·선별, 보관·출하, 농기계 점검과 거래 용어를 현장 기준으로 빠르게 찾아봅니다.'],
-  ['scamreader', 'shield', '스캠판독기', 'https://scamreader.com/', '거래 안전 점검', '선입금·계좌 변경·가짜 결제 같은 직거래 위험 신호를 점검하고, 피해 후 대응 순서를 정리합니다.'],
-  ['reportools', 'calc', '리포툴스', 'https://www.reportools.com/', '판매 손익 계산', '판매가와 생산·선별·포장·배송비, 수수료와 감모를 넣어 예상 이익과 손익분기 가격을 계산합니다.'],
-  ['goatool', 'file', '고아툴', 'https://goatool.com/', '거래 증빙 파일 도구', '농기계 명판·인도 사진과 출하·정산 파일을 브라우저 안에서 점검하고 증빙 목록과 파일명을 정리합니다.'],
-  ['occultworldcup', 'scale', '농사월드컵', 'https://occultworldcup.com/', '품종·산지·농기계 비교', '감자 품종, 사과 산지, 중고 트랙터와 농기계를 질문에 답하며 비교하고 내 거래 기준을 만듭니다.'],
-  ['policyfundpedia', 'coin', '정책자금 백과', 'https://policyfundpedia.com/', '농업 정책자금 확인', '자금 공고의 대상·용도·배정·대출 심사를 따로 확인하는 기록 도구와 공고 원문 해설을 제공합니다.'],
-  ['megapureunasset', 'clip', '메가푸른에셋', 'https://megapureunasset.kr/', '농기계 자산·보험 기록', '농기계 인수 상태, 정비·사고 이력과 보험 확인 사항을 기록하고, 가입 전 질문표와 사고 후 기록표를 씁니다.'],
-  ['sumimap', 'pin', '스미맵', 'https://sumimap.com/', '영농폐기물 집하장 찾기', '한국환경공단 공개자료에서 전국 영농폐기물 공동집하장 주소를 지역별로 찾아보고 방문 전 확인할 것을 안내합니다.'],
-  ['tripmarking', 'truck', '트립마킹', 'https://tripmarking.com/', '농기계 탁송 견적 비교', '중고 농기계를 옮기기 전에 기계 제원과 상하차 조건을 정리하고, 받은 탁송 견적을 같은 기준으로 비교합니다.'],
+  ['yomiwiki', 'book', '농산물 거래사전', 'https://yomiwiki.com/', 'yomiwiki.com', '농산물 등급·선별, 보관·출하, 농기계 점검과 거래 용어를 현장 기준으로 빠르게 찾아봅니다.'],
+  ['scamreader', 'shield', '직거래 사기 점검', 'https://scamreader.com/', 'scamreader.com', '선입금·계좌 변경·가짜 결제 같은 직거래 위험 신호를 점검하고, 피해 후 대응 순서를 정리합니다.'],
+  ['reportools', 'calc', '농가 손익 계산기', 'https://www.reportools.com/', 'reportools.com', '판매가와 생산·선별·포장·배송비, 수수료와 감모를 넣어 예상 이익과 손익분기 가격을 계산합니다.'],
+  ['goatool', 'file', '거래 증빙 도우미', 'https://goatool.com/', 'goatool.com', '농기계 명판·인도 사진과 출하·정산 파일을 브라우저 안에서 점검하고 증빙 목록과 파일명을 정리합니다.'],
+  ['occultworldcup', 'scale', '농사 비교 월드컵', 'https://occultworldcup.com/', 'occultworldcup.com', '감자 품종, 사과 산지, 중고 트랙터와 농기계를 질문에 답하며 비교하고 내 거래 기준을 만듭니다.'],
+  ['policyfundpedia', 'coin', '농업 정책자금 백과', 'https://policyfundpedia.com/', 'policyfundpedia.com', '자금 공고의 대상·용도·배정·대출 심사를 따로 확인하는 기록 도구와 공고 원문 해설을 제공합니다.'],
+  ['megapureunasset', 'clip', '농기계 자산 수첩', 'https://megapureunasset.kr/', 'megapureunasset.kr', '농기계 인수 상태, 정비·사고 이력과 보험 확인 사항을 기록하고, 가입 전 질문표와 사고 후 기록표를 씁니다.'],
+  ['sumimap', 'pin', '영농폐기물 집하장 지도', 'https://sumimap.com/', 'sumimap.com', '한국환경공단 공개자료에서 전국 영농폐기물 공동집하장 주소를 지역별로 찾아보고 방문 전 확인할 것을 안내합니다.'],
+  ['tripmarking', 'truck', '농기계 탁송 견적 비교', 'https://tripmarking.com/', 'tripmarking.com', '중고 농기계를 옮기기 전에 기계 제원과 상하차 조건을 정리하고, 받은 탁송 견적을 같은 기준으로 비교합니다.'],
 ];
 
 // 소식: 실제로 있었던 출시·운영 기록만 담는다 (최신순)
