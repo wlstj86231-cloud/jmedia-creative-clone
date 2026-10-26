@@ -140,7 +140,8 @@ const I = {
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
 };
 const ic = (name, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${I[name]}</svg>`;
-const MARK = '<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2c5a37"/><path d="M16 26V9.5" stroke="#f2b705" stroke-width="1.8" stroke-linecap="round"/><g fill="#f2b705"><ellipse cx="16" cy="8.2" rx="1.9" ry="3"/><ellipse cx="13.4" cy="12.6" rx="1.8" ry="3" transform="rotate(-38 13.4 12.6)"/><ellipse cx="18.6" cy="12.6" rx="1.8" ry="3" transform="rotate(38 18.6 12.6)"/><ellipse cx="13.4" cy="17.2" rx="1.8" ry="3" transform="rotate(-38 13.4 17.2)"/><ellipse cx="18.6" cy="17.2" rx="1.8" ry="3" transform="rotate(38 18.6 17.2)"/></g></svg>';
+const MARK = '<img class="mark" src="/assets/jmedia-mark.webp" width="69" height="32" alt="">';
+const FAVICON = '<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#2c5a37"/><path d="M16 26V9.5" stroke="#f2b705" stroke-width="1.8" stroke-linecap="round"/><g fill="#f2b705"><ellipse cx="16" cy="8.2" rx="1.9" ry="3"/><ellipse cx="13.4" cy="12.6" rx="1.8" ry="3" transform="rotate(-38 13.4 12.6)"/><ellipse cx="18.6" cy="12.6" rx="1.8" ry="3" transform="rotate(38 18.6 12.6)"/><ellipse cx="13.4" cy="17.2" rx="1.8" ry="3" transform="rotate(-38 13.4 17.2)"/><ellipse cx="18.6" cy="17.2" rx="1.8" ry="3" transform="rotate(38 18.6 17.2)"/></g></svg>';
 const INSTAGRAM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM21 8.1c-.1-1.5-.4-2.8-1.5-3.9S17.1 2.8 15.6 2.7C14 2.6 10 2.6 8.4 2.7 6.9 2.8 5.6 3.1 4.5 4.2S3 6.6 2.9 8.1C2.8 9.7 2.8 14.3 2.9 15.9c.1 1.5.4 2.8 1.6 3.9 1.1 1.1 2.4 1.4 3.9 1.5 1.6.1 5.6.1 7.2 0 1.5-.1 2.8-.4 3.9-1.5s1.4-2.4 1.5-3.9c.1-1.6.1-6.2 0-7.8Zm-2 9.6a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4a3 3 0 0 1-1.7-1.7c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3A3 3 0 0 1 6.7 5.4C7.9 4.9 10.7 5 12 5s4.1-.1 5.3.4A3 3 0 0 1 19 7.1c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3Z"/></svg>';
 
 // ── 스타일 ────────────────────────────────────────────────
@@ -155,7 +156,7 @@ img{display:block;max-width:100%;height:auto}
 .skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;z-index:20;border-radius:8px}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:10px}
 .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.mark{width:32px;height:32px;flex:none}
+.mark{width:auto;height:32px;flex:none}
 
 /* 헤더 */
 .gnb{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);box-shadow:0 1px 0 transparent;transition:box-shadow .25s}
@@ -197,6 +198,7 @@ h3{font-size:28px;line-height:1.42;font-weight:700;letter-spacing:-.025em}
 .hero{padding:104px 0 0}
 .hero h1{font-size:72px;line-height:1.24;letter-spacing:-.04em}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.hero .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:40px;align-items:center}.hero-shot{position:relative;height:540px;animation-delay:.3s}.hero-shot::before{content:"";position:absolute;left:50%;top:50%;width:440px;height:440px;max-width:100%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--gold-t),var(--green-t))}.hero-shot img{position:absolute;top:50%;left:50%;height:auto;border-radius:30px;border:7px solid var(--ink);background:var(--ink);box-shadow:0 30px 60px -24px rgba(25,31,40,.45)}.hero-shot .p1{width:250px;transform:translate(-30%,-50%) rotate(4deg)}.hero-shot .p2{width:220px;transform:translate(-95%,-46%) rotate(-7deg);opacity:.95}
 .hero .in>*,.page-h .in>*{animation:rise .9s var(--ease) both}.hero h1,.page-h h1{animation-delay:.06s}.hero .lead,.page-h .lead{animation-delay:.14s}.hero .cta{animation-delay:.22s}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}}
 
@@ -412,7 +414,7 @@ dl.info div:last-child{border-bottom:0}dl.info dt{font-weight:700}dl.info dd{col
  .nav{position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;padding:8px 20px 20px;background:#fff;border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
  .gnb.open .nav{opacity:1;visibility:visible;transform:none}
  .nav a{padding:14px 4px;font-size:17px}.nav a::after{display:none}.nav .out{margin-top:10px;justify-content:center;padding:12px}
- .hero{padding:56px 0 0}.hero h1{font-size:42px}.btn{height:50px}
+ .hero{padding:56px 0 0}.hero h1{font-size:42px}.hero .in{grid-template-columns:1fr;gap:12px}.hero-shot{height:400px}.hero-shot::before{width:320px;height:320px}.hero-shot img{border-radius:24px;border-width:6px}.hero-shot .p1{width:180px}.hero-shot .p2{width:160px}.btn{height:50px}
  .reel{margin-top:48px}.reel-pin{height:78vh}
  .reel-copy{top:16%}.reel-copy .mb{display:inline}.reel-copy p{font-size:31px;line-height:1.36}.reel-copy small{font-size:16px;margin-top:14px}
  .intro{padding:110px 0 90px}.intro p{font-size:25px;line-height:1.6}
@@ -545,10 +547,12 @@ const home = page({
   preload: `\n<link rel="preload" as="image" href="${IMG}/${REEL[0]}-tall.webp" media="${TALL}" fetchpriority="high">\n<link rel="preload" as="image" href="${IMG}/${REEL[0]}-1536.webp" imagesrcset="${SIZES[REEL[0]][0].map(w => `${IMG}/${REEL[0]}-${w}.webp ${w}w`).join(', ')}" imagesizes="${REEL_SIZES}" media="(min-aspect-ratio: 801/1000)" fetchpriority="high">`,
   jsonld: { '@context': 'https://schema.org', '@type': 'Organization', name: '제이 미디어', alternateName: 'J MEDIA', url: SITE + '/', logo: SITE + '/assets/mark.svg', telephone: '+82-10-2846-2011', brand: { '@type': 'Brand', name: '보리장터', url: 'https://boribay.com/' } },
   body: `<section class="hero"><div class="in">
+<div class="hero-copy">
 <p class="eyebrow">보리장터를 만드는 회사, 제이 미디어</p>
 <h1>우리 농촌 가까이,<br>보리장터</h1>
 <p class="lead">농산물과 중고 농기계를 같은 지역 사람끼리 직접 보고, 묻고, 확인한 뒤 거래하는 서비스를 만듭니다.</p>
 <div class="cta"><a class="btn primary" href="${BORIBAY}">보리장터 둘러보기${ic('arrow')}</a><a class="btn line" href="${PLAY}">${ic('phone')}Google Play에서 앱 받기</a></div>
+</div><div class="hero-shot" aria-hidden="true"><img class="p2" src="${IMG}/m-tractor-360.webp" srcset="${IMG}/m-tractor-360.webp 360w, ${IMG}/m-tractor.webp 520w" sizes="(max-width:960px) 160px, 220px" width="520" height="1125" alt="" fetchpriority="low"><img class="p1" src="${IMG}/m-home-360.webp" srcset="${IMG}/m-home-360.webp 360w, ${IMG}/m-home.webp 520w" sizes="(max-width:960px) 180px, 250px" width="520" height="1125" alt=""></div>
 </div></section>
 <section class="reel" aria-label="보리장터가 잇는 농촌"><div class="reel-pin">
 <div class="reel-media">${reelImgs}</div>
@@ -689,7 +693,7 @@ ${NEWS.map(n => `<li data-r><time datetime="${iso(n.date)}">${n.date}</time><spa
 
 // ── 쓰기 ──────────────────────────────────────────────────
 const files = [['index.html', home], ['service/index.html', service], ['news/index.html', newsList], ['company/index.html', company], ...newsPages,
-  ['assets/mark.svg', MARK.replace('<svg class="mark" ', '<svg xmlns="http://www.w3.org/2000/svg" ')]];
+  ['assets/mark.svg', FAVICON.replace('<svg class="mark" ', '<svg xmlns="http://www.w3.org/2000/svg" ')]];
 for (const [rel, text] of files) {
   const out = join(ROOT, rel);
   mkdirSync(dirname(out), { recursive: true });
